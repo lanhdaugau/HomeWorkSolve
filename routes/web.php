@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController\DashBoardController;
 use App\Http\Controllers\AdminController\RoleController;
+use App\Http\Controllers\UserController\LoginController;
+use App\Http\Controllers\UserController\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 Route::prefix('admin')->group(function(){
@@ -32,3 +31,11 @@ Route::prefix('admin')->group(function(){
         });
     });
 });
+Route::get('/',function(){
+    return view('users.index');
+});
+Route::get('/login',[LoginController::class,'index'])->name('login.index');
+Route::post('/login',[LoginController::class,'login'])->name('login.login');
+Route::get('/register',[RegisterController::class,'index'])->name('register.index');
+Route::post('/register',[RegisterController::class,'register'])->name('register.register');
+Route::get('/active/{token}',[RegisterController::class,'active'])->name('register.active');
