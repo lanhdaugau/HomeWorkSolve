@@ -7,7 +7,7 @@
 </head>
 <body class="full-screen login">
 
-
+   
     <div class="wrapper">
         <div class="page-header" style="background-image: url('http://doan.test//image/bruno-abatti.jpg');">
             <div class="filter"></div>
@@ -20,13 +20,22 @@
                                 @csrf
                                 <label>Email</label>
                                 <input type="email" class="form-control no-border" placeholder="Email" name="email">
-
+                                @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <label>Password</label>
                                 <input type="password" class="form-control no-border" placeholder="Password" name="password">
+                                @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                <input type="checkbox" value="1" name="remember"> Nhớ mật khẩu
+                                @error('errorLogin')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <button class="btn btn-danger btn-block btn-round">Login</button>
                             </form>
                             <div class="forgot">
-                                <a href="#paper-kit" class="btn btn-link btn-danger">Forgot password?</a>
+                                <a href="{{route('forgot')}}" class="btn btn-link btn-danger">Forgot password?</a>
                             </div>
                         </div>
                     </div>

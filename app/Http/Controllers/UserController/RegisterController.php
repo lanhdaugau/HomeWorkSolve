@@ -4,10 +4,13 @@ namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ActiveMail;
+use App\Models\Login;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+
 
 class RegisterController extends Controller
 {
@@ -51,17 +54,21 @@ class RegisterController extends Controller
                 ]
             );
             $route = route('register.active', $activeToken);
-            $mail = Mail::to($check->email)->send(new ActiveMail($route));
+            
+            if(Mail::to($check->email)->send(new ActiveMail($route))){
+                return redirect()->back()->with('success','Vui lòng kiểm tra email');
+            }
         };
     }
 
-    public function active(Request $request)
+    public function active($token)
     {
-        dd($request);
+        $user = User::where('activeToken', $token)->first();
+        $userLogin = Login::where('idUsers',$user->id)->first();
+        $userLogin->update(['isActive' => 1]);
+        if(Auth::loginUsingId($userLogin->id)){
+            return redirect()->route('user.index');
+        }
     }
-
-    public function logout()
-    {
-        # code...
-    }
+    
 }

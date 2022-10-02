@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    @include('users.layout.navbar')
     <div class="main">
         <div class="section section-buttons section-gray">
             <div class="container">

@@ -33,9 +33,11 @@ Route::prefix('admin')->group(function(){
 });
 Route::get('/',function(){
     return view('users.index');
-});
+})->name('user.index');
 Route::get('/login',[LoginController::class,'index'])->name('login.index');
 Route::post('/login',[LoginController::class,'login'])->name('login.login');
 Route::get('/register',[RegisterController::class,'index'])->name('register.index');
 Route::post('/register',[RegisterController::class,'register'])->name('register.register');
 Route::get('/active/{token}',[RegisterController::class,'active'])->name('register.active');
+
+Route::get('/logout',[LoginController::class,'logout'])->name('login.logout');

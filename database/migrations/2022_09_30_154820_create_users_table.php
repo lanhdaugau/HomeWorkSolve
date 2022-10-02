@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('avatar')->nullable();
-            $table->date('birthday')->nullable();
-            $table->boolean('isActive')->default(0);
+            $table->date('birthday')->nullable();    
             $table->boolean('gender')->nullable();
             $table->unsignedInteger('idCity')->nullable();
             $table->unsignedInteger('idDistrict')->nullable();

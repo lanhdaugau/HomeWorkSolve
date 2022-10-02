@@ -19,11 +19,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // protected $guard = 'admin' ;
+    // Auth::guard('admin')->user()
     protected $fillable = [
         'name',
         'email',
         'password',
-        'activeToken'
+        'activeToken',
+        'isActive',
+
     ];
 
     /**
