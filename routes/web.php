@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController\DashBoardController;
 use App\Http\Controllers\AdminController\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserController\LoginController;
 use App\Http\Controllers\UserController\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::prefix('admin')->group(function(){
 Route::get('/',function(){
     return view('users.index');
 })->name('user.index');
+
 Route::get('/login',[LoginController::class,'index'])->name('login.index');
 Route::post('/login',[LoginController::class,'login'])->name('login.login');
 Route::get('/register',[RegisterController::class,'index'])->name('register.index');
@@ -45,3 +47,11 @@ Route::get('/forgot',[LoginController::class,'forgot'])->name('forgot');
 Route::post('/forgot',[LoginController::class,'checkMail'])->name('checkMail');
 Route::get('/reset/{token}',[LoginController::class,'resetPass'])->name('resetPass');
 Route::post('/reset/{token}',[LoginController::class,'confirm'])->name('confirm');
+
+Route::get('/profile',[UserController::class,'profile'])->name('profile');
+
+Route::get('/addPost',function(){
+    return view('users.user.addPost');
+}
+
+);
