@@ -41,3 +41,7 @@ Route::post('/register',[RegisterController::class,'register'])->name('register.
 Route::get('/active/{token}',[RegisterController::class,'active'])->name('register.active');
 
 Route::get('/logout',[LoginController::class,'logout'])->name('login.logout');
+Route::get('/forgot',[LoginController::class,'forgot'])->name('forgot');
+Route::post('/forgot',[LoginController::class,'checkMail'])->name('checkMail');
+Route::get('/reset/{token}',[LoginController::class,'resetPass'])->name('resetPass');
+Route::post('/reset/{token}',[LoginController::class,'confirm'])->name('confirm');

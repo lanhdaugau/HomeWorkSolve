@@ -30,7 +30,7 @@ class RegisterController extends Controller
             [
                 'required' => 'Trường này không được bỏ trống !',
                 'email' => 'Không đúng định dạng email',
-                'lt' => 'Không khớp mật khẩu',
+                
                 'min' => 'Độ dài quá ngắn',
                 'unique' => 'Email đã tồn tại',
             ]
@@ -70,5 +70,5 @@ class RegisterController extends Controller
             return redirect()->route('user.index');
         }
     }
-    
+   
 }
