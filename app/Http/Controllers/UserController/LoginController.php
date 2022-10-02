@@ -97,6 +97,7 @@ class LoginController extends Controller
                 return redirect()->route('user.index');
             }
         }
+        //alo
     }
     public function logout()
     {
