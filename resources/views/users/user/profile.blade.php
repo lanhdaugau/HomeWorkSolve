@@ -1,7 +1,8 @@
-@extends('users.layouts.main')
+@extends('users.layout.main')
 @section('contents')
 <div class="wrapper">
-    <div class="page-header page-header-small" style="background-image: url('../assets/img/sections/rodrigo-ardilha.jpg');">
+    <div class="page-header page-header-small"
+        style="background-image: url('../assets/img/sections/rodrigo-ardilha.jpg');">
         <div class="filter"></div>
     </div>
     <div class="profile-content section">
@@ -10,7 +11,7 @@
                 <div class="profile-picture">
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new img-no-padding">
-                            <img src="{{ asset('assets') }}/img/faces/joe-gardner-2.jpg" alt="...">
+                            <img src="../assets/img/faces/joe-gardner-2.jpg" alt="...">
                         </div>
                         <div class="name">
                             <h4 class="title text-center">Chet Faker<br><small>Music Producer</small></h4>
@@ -20,7 +21,9 @@
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+                    <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based
+                        Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel
+                        with a solid groove structure. </p>
                     <br>
                     <btn class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</btn>
                 </div>
@@ -47,7 +50,8 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-md-2 col-3">
-                                            <img src="{{ asset('asset') }}/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                            <img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image"
+                                                class="img-circle img-no-padding img-responsive">
                                         </div>
                                         <div class="col-md-7 col-4">
                                             <h6>Lincoln<br><small>Car Producer</small></h6>
@@ -56,7 +60,8 @@
                                             <div class="unfollow">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked="">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            checked="">
                                                         <span class="form-check-sign"></span>
                                                     </label>
                                                 </div>
@@ -68,7 +73,8 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-md-2 col-3">
-                                            <img src="{{ asset('asset') }}/img/faces/erik-lucatero-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                            <img src="../assets/img/faces/erik-lucatero-2.jpg" alt="Circle Image"
+                                                class="img-circle img-no-padding img-responsive">
                                         </div>
                                         <div class="col-md-7 col-4">
                                             <h6>Banks<br><small>Singer</small></h6>
@@ -97,4 +103,5 @@
         </div>
     </div>
 </div>
+
 @endsection

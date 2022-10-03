@@ -49,9 +49,11 @@ Route::get('/reset/{token}',[LoginController::class,'resetPass'])->name('resetPa
 Route::post('/reset/{token}',[LoginController::class,'confirm'])->name('confirm');
 
 Route::get('/profile',[UserController::class,'profile'])->name('profile');
-
-Route::get('/addPost',function(){
-    return view('users.user.addPost');
-}
-
-);
+Route::middleware('CheckUserLogin')->group(function(){
+    Route::get('/addPost',[UserController::class,'addPost'])->name('post.addPost');
+    Route::get('/setting',[UserController::class,'setting'])->name('user.setting');
+});
+Route::post('/setting',[UserController::class,'update'])->name('user.setting');
+Route::get('/post/detail', function () {
+    return view('users.post.detail');
+});

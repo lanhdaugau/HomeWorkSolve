@@ -1,50 +1,50 @@
-@extends('users.layout.master')
-<!doctype html>
-<html lang="en">
-<head>
-	
+@extends('users.layout.main')
+@section('contents')
+<div class="wrapper">
+    <div class="page-header" style="background-image: url('../assets/img/sections/bruno-abatti.jpg');">
+        <div class="filter"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+                    <div class="card card-register">
+                        <h3 class="card-title text-center">Login</h3>
+                        <div class="social">
+                            <button href="#paper-kit" class="btn btn-just-icon btn-facebook"><i
+                                    class="fa fa-facebook"></i></button>
+                            <button href="#paper-kit" class="btn btn-just-icon btn-google"><i
+                                    class="fa fa-google"></i></button>
+                        </div>
 
-</head>
-<body class="full-screen login">
-
-   
-    <div class="wrapper">
-        <div class="page-header" style="background-image: url('http://doan.test//image/bruno-abatti.jpg');">
-            <div class="filter"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6 ml-auto mr-auto">
-                        <div class="card card-register">
-                            <h3 class="card-title">Welcome</h3>
-                            <form class="register-form" method="POST" action="{{route('login.login')}}">
-                                @csrf
-                                <label>Email</label>
-                                <input type="email" class="form-control no-border" placeholder="Email" name="email">
-                                @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <label>Mật khẩu</label>
-                                <input type="password" class="form-control no-border" placeholder="Password" name="password">
-                                @error('password')
+                        <div class="division">
+                            <div class="line l"></div>
+                            <span>or</span>
+                            <div class="line r"></div>
+                        </div>
+                        <form class="register-form" method="POST" action="{{route('login.login')}}">
+                            @csrf
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                            @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            @error('errorLogin')
                                     <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <input type="checkbox" value="1" name="remember"> Nhớ mật khẩu
-                                @error('errorLogin')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <button class="btn btn-danger btn-block btn-round">Đăng nhập</button>
-                            </form>
-                            <div class="forgot">
-                                <a href="{{route('forgot')}}" class="btn btn-link btn-danger">Quên mật khẩu?</a>
-                            </div>
+                            @enderror
+                            <button class="btn btn-block btn-round">Đăng nhập</button>
+                        </form>
+                        <div class="login">
+                            <p>Tạo tài khoản mới? <a href="{{route('register.register')}}"> Đăng kí</a>.</p>
+                        </div>
+                        <div class="forgot">
+                            <a href="{{route('forgot')}}" class="btn btn-link btn-danger">Quên mật khẩu?</a>
                         </div>
                     </div>
                 </div>
-				
             </div>
         </div>
     </div>
-
-</body>
-</html>
-
+</div>
+@endsection

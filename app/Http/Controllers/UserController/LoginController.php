@@ -21,18 +21,22 @@ class LoginController extends Controller
         $request->validate(
             [
                 'email' => 'required|email',
-                'password' => 'required|min:4',
+                'password' => 'required',
 
             ],
             [
                 'required' => 'Trường này không được bỏ trống !',
                 'email' => 'Không đúng định dạng email',
-                'min' => 'Độ dài quá ngắn',
+                
 
             ]
         );
-
+       
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
+             
+            if(Auth::user()->isActive != 1){
+                return redirect()->back()->withErrors(['errorLogin' => 'Vui lòng kiểm tra email!']);
+            }
             return redirect()->route('user.index');
         }
         return redirect()->back()->withErrors(['errorLogin' => 'Email hoặc mật khẩu không chính xác!']);

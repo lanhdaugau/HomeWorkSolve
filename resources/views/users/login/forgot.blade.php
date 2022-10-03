@@ -1,4 +1,4 @@
-@extends('users.layout.master')
+@extends('users.layouts.main')
 <!doctype html>
 <html lang="en">
 <head>

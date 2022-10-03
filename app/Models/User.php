@@ -27,6 +27,14 @@ class User extends Authenticatable
         'password',
         'activeToken',
         'isActive',
+        'phone',
+        'gender',
+        'idCity',
+        'idDistrict',
+        'idWard',
+        'birthday',
+        'avatar',
+        'address'
 
     ];
 
