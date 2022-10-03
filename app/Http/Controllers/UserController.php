@@ -43,7 +43,7 @@ class UserController extends Controller
     
         }
         if($user->update($allData)){
-            dd(1);
+            return view('users.user.setting');
         }
     }
 }
