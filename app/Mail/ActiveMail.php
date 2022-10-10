@@ -31,6 +31,6 @@ class ActiveMail extends Mailable
     public function build()
     {
         return $this->view('users.login.sendMail')
-                    ->from('phuocbt698@gmail.com', 'phuocbt698');
+                    ->from('lanhnn.21it@vku.udn.vn', 'nguyenngoclanh');
     }
 }

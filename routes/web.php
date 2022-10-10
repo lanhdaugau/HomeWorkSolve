@@ -54,6 +54,8 @@ Route::middleware('CheckUserLogin')->group(function(){
     Route::get('/setting',[UserController::class,'setting'])->name('user.setting');
 });
 Route::post('/setting',[UserController::class,'update'])->name('user.setting');
-Route::get('/post/detail', function () {
-    return view('users.post.detail');
-});
+Route::post('/addPost',[UserController::class,'post'])->name('post.post');
+Route::get('/post/detail/{idPost}',[UserController::class,'detail'])->name('post.detail');
+Route::get('/post/edit/{idPost}',[UserController::class,'editPost'])->name('post.edit');
+Route::post('/post/edit/{idPost}',[UserController::class,'updatePost'])->name('post.update');
+Route::delete('/destroy/{id}', [UserController::class,'destroy'])->name('post.destroy');

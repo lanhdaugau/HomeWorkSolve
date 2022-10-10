@@ -11,15 +11,16 @@
                     
                 </div>
                 <div class="row">
-                    
+                   
                     <div class="col-md-6 ml-auto mr-auto">
                         <form class="settings-form" method="POST" action="{{route('user.setting')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="profile-picture">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <div class="fileinput-new img-no-padding">
-                                        <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="...">
+                                        <img src="{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar))}}" alt="...">
                                     </div>
+                                    
                                     <div class="fileinput-preview fileinput-exists img-no-padding"></div>
                                     <div>
                                         <span class="btn btn-outline-default btn-file btn-round"><span class="fileinput-new">Sửa ảnh đại diện</span><span class="fileinput-exists">Thay đổi</span>
@@ -89,12 +90,12 @@
                             </div>
                             <div class="form-group">
                                 <label >Địa chỉ cụ thể</label>
-                                <input type="text" class="form-control" name="address">
+                                <input type="text" class="form-control" name="address" value="{{ $user->address}}">
                             </div>
                             <div class="form-group">
                                 <label for="ward">Ngày sinh</label>
                                 <div class="input-group date">
-                                    <input type="date" class="form-control" placeholder="06/07/2017" name="birthday">
+                                    <input type="date" class="form-control" placeholder="06/07/2017" name="birthday" value="{{ $user->birthday}}">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -116,6 +117,6 @@
 @endsection
 @push('js')
     <script>
-        getAddress();
+        getAddress({{ $user->idCity ?? -1}},{{$user->idDistrict ?? -1}},{{ $user->idWard ?? -1}});
     </script>
 @endpush

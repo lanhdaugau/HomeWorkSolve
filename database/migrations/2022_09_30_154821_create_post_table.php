@@ -13,20 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::create('post', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->boolean('isSolve');
-        //     $table->string('caption');
-        //     $table->string('content');
-        //     $table->unsignedInteger('idUser');
-        //     $table->integer('money');
-        //     $table->timestamps();
-        //    $table->foreign('id')
-        //    ->references('idUser')->on('users');
-        // });
+        
         Schema::create('post', function(Blueprint $table){
             $table->increments('id');
+            $table->boolean('isSolve')->default(0);
+            $table->string('caption');
+            $table->string('content');
             $table->unsignedInteger('userID');
+            $table->boolean('isActive')->default(0);
             $table->timestamps();
             $table->foreign('userID')
                     ->references('id')

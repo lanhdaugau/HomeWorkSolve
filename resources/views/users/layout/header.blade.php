@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top bg-danger {{ (Request::is('/', 'login', 'register', 'profile')) ? 'navbar-transparent' : '' }} nav-down"
     {{ (Request::is('/', 'login' , 'register' , 'profile' )) ? 'color-on-scroll="500"' : '' }} >
     <div class="container">
-        <a class="navbar-brand" href="#paper-kit">Navbar with notification</a>
+        <a class="navbar-brand" href="#paper-kit">HomeWorkSolve</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#paper-kit">
-                        Trang chủ
+                        Trang chủ 
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -110,16 +110,16 @@
                 <li class="nav-item dropdown" >
                     <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
                         <div class="profile-photo-small" >
-                            <img src="assets/img/faces/erik-lucatero-2.jpg" alt="Circle Image"
-                                class="img-circle img-responsive img-no-padding">
+                            <img src="{{ asset('uploads/avatar/' . (empty($avatar) ? 'default-avatar.png' : $avatar))}}" alt="Circle Image"
+                                class="img-circle img-responsive img-no-padding" style="object-fit: cover !important; width:38.5px;height:38.5px;">
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                         <div class="dropdown-header">Dropdown header</div>
                         
-                        <a class="dropdown-item" href="#paper-kit">Tôi</a>
+                        <a class="dropdown-item" href="{{ route('profile') }}">Tôi</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#paper-kit">Cài đặt</a>
+                        <a class="dropdown-item" href="{{ route('user.setting') }}">Cài đặt</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('login.logout')}}">Đăng xuất</a>
                     </ul>
@@ -127,7 +127,7 @@
                 
                @else
                 <li class="nav-item dropdown" >
-                    <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
+                    <a href="{{route('login.login')}}" class="nav-link "  width="30" height="30">
                         Login
                     </a>
                    

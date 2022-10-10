@@ -246,7 +246,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 				<div class="content">
 					<table bgcolor="#999999">
 					<tr>
-						<td align="right"><h6 class="collapse">Webthucpham</h6></td>
+						<td align="right"><h6 class="collapse">HomeWorkSolve</h6></td>
 					</tr>
 				</table>
 				</div>

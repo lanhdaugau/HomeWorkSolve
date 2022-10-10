@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/favicon.ico" />
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets') }}/img/apple-icon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -20,6 +21,7 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,300,700" rel="stylesheet" type="text/css" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/css/nucleo-icons.css" rel="stylesheet" />
+    @stack('css')
 </head>
 
 <body class="full-screen login register contact-us blog-page">
