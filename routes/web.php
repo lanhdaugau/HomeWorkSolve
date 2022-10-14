@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminController\DashBoardController;
 use App\Http\Controllers\AdminController\RoleController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\InterFaceController;
+use App\Http\Controllers\UserController\CommentController;
 use App\Http\Controllers\UserController\LoginController;
 use App\Http\Controllers\UserController\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +34,11 @@ Route::prefix('admin')->group(function(){
         });
     });
 });
-Route::get('/',function(){
-    return view('users.index');
-})->name('user.index');
+Route::get('/',[InterFaceController::class,'index'])->name('user.index');
+Route::get('/search',[InterFaceController::class,'search'])->name('user.search');
+Route::get('/api/name',[InterFaceController::class,'apiName'])->name('apiname');
+Route::get('/getUser',[InterFaceController::class,'getUser'])->name('api');
+Route::get('/profile/{id}',[InterFaceController::class,'detail'])->name('detail');
 
 Route::get('/login',[LoginController::class,'index'])->name('login.index');
 Route::post('/login',[LoginController::class,'login'])->name('login.login');
@@ -58,4 +62,9 @@ Route::post('/addPost',[UserController::class,'post'])->name('post.post');
 Route::get('/post/detail/{idPost}',[UserController::class,'detail'])->name('post.detail');
 Route::get('/post/edit/{idPost}',[UserController::class,'editPost'])->name('post.edit');
 Route::post('/post/edit/{idPost}',[UserController::class,'updatePost'])->name('post.update');
+Route::get('/post/publish/{idPost}',[UserController::class,'publish'])->name('post.publish');
 Route::delete('/destroy/{id}', [UserController::class,'destroy'])->name('post.destroy');
+
+Route::post('/comment',[CommentController::class,'comment'])->name('comment');
+Route::post('/rating',[UserController::class,'rating'])->name('rating');
+Route::get('/like/{idComment}',[UserController::class,'like'])->name('like');

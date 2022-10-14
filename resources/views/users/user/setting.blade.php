@@ -53,15 +53,18 @@
                                 <label>Số điện thoại</label>
                                 <input type="text" class="form-control border-input" value="{{ $user->phone }}" name="phone">
                             </div>
+                            @error('phone')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label class="form-check-label">
-                                    <input type="radio" name="gender" class="p-2 m-2" @checked($user->gender ? true : false) value="1">
+                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==1) ? true : false) value="1">
                                     Nam
                                     <span class="form-check-sign"></span>
                                 </label>
 
                                 <label class="form-check-label">
-                                    <input type="radio" name="gender" class="p-2 m-2" @checked(!$user->gender ? true : false) value="0">
+                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==0) ? true : false) value="0">
                                     Nữ
                                     <span class="form-check-sign"></span>
                                 </label>
@@ -70,20 +73,20 @@
                             </div>
                             <div class="form-group d-flex justify-content-between">
                                 <div style="width: 48%">
-                                    <label for="city">City</label>
+                                    <label for="city">Tình</label>
                                     <select class="form-control" name="idCity" id="city">
                                         <option value="">--Chọn Tỉnh/Thành---</option>
                                     </select>
                                 </div>
                                 <div style="width: 48%">
-                                    <label for="district">District</label>
+                                    <label for="district">Huyện</label>
                                     <select class="form-control" name="idDistrict" id="district">
                                         <option value="">--Chọn Quận/Huyện---</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="ward">Ward</label>
+                                <label for="ward">Xã</label>
                                 <select class="form-control" name="idWard" id="ward">
                                     <option value="">--Chọn Xã/Phường---</option>
                                 </select>

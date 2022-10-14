@@ -6,72 +6,74 @@
 <meta name="viewport" content="width=device-width" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Webthucpham</title>
+<title>HomeWorkSolve</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
   /* ------------------------------------- 
-		GLOBAL 
+    GLOBAL 
 ------------------------------------- */
 * { 
-	margin:0;
-	padding:0;
+  margin:0;
+  padding:0;
 }
 * { font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
 
 img { 
-	max-width: 100%; 
+  max-width: 100%; 
 }
 .collapse {
-	margin:0;
-	padding:0;
+  margin:0;
+  padding:0;
 }
 body {
-	-webkit-font-smoothing:antialiased; 
-	-webkit-text-size-adjust:none; 
-	width: 100%!important; 
-	height: 100%;
+  -webkit-font-smoothing:antialiased; 
+  -webkit-text-size-adjust:none; 
+  width: 100%!important; 
+  height: 100%;
 }
 
 
 /* ------------------------------------- 
-		ELEMENTS 
+    ELEMENTS 
 ------------------------------------- */
 a { color: #2BA6CB;}
 
 .btn {
-	text-decoration:none;
-	color: #FFF;
-	background-color: #666;
-	padding:10px 16px;
-	font-weight:bold;
-	margin-right:10px;
-	text-align:center;
-	cursor:pointer;
-	display: inline-block;
+  text-decoration:none;
+  color: #FFF;
+  background-color: #666;
+  padding:10px 16px;
+  font-weight:bold;
+  margin-right:10px;
+  text-align:center;
+  cursor:pointer;
+  display: inline-block;
 }
 
 p.callout {
-	padding:15px;
-	background-color:#ECF8FF;
-	margin-bottom: 15px;
+  padding:15px;
+  background-color:#ECF8FF;
+  margin-bottom: 15px;
 }
 .callout a {
-	font-weight:bold;
-	color: #2BA6CB;
+  font-weight:bold;
+  color: #2BA6CB;
 }
 
 table.social {
-/* 	padding:15px; */
-	background-color: #ebebeb;
-	
+/*  padding:15px; */
+  background-color: #ebebeb;
+  
 }
 .social .soc-btn {
-	padding: 3px 7px;
-	font-size:12px;
-	margin-bottom:10px;
-	text-decoration:none;
-	color: #FFF;font-weight:bold;
-	display:block;
-	text-align:center;
+  padding:  7px;
+  font-size:12px;
+  margin-bottom:10px;
+  text-decoration:none;
+  color: #FFF;font-weight:bold;
+  display:block;
+  text-align:center;
+  border-radius: 7px;
 }
 a.fb { background-color: #3B5998!important; }
 a.tw { background-color: #1daced!important; }
@@ -79,12 +81,12 @@ a.gp { background-color: #DB4A39!important; }
 a.git { background-color: #444!important; }
 
 .sidebar .soc-btn { 
-	display:block;
-	width:100%;
+  display:block;
+  width:100%;
 }
 
 /* ------------------------------------- 
-		HEADER 
+    HEADER 
 ------------------------------------- */
 table.head-wrap { width: 100%;}
 
@@ -93,26 +95,26 @@ table.head-wrap { width: 100%;}
 
 
 /* ------------------------------------- 
-		BODY 
+    BODY 
 ------------------------------------- */
 table.body-wrap { width: 100%;}
 
 
 /* ------------------------------------- 
-		FOOTER 
+    FOOTER 
 ------------------------------------- */
-table.footer-wrap { width: 100%;	clear:both!important;
+table.footer-wrap { width: 100%;  clear:both!important;
 }
 .footer-wrap .container td.content  p { border-top: 1px solid rgb(215,215,215); padding-top:15px;}
 .footer-wrap .container td.content p {
-	font-size:10px;
-	font-weight: bold;
-	
+  font-size:10px;
+  font-weight: bold;
+  
 }
 
 
 /* ------------------------------------- 
-		TYPOGRAPHY 
+    TYPOGRAPHY 
 ------------------------------------- */
 h1,h2,h3,h4,h5,h6 {
 font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; line-height: 1.1; margin-bottom:15px; color:#000;
@@ -129,40 +131,40 @@ h6 { font-weight:900; font-size: 14px; text-transform: uppercase; color:#444;}
 .collapse { margin:0!important;}
 
 p, ul { 
-	margin-bottom: 10px; 
-	font-weight: normal; 
-	font-size:14px; 
-	line-height:1.6;
+  margin-bottom: 10px; 
+  font-weight: normal; 
+  font-size:14px; 
+  line-height:1.6;
 }
 p.lead { font-size:17px; }
 p.last { margin-bottom:0px;}
 
 ul li {
-	margin-left:5px;
-	list-style-position: inside;
+  margin-left:5px;
+  list-style-position: inside;
 }
 
 /* ------------------------------------- 
-		SIDEBAR 
+    SIDEBAR 
 ------------------------------------- */
 ul.sidebar {
-	background:#ebebeb;
-	display:block;
-	list-style-type: none;
+  background:#ebebeb;
+  display:block;
+  list-style-type: none;
 }
 ul.sidebar li { display: block; margin:0;}
 ul.sidebar li a {
-	text-decoration:none;
-	color: #666;
-	padding:10px 16px;
-/* 	font-weight:bold; */
-	margin-right:10px;
-/* 	text-align:center; */
-	cursor:pointer;
-	border-bottom: 1px solid #777777;
-	border-top: 1px solid #FFFFFF;
-	display:block;
-	margin:0;
+  text-decoration:none;
+  color: #666;
+  padding:10px 16px;
+/*  font-weight:bold; */
+  margin-right:10px;
+/*  text-align:center; */
+  cursor:pointer;
+  border-bottom: 1px solid #777777;
+  border-top: 1px solid #FFFFFF;
+  display:block;
+  margin:0;
 }
 ul.sidebar li a.last { border-bottom-width:0px;}
 ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.sidebar li a h5,ul.sidebar li a h6,ul.sidebar li a p { margin-bottom:0!important;}
@@ -170,24 +172,24 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 
 /* --------------------------------------------------- 
-		RESPONSIVENESS
-		Nuke it from orbit. It's the only way to be sure. 
+    RESPONSIVENESS
+    Nuke it from orbit. It's the only way to be sure. 
 ------------------------------------------------------ */
 
 /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
 .container {
-	display:block!important;
-	max-width:600px!important;
-	margin:0 auto!important; /* makes it centered */
-	clear:both!important;
+  display:block!important;
+  max-width:600px!important;
+  margin:0 auto!important; /* makes it centered */
+  clear:both!important;
 }
 
 /* This should also be a block element, so that it will fill 100% of the .container */
 .content {
-	padding:15px;
-	max-width:600px;
-	margin:0 auto;
-	display:block; 
+  padding:15px;
+  max-width:600px;
+  margin:0 auto;
+  display:block; 
 }
 
 /* Let's make sure tables in the content area are 100% wide */
@@ -196,20 +198,20 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 /* Odds and ends */
 .column {
-	width: 300px;
-	float:left;
+  width: 300px;
+  float:left;
 }
 .column tr td { padding: 15px; }
 .column-wrap { 
-	padding:0!important; 
-	margin:0 auto; 
-	max-width:600px!important;
+  padding:0!important; 
+  margin:0 auto; 
+  max-width:600px!important;
 }
 .column table { width:100%;}
 .social .column {
-	width: 280px;
-	min-width: 279px;
-	float:left;
+  width: 280px;
+  min-width: 279px;
+  float:left;
 }
 
 /* Be sure to place a .clear element after each set of columns, just to be safe */
@@ -217,19 +219,19 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 
 /* ------------------------------------------- 
-		PHONE
-		For clients that support media queries.
-		Nothing fancy. 
+    PHONE
+    For clients that support media queries.
+    Nothing fancy. 
 -------------------------------------------- */
 @media only screen and (max-width: 600px) {
-	
-	a[class="btn"] { display:block!important; margin-bottom:10px!important; background-image:none!important; margin-right:0!important;}
+  
+  a[class="btn"] { display:block!important; margin-bottom:10px!important; background-image:none!important; margin-right:0!important;}
 
-	div[class="column"] { width: auto!important; float:none!important;}
-	
-	table.social div[class="column"] {
-		width:auto!important;
-	}
+  div[class="column"] { width: auto!important; float:none!important;}
+  
+  table.social div[class="column"] {
+    width:auto!important;
+  }
 
 }
 </style>
@@ -239,86 +241,86 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 <!-- HEADER -->
 <table class="head-wrap" bgcolor="#999999">
-	<tr>
-		<td></td>
-		<td class="header container">
-			
-				<div class="content">
-					<table bgcolor="#999999">
-					<tr>
-						<td align="right"><h6 class="collapse">HomeWorkSolve</h6></td>
-					</tr>
-				</table>
-				</div>
-				
-		</td>
-		<td></td>
-	</tr>
+  <tr>
+    <td></td>
+    <td class="header container">
+      
+        <div class="content">
+          <table bgcolor="#999999">
+          <tr>
+            <td align="right"><h6 class="collapse">HomeWorkSolve</h6></td>
+          </tr>
+        </table>
+        </div>
+        
+    </td>
+    <td></td>
+  </tr>
 </table><!-- /HEADER -->
 
 
 <!-- BODY -->
 <table class="body-wrap">
-	<tr>
-		<td></td>
-		<td class="container" bgcolor="#FFFFFF">
+  <tr>
+    <td></td>
+    <td class="container" bgcolor="#FFFFFF">
 
-			<div class="content">
-			<table>
-				<tr>
-					<td>
-						
-						<h3>Xin chào</h3>
-						<p class="lead">
+      <div class="content">
+      <table>
+        <tr>
+          <td>
+            
+            <h3>Xin chào</h3>
+            <p class="lead">
               Chúng tôi rất vui khi nhận được phản hồi từ bạn với nội dung như sau:
             </p>
-						
-						
-						<h3>Nhấn vào link bên dưới để kick hoạt tài khoản </h3>
-              <div style="background:#69dcff; padding:5px">
-                <a href="{{$link}}">Click me</a>
+            
+            
+            <h3>Nhấn vào link bên dưới để kick hoạt tài khoản </h3>
+              <div style="background:#f7765f; padding:10px;border-radius: 7px;display: inline-block;margin-left:50%;transform: translateX(-50%)">
+                <a href="{{$link}}" style="color:white;width: 100px;" >Click me</a>
               </div>
-						<br/>
-						<br/>												
-						<!-- social & contact -->
-						<table class="social" width="100%">
-							<tr>
-								<td>
-									<!--- column 1 -->
-									<table align="left" class="column">
-										<tr>
-											<td>				
-												<h5 class="">Connect with Us:</h5>
-												<p class="">
-                          <a href="https://facebook.com/phuocbt698" class="soc-btn fb">Facebook</a> 
-                          <a href="https://github.com/phuocbt698" class="soc-btn git">Github</a>
+            <br/>
+            <br/>                       
+            <!-- social & contact -->
+            <table class="social" width="100%">
+              <tr>
+                <td>
+                  <!--- column 1 -->
+                  <table align="left" class="column">
+                    <tr>
+                      <td>        
+                        <h5 class="">Connect with Us:</h5>
+                        <p class="">
+                          <a href="https://www.facebook.com/lanh.justlanh/" class="soc-btn fb">Facebook</a> 
+                          <a href="https://github.com/lanhdaugau" class="soc-btn git">Github</a>
                         </p>
-											</td>
-										</tr>
-									</table><!-- /column 1 -->	
-									
-									<!--- column 2 -->
-									<table align="left" class="column">
-										<tr>
-											<td>					
-												<h5 class="">Contact Info:</h5>												
-												<p>Phone: <strong>0975.041.697</strong><br/>
-                        Email: <strong><a href="emailto:phuocbt698@gmail.com">phuocbt698@gmail.com</a></strong></p>
-											</td>
-										</tr>
-									</table><!-- /column 2 -->
-									
-									<span class="clear"></span>	
-								</td>
-							</tr>
-						</table><!-- /social & contact -->
-					</td>
-				</tr>
-			</table>
-			</div>				
-		</td>
-		<td></td>
-	</tr>
+                      </td>
+                    </tr>
+                  </table><!-- /column 1 -->  
+                  
+                  <!--- column 2 -->
+                  <table align="left" class="column">
+                    <tr>
+                      <td>          
+                        <h5 class="">Contact Info:</h5>                       
+                        <p>Phone: <strong>0975.041.697</strong><br/>
+                        Email: <strong><a href="mailto:lanhnn.21it@vku.udn.vn">lanhnn.21it@vku.udn.vn</a></strong></p>
+                      </td>
+                    </tr>
+                  </table><!-- /column 2 -->
+                  
+                  <span class="clear"></span> 
+                </td>
+              </tr>
+            </table><!-- /social & contact -->
+          </td>
+        </tr>
+      </table>
+      </div>        
+    </td>
+    <td></td>
+  </tr>
 </table><!-- /BODY -->
 </body>
 </html>

@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\UserController;
 
-use App\Models\ImagePost;
-use App\Models\Post;
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\ImagePost;
+use App\Models\NumberOfLike;
+use App\Models\Post;
+use App\Models\React;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -15,11 +19,11 @@ class UserController extends Controller
     {
         $user = User::find(Auth::user()->id);
 
-        $posts= Post::where('userID',$user->id)
-        ->where('isActive',0)
-        ->get();
-        
-        return view('users.user.profile', ['user' => $user, 'posts' => $posts]);
+        $posts = Post::where('userID', $user->id)
+            ->where('isActive', 0)
+            ->get();
+            $react=React::where('idUsers',Auth::user()->id)->get();
+        return view('users.user.profile', ['user' => $user, 'posts' => $posts,'reacts'=>$react]);
     }
     public function addPost()
     {
@@ -34,13 +38,13 @@ class UserController extends Controller
             ->first();
 
 
-
         return view('users.user.setting', ['user' => $user]);
     }
     public function update(Request $request)
     {
-        
+
         $user = User::find(Auth::user()->id);
+      
         $allData = $request->all();
         if ($request->has('avatar')) {
 
@@ -88,29 +92,42 @@ class UserController extends Controller
     }
     public function detail($idPost)
     {
+        if(Auth::check()){
+        $comment= Comment::where('idPost',$idPost)->get();
+            
+       
         
         $user = User::find(Auth::user()->id);
         
-        $posts=Post::find($idPost);
+        $posts = Post::find($idPost);
+     
+        return view('users.post.detail', ['user' => $user, 'post' => $posts,'comments'=>$comment]);
+        }
+        else{
+            return redirect()->route('login.login');
+        }
         
-        return view('users.post.detail', ['user' => $user,'post'=>$posts]);
     }
-    public function editPost($idPost){
+    public function editPost($idPost)
+    {
         $posts = Post::find($idPost);
 
-       
-        return view('users.post.editPost',['post'=>$posts]);
+
+        return view('users.post.editPost', ['post' => $posts]);
     }
-    public function updatePost(Request $request,$idPost){
-        
-        $post= Post::find($idPost);
+
+
+    public function updatePost(Request $request, $idPost)
+    {
+
+        $post = Post::find($idPost);
         $post->update([
-            'caption'=>$request->caption,
-            'content'=>$request->content,
+            'caption' => $request->caption,
+            'content' => $request->content,
         ]);
-        
+
         ImagePost::destroy($request->image);
-        
+
         foreach ($request->file('images') as $image) {
 
             $extension = $image->extension();
@@ -127,17 +144,63 @@ class UserController extends Controller
                 $image->move($folderImage, $newNameImage);
             }
         }
-        return redirect()->back();
+        return redirect()->route('user.index');
     }
 
-    public function destroy($id){
-       $image = ImagePost::where('idPost', $id)->pluck('id');
-      
-       if(ImagePost::destroy($image)){
+    public function destroy($id)
+    {
+        $image = ImagePost::where('idPost', $id)->pluck('id');
+        $comment= Comment::where('idPost',$id)->pluck('id');
+        if (ImagePost::destroy($image) && Comment::destroy($comment)) {
             Post::destroy($id);
+               
             return response()->json([
                 'statusCode' => 200
             ]);
-       }
+        }
+    }
+    public function publish($idPost)
+    {
+        $post = Post::find($idPost);
+        $post->update(
+            [
+                'isActive' => 1
+            ]
+
+        );
+        return redirect()->back();
+    }
+    public function rating(Request $request){
+        $request->mergeIfMissing(['idAuthur'=>Auth::user()->id]);
+        if(React::create(
+            $request->all()
+        )){
+            return redirect()->back();
+        }
+    }
+    public function like($idComment){
+        
+        $like=NumberOfLike::where('idUsers',Auth::user()->id)
+        ->where('idComment',$idComment)
+        ->first();
+        
+        if($like!=null){
+            if(NumberOfLike::destroy($like->id)){
+                return redirect()->back();
+            }
+        }
+        else{
+            
+            if(NumberOfLike::create(
+                [
+                    'idUsers'=>Auth::user()->id,
+                    'idComment'=> $idComment,
+                ]
+                )){
+                    return redirect()->back();
+                }
+                
+        }
+       
     }
 }

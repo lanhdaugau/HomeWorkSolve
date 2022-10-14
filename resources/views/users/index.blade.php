@@ -1,58 +1,43 @@
 @extends('users.layout.main')
-@section('contents')
-<h3 class="p-5 ">Các bài đăng</h3>
+@push('css')
 
-<div class="card w-50 d-flex m-auto" style="">
-    <div class="card-image">
-        <a href="#pablo">
-            <img class="img" src="assets/img/sections/david-marcu.jpg">
-        </a>
+    @section('contents')
+        <div style="background-color: rgb(231, 231, 231)">
+            <h3 class="p-5 ">Các bài đăng</h3>
+
+
+            @foreach ($posts as $post)
+                <div class="card w-50 d-flex m-auto" style="">
+                    <div class="card-image">
+                        <a href="#pablo">
+                            <img class="img"
+                                src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
+                                style="height: 400px;width: 100%">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <a class="label label-warning" style="color: white" href="{{ route('post.detail', $post->id) }}">Chi
+                            tiết</a>
+                        <h5 class="card-title">
+                            {{ $post->caption }}
+                        </h5>
+                        <hr>
+                        <div class="card-footer">
+                            <div class="author">
+                                <a href="#pablo">
+                                    <img src="{{ asset('uploads/avatar/' . (empty($post->getUser->avatar) ? 'default-avatar.png' : $post->getUser->avatar)) }}"
+                                        alt="..." class="avatar img-raised">
+                                    <span>{{ $post->getUser->name ? $post->getUser->name : 'User' . $post->getUser->id }}</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br><br>
+                <br>
+        
+        @endforeach
     </div>
-    <div class="card-body">
-        <label class="label label-warning">Travel</label>
-        <h5 class="card-title">
-            Currently at the San Francisco Museum of Modern Art
-        </h5>
-        <hr>
-        <div class="card-footer">
-            <div class="author">
-                <a href="#pablo">
-                   <img src="assets/img/rihanna.jpg" alt="..." class="avatar img-raised">
-                   <span>Lord Alex</span>
-                </a>
-            </div>
-           <div class="stats">
-                <i class="fa fa-heart" aria-hidden="true"></i> 5.3k
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<br><br>
-<br>
-<div class="card w-50 d-flex m-auto mt-1">
-    <div class="card-image">
-        <a href="#pablo">
-            <img class="img" src="assets/img/sections/david-marcu.jpg">
-        </a>
-    </div>
-    <div class="card-body">
-        <label class="label label-warning">Travel</label>
-        <h5 class="card-title">
-            Currently at the San Francisco Museum of Modern Art
-        </h5>
-        <hr>
-        <div class="card-footer">
-            <div class="author">
-                <a href="#pablo">
-                   <img src="assets/img/rihanna.jpg" alt="..." class="avatar img-raised">
-                   <span>Lord Alex</span>
-                </a>
-            </div>
-           <div class="stats">
-                <i class="fa fa-heart" aria-hidden="true"></i> 5.3k
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+    @endsection

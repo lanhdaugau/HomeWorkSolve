@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top bg-danger {{ (Request::is('/', 'login', 'register', 'profile')) ? 'navbar-transparent' : '' }} nav-down"
     {{ (Request::is('/', 'login' , 'register' , 'profile' )) ? 'color-on-scroll="500"' : '' }} >
     <div class="container">
-        <a class="navbar-brand" href="#paper-kit">HomeWorkSolve</a>
+        <a class="navbar-brand" href="{{ route('user.index') }}">HomeWorkSolve</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#paper-kit">
+                    <a class="nav-link" href="{{ route('user.index') }}">
                         Trang chủ 
                     </a>
                 </li>
@@ -21,7 +21,7 @@
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">Chức năng</a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                         <a class="dropdown-item" href="{{route('post.addPost')}}"><i class="nc-icon nc-tile-56"></i>&nbsp; Đăng bài</a>
-                        
+                        <a class="dropdown-item" href="{{route('user.search')}}"><i class="nc-icon nc-zoom-split"></i>&nbsp; Tìm kiếm</a>
                     </ul>
                 </li>
 

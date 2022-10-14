@@ -11,17 +11,34 @@
                             <h3 class="title-uppercase"><small></small></h3>
                         </div>
                     </div>
+                    <div class="media">
+                        <a class="pull-left" href="#paper-kit">
+                            <div class="avatar big-avatar">
+                                <img class="media-object" alt="64x64"
+                                    src="{{ asset('uploads/avatar/' . (empty($post->getUser->avatar) ? 'default-avatar.png' : $post->getUser->avatar)) }}">
+                            </div>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{$post->getUser->name}}</h4>
+                            
+                            <p>{{ $post->updated_at }}</p>
+
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
+                            @if (Auth::user()->id==$post->getUser->id)
                             <div class="text-center">
                                 <a class="label label-warning main-tag" href="{{ route('post.edit', $post->id) }}">Sửa bài
                                     viết</a>
-                                <button class="label label-danger" id="delete">Xóa bài viết</button>
+                                <button class="label label-danger"  style="color: white;border:0;cursor: pointer;" id="delete">Xóa bài viết</button>
                                 <a href="javascrip: void(0);">
                                     <h3 class="title">{{ $post->caption }}</h3>
                                 </a>
-                                <h6 class="title-uppercase">{{ $post->updated_at }}</h6>
+                                <h6 class="title-uppercase">{!! $post->content !!}</h6>
                             </div>
+                            @endif
+                            
                         </div>
 
                         <div class="col-md-8 ml-auto mr-auto">
@@ -29,6 +46,7 @@
                                 @foreach ($post->getImagePost as $item)
                                     <div class="card" data-radius="none"
                                         style="background-image: url('{{ asset('uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}');">
+                                        
                                     </div>
                                 @endforeach
 
@@ -38,101 +56,82 @@
                             <br>
 
                             <hr>
+                            @if ($post->isActive==1)
                             <div class="container">
-                                <div class="row">
-                                    <div class="media">
-                                        <a class="pull-left" href="#paper-kit">
-                                            <div class="avatar big-avatar">
-                                                <img class="media-object" alt="64x64"
-                                                    src="../assets/img/faces/kaci-baum-2.jpg">
-                                            </div>
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Sophie Banks</h4>
-                                            <div class="pull-right">
-                                                <a href="#paper-kit" class="btn btn-default btn-round "> <i
-                                                        class="fa fa-reply"></i> Follow</a>
-                                            </div>
-                                            <p>Hello guys, nice to have you on the platform! There will be a lot of great
-                                                stuff coming soon. We will keep you posted for the latest news.</p>
-                                            <p> Don't forget, You're Awesome!</p>
-
-                                        </div>
-                                    </div>
-                                </div>
+                               
                                 <div class="row">
                                     <div class="comments media-area">
                                         <h3 class="text-center">Comments</h3>
+                                        @foreach ($comments as $comment)
+                                            
+                                       
                                         <div class="media">
                                             <a class="pull-left" href="#paper-kit">
                                                 <div class="avatar">
                                                     <img class="media-object"
-                                                        src="{{ asset('assets') }}/img/faces/clem-onojeghuo-2.jpg"
+                                                        src="{{ asset('uploads/avatar/' . (empty($comment->getUser->avatar) ? 'default-avatar.png' : $comment->getUser->avatar)) }}"
                                                         alt="...">
                                                 </div>
                                             </a>
-                                            <div class="media-body">
-                                                <h5 class="media-heading">John Wayne</h5>
-                                                <div class="pull-right">
-                                                    <h6 class="text-muted">Sep 11, 11:53 AM</h6>
-                                                    <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i
-                                                            class="fa fa-reply"></i> Reply</a>
+                                            <div class="media-body" >
+                                                <h5 class="media-heading">{{($comment->getUser->name)? $comment->getUser->name : 'User'.$comment->getUser->id }}</h5>
+                                                <div class="pull-right" >
+                                                    <h6 class="text-muted">{{$comment->updated_at}}</h6>
+                                                    {{-- <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i
+                                                            class="fa fa-reply"></i> Reply</a> --}}
 
                                                 </div>
-                                                <p>Hello guys, nice to have you on the platform! There will be a lot of
-                                                    great stuff coming soon. We will keep you posted for the latest news.
+                                                <p>{{$comment->content}} 
                                                 </p>
-                                                <p> Don't forget, You're Awesome!</p>
-
+                                               
+                                                
                                                 <div class="media-footer">
-                                                    <a href="#paper-kit" class="btn btn-danger btn-link">
-                                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i> 243
+                                                    <a href="{{ route('like', $comment->id) }}" class="btn btn-link 
+                                                       {{-- @foreach($comment->getLike as  $like)
+                                                            {{ ( $like->idUsers === Auth::user()->id) ? 'btn-danger' : ''}}
+                                                       @endforeach --}}
+                                                       {{   (in_array(Auth::user()->id,(($comment->getLike)->pluck('idUsers'))->toArray()))? 'btn-danger' :''}}
+                                                        ">
+                                                    
+                                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->getLike->count()}}
                                                     </a>
-                                                    <a href="#paper-kit" class="btn btn-link">
-                                                        <i class="fa fa-thumbs-down" aria-hidden="true"></i> 2
-                                                    </a>
-                                                    <a href="#paper-kit" class="btn btn-link">
-                                                        Follow · 3
-                                                    </a>
+                                                   
                                                 </div>
 
-                                                <div class="media media-post">
-                                                    <a class="pull-left author" href="#paper-kit">
-                                                        <div class="avatar">
-                                                            <img class="media-object" alt="64x64"
-                                                                src="{{ asset('assets') }}/img/faces/kaci-baum-2.jpg">
-                                                        </div>
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <textarea class="form-control" placeholder="Write a nice reply or go home..." rows="4"></textarea>
-                                                        <div class="media-footer">
-                                                            <a href="#paper-kit" class="btn btn-info pull-right">Reply</a>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- end media-post -->
+                                                
                                             </div>
                                         </div>
+                                        @endforeach
                                         <div class="media">
                                             <a class="pull-left" href="#paper-kit">
                                                 <div class="avatar">
                                                     <img class="media-object" alt="64x64"
-                                                        src="../assets/img/faces/joe-gardner-2.jpg">
+                                                        src="{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar)) }}">
                                                 </div>
                                             </a>
                                             <div class="media-body">
-                                                <textarea class="form-control border-input" placeholder="Write some nice stuff or nothing..." rows="6"></textarea>
+                                                <form action="{{ route('comment') }}" method="POST" >
+                                                    @csrf   
+                                                <input type="hidden" value="{{$post->id}}" name="idPost">
+                                                <textarea class="form-control border-input" placeholder="Bình luận đi.." rows="6" name="content" style="width: 650px"></textarea>
+                                                <br>
+                                                @error('content')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                                 <div class="media-footer">
-                                                    <a href="#paper-kit" class="btn btn-info btn-wd pull-right">Post
-                                                        Comment</a>
+                                                    <button class="btn btn-info btn-wd pull-right">Bình luận</button>
                                                 </div>
+                                                </form>
                                             </div>
                                         </div> <!-- end media -->
                                     </div>
                                 </div>
                             </div>
+                            @endif
+                           
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="related-articles">
                             <h3 class="title">Related articles</h3>
                             <legend></legend>
@@ -156,7 +155,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -183,7 +182,7 @@
 
                 }).done(function(response) {
                     if(response.statusCode == 200){
-                        window.location.href = "{{ route('profile') }}";
+                        window.location.href = "{{ route('user.index') }}";
                     }
                 })
             }
