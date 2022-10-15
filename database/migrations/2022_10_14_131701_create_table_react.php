@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('content');
             $table->integer('rating');
             $table->unsignedInteger('idUsers');
-            $table->unsignedBigInteger('idAuthur');
+            $table->unsignedInteger('idAuthur');
             $table->timestamps();
             $table->foreign('idUsers')->references('id')->on('users');
-            // $table->foreign('idAuthur')->references('id')->on('users');
+            $table->foreign('idAuthur')->references('id')->on('users');
         });
     }
 

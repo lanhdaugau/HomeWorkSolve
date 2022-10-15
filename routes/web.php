@@ -4,11 +4,13 @@ use App\Http\Controllers\AdminController\DashBoardController;
 use App\Http\Controllers\AdminController\RoleController;
 use App\Http\Controllers\InterFaceController;
 use App\Http\Controllers\UserController\CommentController;
+use App\Http\Controllers\UserController\InboxController;
 use App\Http\Controllers\UserController\LoginController;
 use App\Http\Controllers\UserController\PostController;
 use App\Http\Controllers\UserController\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\UserController;
+use GuzzleHttp\Psr7\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +80,9 @@ Route::get('/active/{token}',[RegisterController::class,'active'])->name('regist
 Route::post('/comment',[CommentController::class,'comment'])->name('comment');
 Route::post('/rating',[CommentController::class,'rating'])->name('rating');
 Route::get('/like/{idComment}',[CommentController::class,'like'])->name('like');
+
+//inbox
+// Route::post('/message',[InboxController::class,'send'])->name('inbox.send');
+Route::post('/message',function(Request $request){
+    return $request;
+});

@@ -9,20 +9,25 @@ use Illuminate\Support\Facades\Auth;
 class Comment extends Model
 {
     use HasFactory;
-    protected $table='comment';
-    protected $fillable=[
-        'content',
-        'idPost',
-        'idUsers',
-        'isActive',
-    ];
-   public function getUser()
-   {
-        return $this->hasOne(User::class,'id','idUsers');
-   }
-   public function getLike(){
-        return $this->hasMany(NumberOfLike::class,'idComment','id');
-   }
-   
- 
+    protected $table = 'comment';
+    protected $fillable = ['content', 'idPost', 'idUsers', 'isActive'];
+    public function getUser()
+    {
+        return $this->hasOne(User::class, 'id', 'idUsers');
+    }
+    public function getLike()
+    {
+        return $this->hasMany(NumberOfLike::class, 'idComment', 'id');
+    }
+    public function checkUserLike()
+    {
+
+        if (
+            $this->getLike()
+            ->where('idUsers', Auth::user()->id)
+            ->first()
+        ) {
+            return true;
+        }
+    }
 }

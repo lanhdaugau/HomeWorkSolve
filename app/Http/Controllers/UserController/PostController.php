@@ -5,10 +5,12 @@ namespace App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\ImagePost;
+use App\Models\NumberOfLike;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Termwind\Components\Li;
 
 class PostController extends Controller
 {
@@ -44,21 +46,19 @@ class PostController extends Controller
     }
     public function detail($idPost)
     {
-        if(Auth::check()){
-        $comment= Comment::where('idPost',$idPost)->get();
-            
-       
-        
-        $user = User::find(Auth::user()->id);
-        
-        $posts = Post::find($idPost);
-     
-        return view('users.post.detail', ['user' => $user, 'post' => $posts,'comments'=>$comment]);
-        }
-        else{
+        if (Auth::check()) {
+            $comment = Comment::where('idPost', $idPost)->get();
+
+
+
+            $user = User::find(Auth::user()->id);
+
+            $posts = Post::find($idPost);
+
+            return view('users.post.detail', ['user' => $user, 'post' => $posts, 'comments' => $comment]);
+        } else {
             return redirect()->route('login.login');
         }
-        
     }
     public function editPost($idPost)
     {
@@ -101,15 +101,25 @@ class PostController extends Controller
 
     public function destroy($id)
     {
+
         $image = ImagePost::where('idPost', $id)->pluck('id');
-        $comment= Comment::where('idPost',$id)->pluck('id');
-        if (ImagePost::destroy($image) && Comment::destroy($comment)) {
-            Post::destroy($id);
-               
-            return response()->json([
-                'statusCode' => 200
-            ]);
+        $image_path=ImagePost::where('idPost', $id)->pluck('path_image');
+        foreach($image_path as $item){
+            unlink('uploads/post/'.$item);
         }
+        $comment = Comment::where('idPost', $id)->pluck('id');
+
+        $like = NumberOfLike::whereIn('idComment', $comment)->get('id');
+        NumberOfLike::destroy($like);
+        ImagePost::destroy($image);
+
+
+        Comment::destroy($comment);
+        Post::destroy($id);
+        
+        return response()->json([
+            'statusCode' => 200
+        ]);
     }
     public function publish($idPost)
     {

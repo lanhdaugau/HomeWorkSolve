@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('contentinbox', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('idUsers');
+            $table->string('content');
             $table->unsignedInteger('idInbox');
             $table->timestamps();
-            $table->foreign('idUsers')->references('id')->on('users');
+            
             $table->foreign('idInbox')->references('id')->on('inbox');
         });
     }

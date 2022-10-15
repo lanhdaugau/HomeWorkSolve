@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 ml-auto mr-auto text-center title">
-                            <h2>Chi tiết bài đăng</h2>
+                            <h2>Chi tiết bài đăng </h2>
                             <h3 class="title-uppercase"><small></small></h3>
                         </div>
                     </div>
@@ -19,26 +19,28 @@
                             </div>
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading">{{$post->getUser->name}}</h4>
-                            
+                            <h4 class="media-heading">{{ $post->getUser->name }}</h4>
+
                             <p>{{ $post->updated_at }}</p>
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
-                            @if (Auth::user()->id==$post->getUser->id)
-                            <div class="text-center">
-                                <a class="label label-warning main-tag" href="{{ route('post.edit', $post->id) }}">Sửa bài
-                                    viết</a>
-                                <button class="label label-danger"  style="color: white;border:0;cursor: pointer;" id="delete">Xóa bài viết</button>
-                                <a href="javascrip: void(0);">
-                                    <h3 class="title">{{ $post->caption }}</h3>
-                                </a>
-                                <h6 class="title-uppercase">{!! $post->content !!}</h6>
-                            </div>
+                            @if (Auth::user()->id == $post->getUser->id)
+                                <div class="text-center">
+                                    <a class="label label-warning main-tag" href="{{ route('post.edit', $post->id) }}">Sửa
+                                        bài
+                                        viết</a>
+                                    <button class="label label-danger" style="color: white;border:0;cursor: pointer;"
+                                        id="delete">Xóa bài viết</button>
+                                    <a href="javascrip: void(0);">
+                                        <h3 class="title">{{ $post->caption }}</h3>
+                                    </a>
+                                    <h6 class="title-uppercase">{!! $post->content !!}</h6>
+                                </div>
                             @endif
-                            
+
                         </div>
 
                         <div class="col-md-8 ml-auto mr-auto">
@@ -46,7 +48,7 @@
                                 @foreach ($post->getImagePost as $item)
                                     <div class="card" data-radius="none"
                                         style="background-image: url('{{ asset('uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}');">
-                                        
+
                                     </div>
                                 @endforeach
 
@@ -56,79 +58,82 @@
                             <br>
 
                             <hr>
-                            @if ($post->isActive==1)
-                            <div class="container">
-                               
-                                <div class="row">
-                                    <div class="comments media-area">
-                                        <h3 class="text-center">Comments</h3>
-                                        @foreach ($comments as $comment)
-                                            
-                                       
-                                        <div class="media">
-                                            <a class="pull-left" href="#paper-kit">
-                                                <div class="avatar">
-                                                    <img class="media-object"
-                                                        src="{{ asset('uploads/avatar/' . (empty($comment->getUser->avatar) ? 'default-avatar.png' : $comment->getUser->avatar)) }}"
-                                                        alt="..." onclick="window.open('{{route('detail',$comment->getUser->id)}}','_self')">
-                                                </div>
-                                            </a>
-                                            <div class="media-body" >
-                                                <h5 class="media-heading">{{($comment->getUser->name)? $comment->getUser->name : 'User'.$comment->getUser->id }}</h5>
-                                                <div class="pull-right" >
-                                                    <h6 class="text-muted">{{$comment->updated_at}}</h6>
-                                                    {{-- <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i
+                            @if ($post->isActive == 1)
+                                <div class="container">
+
+                                    <div class="row">
+                                        <div class="comments media-area">
+                                            <h3 class="text-center">Comments</h3>
+                                            @foreach ($comments as $comment)
+                                                <div class="media">
+                                                    <a class="pull-left" href="#paper-kit">
+                                                        <div class="avatar">
+                                                            <img class="media-object"
+                                                                src="{{ asset('uploads/avatar/' . (empty($comment->getUser->avatar) ? 'default-avatar.png' : $comment->getUser->avatar)) }}"
+                                                                alt="..."
+                                                                onclick="window.open('{{ route('detail', $comment->getUser->id) }}','_self')">
+                                                        </div>
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">
+                                                            {{ $comment->getUser->name ? $comment->getUser->name : 'User' . $comment->getUser->id }}
+                                                        </h5>
+                                                        <div class="pull-right">
+                                                            <h6 class="text-muted">{{ $comment->updated_at }}</h6>
+                                                            {{-- <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i
                                                             class="fa fa-reply"></i> Reply</a> --}}
 
-                                                </div>
-                                                <p>{{$comment->content}} 
-                                                </p>
-                                               
-                                                
-                                                <div class="media-footer">
-                                                    <a href="{{ route('like', $comment->id) }}" class="btn btn-link 
-                                                       {{-- @foreach($comment->getLike as  $like)
-                                                            {{ ( $like->idUsers === Auth::user()->id) ? 'btn-danger' : ''}}
-                                                       @endforeach --}}
-                                                       {{   (in_array(Auth::user()->id,(($comment->getLike)->pluck('idUsers'))->toArray()))? 'btn-danger' :''}}
-                                                        ">
-                                                    
-                                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i> {{$comment->getLike->count()}}
-                                                    </a>
-                                                   
-                                                </div>
+                                                        </div>
+                                                        <p>{{ $comment->content }}
+                                                        </p>
 
-                                                
-                                            </div>
+
+                                                        <div class="media-footer">
+                                                            <a href="{{ route('like', $comment->id) }}"
+                                                                class="btn btn-link 
+                                                      
+                                                       {{ $comment->checkUserLike() ? 'btn-danger' : '' }}
+                                                        ">
+
+                                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                                                {{ $comment->getLike->count() }}
+                                                            </a>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            <div class="media">
+                                                <a class="pull-left" href="#paper-kit">
+                                                    <div class="avatar">
+                                                        <img class="media-object" alt="64x64"
+                                                            src="{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar)) }}">
+                                                    </div>
+                                                </a>
+                                                <div class="media-body">
+                                                    <form action="{{ route('comment') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $post->id }}" name="idPost">
+                                                        <textarea class="form-control border-input" placeholder="Bình luận đi.." rows="6" name="content"
+                                                            style="width: 650px"></textarea>
+                                                        <br>
+                                                        @error('content')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                        <div class="media-footer">
+                                                            <button class="btn btn-info btn-wd pull-right">Bình
+                                                                luận</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div> <!-- end media -->
                                         </div>
-                                        @endforeach
-                                        <div class="media">
-                                            <a class="pull-left" href="#paper-kit">
-                                                <div class="avatar">
-                                                    <img class="media-object" alt="64x64"
-                                                        src="{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar)) }}">
-                                                </div>
-                                            </a>
-                                            <div class="media-body">
-                                                <form action="{{ route('comment') }}" method="POST" >
-                                                    @csrf   
-                                                <input type="hidden" value="{{$post->id}}" name="idPost">
-                                                <textarea class="form-control border-input" placeholder="Bình luận đi.." rows="6" name="content" style="width: 650px"></textarea>
-                                                <br>
-                                                @error('content')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="media-footer">
-                                                    <button class="btn btn-info btn-wd pull-right">Bình luận</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div> <!-- end media -->
                                     </div>
                                 </div>
-                            </div>
                             @endif
-                           
+
                         </div>
                     </div>
                     {{-- <div class="row">
@@ -181,7 +186,7 @@
                     },
 
                 }).done(function(response) {
-                    if(response.statusCode == 200){
+                    if (response.statusCode == 200) {
                         window.location.href = "{{ route('user.index') }}";
                     }
                 })

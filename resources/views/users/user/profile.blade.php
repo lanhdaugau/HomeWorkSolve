@@ -128,10 +128,293 @@
             align-items: center;
             box-shadow: 0 4px 30px rgba(0, 0, 0, .05);
         }
+
+        /* css */
+        #myForm {}
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: calc(50% + 12rem);
+            transform: translate(-50%, -50%);
+        }
+
+        .pic {
+            width: 4rem;
+            height: 4rem;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+        }
+
+        .contact {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-left: 5rem;
+            height: 4.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact .pic {
+            position: absolute;
+            left: 0;
+        }
+
+        .contact .name {
+            font-weight: 500;
+            margin-bottom: 0.125rem;
+        }
+
+        .contact .message,
+        .contact .seen {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .contact .badge {
+            box-sizing: border-box;
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            padding-top: 0.125rem;
+            border-radius: 1rem;
+            top: 0;
+            left: 2.5rem;
+            background: #333;
+            color: white;
+        }
+
+        .contacts {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-6rem, -50%);
+            width: 24rem;
+            height: 32rem;
+            padding: 1rem 2rem 1rem 1rem;
+            box-sizing: border-box;
+            border-radius: 1rem 0 0 1rem;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 2rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
+            transition: transform 500ms;
+        }
+
+        .contacts h2 {
+            margin: 0.5rem 0 1.5rem 5rem;
+        }
+
+        .contacts .fa-bars {
+            position: absolute;
+            left: 2.25rem;
+            color: #999;
+            transition: color 200ms;
+        }
+
+        .contacts .fa-bars:hover {
+            color: #666;
+        }
+
+        .contacts .contact:last-child {
+            margin: 0;
+        }
+
+        .contacts:hover {
+            transform: translate(-23rem, -50%);
+        }
+
+        .chat {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 21rem;
+            height: 30rem;
+            z-index: 2;
+            box-sizing: border-box;
+            border-radius: 1rem;
+            background: white;
+            box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 0rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
+        }
+
+        .chat .contact.bar {
+            flex-basis: 3.5rem;
+            flex-shrink: 0;
+            margin: 1rem;
+            box-sizing: border-box;
+        }
+
+        .chat .messages {
+            padding: 1rem;
+            background: #F7F7F7;
+            flex-shrink: 2;
+            overflow-y: auto;
+            box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.05), inset 0 -2rem 2rem -2rem rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .chat .messages .time {
+            font-size: 0.8rem;
+            background: #EEE;
+            padding: 0.25rem 1rem;
+            border-radius: 2rem;
+            color: #999;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .chat .messages .message {
+            box-sizing: border-box;
+            padding: 0.5rem 1rem;
+            margin: 1rem;
+            background: #FFF;
+            border-radius: 1.125rem 1.125rem 1.125rem 0;
+            min-height: 2.25rem;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+            max-width: 66%;
+            box-shadow: 0 0 2rem rgba(0, 0, 0, 0.075), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .chat .messages .message.parker {
+            margin: 1rem 1rem 1rem auto;
+            border-radius: 1.125rem 1.125rem 0 1.125rem;
+            background: #333;
+            color: white;
+        }
+
+        .chat .messages .message .typing {
+            display: inline-block;
+            width: 0.8rem;
+            height: 0.8rem;
+            margin-right: 0rem;
+            box-sizing: border-box;
+            background: #ccc;
+            border-radius: 50%;
+        }
+
+        .chat .messages .message .typing.typing-1 {
+            -webkit-animation: typing 3s infinite;
+            animation: typing 3s infinite;
+        }
+
+        .chat .messages .message .typing.typing-2 {
+            -webkit-animation: typing 3s 250ms infinite;
+            animation: typing 3s 250ms infinite;
+        }
+
+        .chat .messages .message .typing.typing-3 {
+            -webkit-animation: typing 3s 500ms infinite;
+            animation: typing 3s 500ms infinite;
+        }
+
+        .chat .input {
+            box-sizing: border-box;
+            flex-basis: 4rem;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 0.5rem 0 1.5rem;
+        }
+
+        .chat .input i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 200ms;
+        }
+
+        .chat .input i:hover {
+            color: #333;
+        }
+
+        .chat .input input {
+            border: none;
+            background-image: none;
+            background-color: white;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            border-radius: 1.125rem;
+            flex-grow: 2;
+            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.2);
+            font-family: Red hat Display, sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.025em;
+        }
+
+        .chat .input input:placeholder {
+            color: #999;
+        }
+
+        @-webkit-keyframes typing {
+
+            0%,
+            75%,
+            100% {
+                transform: translate(0, 0.25rem) scale(0.9);
+                opacity: 0.5;
+            }
+
+            25% {
+                transform: translate(0, -0.25rem) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes typing {
+
+            0%,
+            75%,
+            100% {
+                transform: translate(0, 0.25rem) scale(0.9);
+                opacity: 0.5;
+            }
+
+            25% {
+                transform: translate(0, -0.25rem) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .pic.stark {
+            background-image: url('{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar)) }}');
+        }
+
+
+
+        .imageUp {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .input-file {
+            display: none !important;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        #imageName {
+            color: green;
+        }
+
+        .inputText:focus {
+            outline: none;
+        }
     </style>
 @endpush
 @section('contents')
     <div class="wrapper">
+
         <div class="page-header page-header-small"
             style="background-image: url('../assets/img/sections/rodrigo-ardilha.jpg');">
             <div class="filter"></div>
@@ -162,56 +445,57 @@
                 </div>
                 <br>
                 @if (Auth::user()->id == $user->id)
-                <div class="nav-tabs-navigation">
-                    <div class="nav-tabs-wrapper">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#follows" role="tab">Bài viết của
-                                    bạn</a>
-                            </li>
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#follows" role="tab">Bài viết của
+                                        bạn</a>
+                                </li>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <!-- Tab panes -->
-                
-                <div class="tab-content">
+                    <!-- Tab panes -->
 
-                    <div class="row">
-                        @foreach ($posts as $post)
-                            <div class="col-md-3 col-sm-6">
-                                <div class="card card-plain">
+                    <div class="tab-content">
 
-                                    <div class="card-image">
-                                        <a href="{{ route('post.detail', $post->id) }}">
-                                            <img src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
-                                                alt="Rounded Image" class="img-rounded img-responsive"
-                                                style="height: 155px;width:255px">
-                                        </a>
-                                        <div class="card-body">
-                                            <a href="#paper-kit">
-                                                <div class="author">
-                                                    <img src="{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar)) }}"
-                                                        alt="Circle Image"
-                                                        class="img-circle img-no-padding img-responsive img-raised">
-                                                </div>
-                                                <span
-                                                    class="name">{{ $user->name ? $user->name : 'USER' . $user->id }}</span>
+                        <div class="row">
+                            @foreach ($posts as $post)
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card card-plain">
+
+                                        <div class="card-image">
+                                            <a href="{{ route('post.detail', $post->id) }}">
+                                                <img src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
+                                                    alt="Rounded Image" class="img-rounded img-responsive"
+                                                    style="height: 155px;width:255px">
                                             </a>
-                                            <div class="meta">{{ $post->caption }}</div>
-                                            <a class="label label-success" style="color: white" href="{{ route('post.publish', $post->id) }}">Đăng lên</a>
-                                            <div class="float-right meta">{{ $post->created_at }}</div>
+                                            <div class="card-body">
+                                                <a href="#paper-kit">
+                                                    <div class="author">
+                                                        <img src="{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar)) }}"
+                                                            alt="Circle Image"
+                                                            class="img-circle img-no-padding img-responsive img-raised">
+                                                    </div>
+                                                    <span
+                                                        class="name">{{ $user->name ? $user->name : 'USER' . $user->id }}</span>
+                                                </a>
+                                                <div class="meta">{{ $post->caption }}</div>
+                                                <a class="label label-success" style="color: white"
+                                                    href="{{ route('post.publish', $post->id) }}">Đăng lên</a>
+                                                <div class="float-right meta">{{ $post->created_at }}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+
+
+                        </div>
 
 
                     </div>
-
-
-                </div>
                 @endif
                 <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
@@ -222,328 +506,424 @@
                     </div>
                 </div>
                 <!-- Tab panes -->
-           
+
             </div>
         </div>
     </div>
-@if ($reacts->count()>0)
-<div class="testimonials-2 section section-testimonials">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 mr-auto">
-                <div class="testimonials-people">
-                    <img class="left-first-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/110862/thumb.?1482812727"
-                        alt="">
-                    <img class="left-second-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/139481/thumb.jpg?1485460613"
-                        alt="">
-                    <img class="left-third-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/152441/thumb.jpg?1488233314"
-                        alt="">
-                    <img class="left-fourth-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/134607/thumb.?1487680276"
-                        alt="">
-                    <img class="left-fifth-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/161506/thumb.?1489848178"
-                        alt="">
-                    <img class="left-sixth-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/77627/thumb.jpg?1487360092"
-                        alt="">
-                </div>
-            </div>
+    @if ($reacts->count() > 0)
+        <div class="testimonials-2 section section-testimonials">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 mr-auto">
+                        <div class="testimonials-people">
+                            <img class="left-first-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/110862/thumb.?1482812727"
+                                alt="">
+                            <img class="left-second-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/139481/thumb.jpg?1485460613"
+                                alt="">
+                            <img class="left-third-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/152441/thumb.jpg?1488233314"
+                                alt="">
+                            <img class="left-fourth-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/134607/thumb.?1487680276"
+                                alt="">
+                            <img class="left-fifth-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/161506/thumb.?1489848178"
+                                alt="">
+                            <img class="left-sixth-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/77627/thumb.jpg?1487360092"
+                                alt="">
+                        </div>
+                    </div>
 
-            <div class="col-md-6 ml-auto mr-auto">
-                <div class="page-carousel">
-                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            @for ($i = 0; $i < $reacts->count(); $i++)
-                                @if ($i == 0)
-                                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
-                                        class="active"></li>
-                                @else
-                                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}">
-                                    </li>
-                                @endif
-                            @endfor
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="page-carousel">
+                            <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @for ($i = 0; $i < $reacts->count(); $i++)
+                                        @if ($i == 0)
+                                            <li data-target="#carouselExampleIndicators2"
+                                                data-slide-to="{{ $i }}" class="active"></li>
+                                        @else
+                                            <li data-target="#carouselExampleIndicators2"
+                                                data-slide-to="{{ $i }}">
+                                            </li>
+                                        @endif
+                                    @endfor
 
 
 
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                            @foreach ($reacts as $key => $react)
-                                <div
-                                    class="carousel-item 
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    @foreach ($reacts as $key => $react)
+                                        <div
+                                            class="carousel-item 
                         @if ($key == 0) {{ 'active' }} @endif
                         ">
-                                    <div class="card card-testimonial card-plain">
-                                        <div class="card-avatar">
-                                            <img class="img"
-                                                src="{{ asset('uploads/avatar/' . (empty($react->getUser->avatar) ? 'default-avatar.png' : $react->getUser->avatar)) }}">
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-description">
-                                                {{ $react->getUser->name ?? 'User' . $react->getUser->id }}
-                                            </h5>
-                                            <div class="card-footer">
-                                                <h4 class="card-title">
-                                                    {{ $react->content }}</h4>
-                                                    <br>
-                                                <div class="card-stars">
-                                                    @for ($i = 0; $i < $react->rating; $i++)
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                    @endfor
-
-
+                                            <div class="card card-testimonial card-plain">
+                                                <div class="card-avatar">
+                                                    <img class="img"
+                                                        src="{{ asset('uploads/avatar/' . (empty($react->getUser->avatar) ? 'default-avatar.png' : $react->getUser->avatar)) }}">
                                                 </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-description">
+                                                        {{ $react->getUser->name ?? 'User' . $react->getUser->id }}
+                                                    </h5>
+                                                    <div class="card-footer">
+                                                        <h4 class="card-title">
+                                                            {{ $react->content }}</h4>
+                                                        <br>
+                                                        <div class="card-stars">
+                                                            @for ($i = 0; $i < $react->rating; $i++)
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                            @endfor
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
+                                    @endforeach
 
-                                    </div>
+
+
                                 </div>
-                            @endforeach
-
-
-
+                                <a class="left carousel-control carousel-control-prev" href="#carouselExampleIndicators2"
+                                    role="button" data-slide="prev">
+                                    <span class="fa fa-angle-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control carousel-control-next" href="#carouselExampleIndicators2"
+                                    role="button" data-slide="next">
+                                    <span class="fa fa-angle-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         </div>
-                        <a class="left carousel-control carousel-control-prev" href="#carouselExampleIndicators2"
-                            role="button" data-slide="prev">
-                            <span class="fa fa-angle-left"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control carousel-control-next" href="#carouselExampleIndicators2"
-                            role="button" data-slide="next">
-                            <span class="fa fa-angle-right"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                    </div>
+
+
+                    <div class="col-md-2 ml-auto">
+                        <div class="testimonials-people">
+                            <img class="right-first-person add-animation"
+                                src="https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg" alt="">
+                            <img class="right-second-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/125268/thumb.jpeg?1497799215"
+                                alt="">
+                            <img class="right-third-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/123334/thumb.JPG?1479459618"
+                                alt="">
+                            <img class="right-fourth-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/118235/thumb.?1477435947"
+                                alt="">
+                            <img class="right-fifth-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/18/thumb.png?1431433244"
+                                alt="">
+                            <img class="right-sixth-person add-animation"
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/167683/thumb.?1491014996"
+                                alt="">
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    @endif
+    @if (Auth::user()->id != $user->id)
+        <h3 style="text-align: center;margin: 10px">Đánh giá</h3>
+        <form action="{{ route('rating') }}" method="POST">
+            @csrf
+            <div class="container1">
+                <input type="hidden" name="idUsers" value="{{ $user->id }}">
+                <div class="feedback">
+                    <div class="rating">
+                        <input type="radio" name="rating" id="rating-5" value="5">
+                        <label for="rating-5"></label>
+                        <input type="radio" name="rating" id="rating-4" value="4">
+                        <label for="rating-4"></label>
+                        <input type="radio" name="rating" id="rating-3" value="3">
+                        <label for="rating-3"></label>
+                        <input type="radio" name="rating" id="rating-2" value="2">
+                        <label for="rating-2"></label>
+                        <input type="radio" name="rating" id="rating-1" value="1">
+                        <label for="rating-1"></label>
+                        <div class="emoji-wrapper">
+                            <div class="emoji">
+                                <svg class="rating-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <circle cx="256" cy="256" r="256" fill="#ffd93b" />
+                                    <path
+                                        d="M512 256c0 141.44-114.64 256-256 256-80.48 0-152.32-37.12-199.28-95.28 43.92 35.52 99.84 56.72 160.72 56.72 141.36 0 256-114.56 256-256 0-60.88-21.2-116.8-56.72-160.72C474.8 103.68 512 175.52 512 256z"
+                                        fill="#f4c534" />
+                                    <ellipse transform="scale(-1) rotate(31.21 715.433 -595.455)" cx="166.318"
+                                        cy="199.829" rx="56.146" ry="56.13" fill="#fff" />
+                                    <ellipse transform="rotate(-148.804 180.87 175.82)" cx="180.871" cy="175.822"
+                                        rx="28.048" ry="28.08" fill="#3e4347" />
+                                    <ellipse transform="rotate(-113.778 194.434 165.995)" cx="194.433" cy="165.993"
+                                        rx="8.016" ry="5.296" fill="#5a5f63" />
+                                    <ellipse transform="scale(-1) rotate(31.21 715.397 -1237.664)" cx="345.695"
+                                        cy="199.819" rx="56.146" ry="56.13" fill="#fff" />
+                                    <ellipse transform="rotate(-148.804 360.25 175.837)" cx="360.252" cy="175.84"
+                                        rx="28.048" ry="28.08" fill="#3e4347" />
+                                    <ellipse transform="scale(-1) rotate(66.227 254.508 -573.138)" cx="373.794"
+                                        cy="165.987" rx="8.016" ry="5.296" fill="#5a5f63" />
+                                    <path
+                                        d="M370.56 344.4c0 7.696-6.224 13.92-13.92 13.92H155.36c-7.616 0-13.92-6.224-13.92-13.92s6.304-13.92 13.92-13.92h201.296c7.696.016 13.904 6.224 13.904 13.92z"
+                                        fill="#3e4347" />
+                                </svg>
+                                <svg class="rating-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <circle cx="256" cy="256" r="256" fill="#ffd93b" />
+                                    <path
+                                        d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
+                                        fill="#f4c534" />
+                                    <path
+                                        d="M328.4 428a92.8 92.8 0 0 0-145-.1 6.8 6.8 0 0 1-12-5.8 86.6 86.6 0 0 1 84.5-69 86.6 86.6 0 0 1 84.7 69.8c1.3 6.9-7.7 10.6-12.2 5.1z"
+                                        fill="#3e4347" />
+                                    <path
+                                        d="M269.2 222.3c5.3 62.8 52 113.9 104.8 113.9 52.3 0 90.8-51.1 85.6-113.9-2-25-10.8-47.9-23.7-66.7-4.1-6.1-12.2-8-18.5-4.2a111.8 111.8 0 0 1-60.1 16.2c-22.8 0-42.1-5.6-57.8-14.8-6.8-4-15.4-1.5-18.9 5.4-9 18.2-13.2 40.3-11.4 64.1z"
+                                        fill="#f4c534" />
+                                    <path
+                                        d="M357 189.5c25.8 0 47-7.1 63.7-18.7 10 14.6 17 32.1 18.7 51.6 4 49.6-26.1 89.7-67.5 89.7-41.6 0-78.4-40.1-82.5-89.7A95 95 0 0 1 298 174c16 9.7 35.6 15.5 59 15.5z"
+                                        fill="#fff" />
+                                    <path
+                                        d="M396.2 246.1a38.5 38.5 0 0 1-38.7 38.6 38.5 38.5 0 0 1-38.6-38.6 38.6 38.6 0 1 1 77.3 0z"
+                                        fill="#3e4347" />
+                                    <path
+                                        d="M380.4 241.1c-3.2 3.2-9.9 1.7-14.9-3.2-4.8-4.8-6.2-11.5-3-14.7 3.3-3.4 10-2 14.9 2.9 4.9 5 6.4 11.7 3 15z"
+                                        fill="#fff" />
+                                    <path
+                                        d="M242.8 222.3c-5.3 62.8-52 113.9-104.8 113.9-52.3 0-90.8-51.1-85.6-113.9 2-25 10.8-47.9 23.7-66.7 4.1-6.1 12.2-8 18.5-4.2 16.2 10.1 36.2 16.2 60.1 16.2 22.8 0 42.1-5.6 57.8-14.8 6.8-4 15.4-1.5 18.9 5.4 9 18.2 13.2 40.3 11.4 64.1z"
+                                        fill="#f4c534" />
+                                    <path
+                                        d="M155 189.5c-25.8 0-47-7.1-63.7-18.7-10 14.6-17 32.1-18.7 51.6-4 49.6 26.1 89.7 67.5 89.7 41.6 0 78.4-40.1 82.5-89.7A95 95 0 0 0 214 174c-16 9.7-35.6 15.5-59 15.5z"
+                                        fill="#fff" />
+                                    <path
+                                        d="M115.8 246.1a38.5 38.5 0 0 0 38.7 38.6 38.5 38.5 0 0 0 38.6-38.6 38.6 38.6 0 1 0-77.3 0z"
+                                        fill="#3e4347" />
+                                    <path
+                                        d="M131.6 241.1c3.2 3.2 9.9 1.7 14.9-3.2 4.8-4.8 6.2-11.5 3-14.7-3.3-3.4-10-2-14.9 2.9-4.9 5-6.4 11.7-3 15z"
+                                        fill="#fff" />
+                                </svg>
+                                <svg class="rating-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <circle cx="256" cy="256" r="256" fill="#ffd93b" />
+                                    <path
+                                        d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
+                                        fill="#f4c534" />
+                                    <path
+                                        d="M336.6 403.2c-6.5 8-16 10-25.5 5.2a117.6 117.6 0 0 0-110.2 0c-9.4 4.9-19 3.3-25.6-4.6-6.5-7.7-4.7-21.1 8.4-28 45.1-24 99.5-24 144.6 0 13 7 14.8 19.7 8.3 27.4z"
+                                        fill="#3e4347" />
+                                    <path d="M276.6 244.3a79.3 79.3 0 1 1 158.8 0 79.5 79.5 0 1 1-158.8 0z"
+                                        fill="#fff" />
+                                    <circle cx="340" cy="260.4" r="36.2" fill="#3e4347" />
+                                    <g fill="#fff">
+                                        <ellipse transform="rotate(-135 326.4 246.6)" cx="326.4" cy="246.6"
+                                            rx="6.5" ry="10" />
+                                        <path d="M231.9 244.3a79.3 79.3 0 1 0-158.8 0 79.5 79.5 0 1 0 158.8 0z" />
+                                    </g>
+                                    <circle cx="168.5" cy="260.4" r="36.2" fill="#3e4347" />
+                                    <ellipse transform="rotate(-135 182.1 246.7)" cx="182.1" cy="246.7"
+                                        rx="10" ry="6.5" fill="#fff" />
+                                </svg>
+                                <svg class="rating-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <circle cx="256" cy="256" r="256" fill="#ffd93b" />
+                                    <path
+                                        d="M407.7 352.8a163.9 163.9 0 0 1-303.5 0c-2.3-5.5 1.5-12 7.5-13.2a780.8 780.8 0 0 1 288.4 0c6 1.2 9.9 7.7 7.6 13.2z"
+                                        fill="#3e4347" />
+                                    <path
+                                        d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
+                                        fill="#f4c534" />
+                                    <g fill="#fff">
+                                        <path
+                                            d="M115.3 339c18.2 29.6 75.1 32.8 143.1 32.8 67.1 0 124.2-3.2 143.2-31.6l-1.5-.6a780.6 780.6 0 0 0-284.8-.6z" />
+                                        <ellipse cx="356.4" cy="205.3" rx="81.1" ry="81" />
+                                    </g>
+                                    <ellipse cx="356.4" cy="205.3" rx="44.2" ry="44.2"
+                                        fill="#3e4347" />
+                                    <g fill="#fff">
+                                        <ellipse transform="scale(-1) rotate(45 454 -906)" cx="375.3" cy="188.1"
+                                            rx="12" ry="8.1" />
+                                        <ellipse cx="155.6" cy="205.3" rx="81.1" ry="81" />
+                                    </g>
+                                    <ellipse cx="155.6" cy="205.3" rx="44.2" ry="44.2"
+                                        fill="#3e4347" />
+                                    <ellipse transform="scale(-1) rotate(45 454 -421.3)" cx="174.5" cy="188"
+                                        rx="12" ry="8.1" fill="#fff" />
+                                </svg>
+                                <svg class="rating-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <circle cx="256" cy="256" r="256" fill="#ffd93b" />
+                                    <path
+                                        d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
+                                        fill="#f4c534" />
+                                    <path
+                                        d="M232.3 201.3c0 49.2-74.3 94.2-74.3 94.2s-74.4-45-74.4-94.2a38 38 0 0 1 74.4-11.1 38 38 0 0 1 74.3 11.1z"
+                                        fill="#e24b4b" />
+                                    <path
+                                        d="M96.1 173.3a37.7 37.7 0 0 0-12.4 28c0 49.2 74.3 94.2 74.3 94.2C80.2 229.8 95.6 175.2 96 173.3z"
+                                        fill="#d03f3f" />
+                                    <path
+                                        d="M215.2 200c-3.6 3-9.8 1-13.8-4.1-4.2-5.2-4.6-11.5-1.2-14.1 3.6-2.8 9.7-.7 13.9 4.4 4 5.2 4.6 11.4 1.1 13.8z"
+                                        fill="#fff" />
+                                    <path
+                                        d="M428.4 201.3c0 49.2-74.4 94.2-74.4 94.2s-74.3-45-74.3-94.2a38 38 0 0 1 74.4-11.1 38 38 0 0 1 74.3 11.1z"
+                                        fill="#e24b4b" />
+                                    <path
+                                        d="M292.2 173.3a37.7 37.7 0 0 0-12.4 28c0 49.2 74.3 94.2 74.3 94.2-77.8-65.7-62.4-120.3-61.9-122.2z"
+                                        fill="#d03f3f" />
+                                    <path
+                                        d="M411.3 200c-3.6 3-9.8 1-13.8-4.1-4.2-5.2-4.6-11.5-1.2-14.1 3.6-2.8 9.7-.7 13.9 4.4 4 5.2 4.6 11.4 1.1 13.8z"
+                                        fill="#fff" />
+                                    <path
+                                        d="M381.7 374.1c-30.2 35.9-75.3 64.4-125.7 64.4s-95.4-28.5-125.8-64.2a17.6 17.6 0 0 1 16.5-28.7 627.7 627.7 0 0 0 218.7-.1c16.2-2.7 27 16.1 16.3 28.6z"
+                                        fill="#3e4347" />
+                                    <path
+                                        d="M256 438.5c25.7 0 50-7.5 71.7-19.5-9-33.7-40.7-43.3-62.6-31.7-29.7 15.8-62.8-4.7-75.6 34.3 20.3 10.4 42.8 17 66.5 17z"
+                                        fill="#e24b4b" />
+                                </svg>
+                                <svg class="rating-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <g fill="#ffd93b">
+                                        <circle cx="256" cy="256" r="256" />
+                                        <path
+                                            d="M512 256A256 256 0 0 1 56.8 416.7a256 256 0 0 0 360-360c58 47 95.2 118.8 95.2 199.3z" />
+                                    </g>
+                                    <path
+                                        d="M512 99.4v165.1c0 11-8.9 19.9-19.7 19.9h-187c-13 0-23.5-10.5-23.5-23.5v-21.3c0-12.9-8.9-24.8-21.6-26.7-16.2-2.5-30 10-30 25.5V261c0 13-10.5 23.5-23.5 23.5h-187A19.7 19.7 0 0 1 0 264.7V99.4c0-10.9 8.8-19.7 19.7-19.7h472.6c10.8 0 19.7 8.7 19.7 19.7z"
+                                        fill="#e9eff4" />
+                                    <path
+                                        d="M204.6 138v88.2a23 23 0 0 1-23 23H58.2a23 23 0 0 1-23-23v-88.3a23 23 0 0 1 23-23h123.4a23 23 0 0 1 23 23z"
+                                        fill="#45cbea" />
+                                    <path
+                                        d="M476.9 138v88.2a23 23 0 0 1-23 23H330.3a23 23 0 0 1-23-23v-88.3a23 23 0 0 1 23-23h123.4a23 23 0 0 1 23 23z"
+                                        fill="#e84d88" />
+                                    <g fill="#38c0dc">
+                                        <path
+                                            d="M95.2 114.9l-60 60v15.2l75.2-75.2zM123.3 114.9L35.1 203v23.2c0 1.8.3 3.7.7 5.4l116.8-116.7h-29.3z" />
+                                    </g>
+                                    <g fill="#d23f77">
+                                        <path
+                                            d="M373.3 114.9l-66 66V196l81.3-81.2zM401.5 114.9l-94.1 94v17.3c0 3.5.8 6.8 2.2 9.8l121.1-121.1h-29.2z" />
+                                    </g>
+                                    <path
+                                        d="M329.5 395.2c0 44.7-33 81-73.4 81-40.7 0-73.5-36.3-73.5-81s32.8-81 73.5-81c40.5 0 73.4 36.3 73.4 81z"
+                                        fill="#3e4347" />
+                                    <path
+                                        d="M256 476.2a70 70 0 0 0 53.3-25.5 34.6 34.6 0 0 0-58-25 34.4 34.4 0 0 0-47.8 26 69.9 69.9 0 0 0 52.6 24.5z"
+                                        fill="#e24b4b" />
+                                    <path
+                                        d="M290.3 434.8c-1 3.4-5.8 5.2-11 3.9s-8.4-5.1-7.4-8.7c.8-3.3 5.7-5 10.7-3.8 5.1 1.4 8.5 5.3 7.7 8.6z"
+                                        fill="#fff" opacity=".2" />
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-5 col-sm-6">
+                    <textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters."
+                        rows="6" maxlength="150" name="content"></textarea>
 
-
-            <div class="col-md-2 ml-auto">
-                <div class="testimonials-people">
-                    <img class="right-first-person add-animation"
-                        src="https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg" alt="">
-                    <img class="right-second-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/125268/thumb.jpeg?1497799215"
-                        alt="">
-                    <img class="right-third-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/123334/thumb.JPG?1479459618"
-                        alt="">
-                    <img class="right-fourth-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/118235/thumb.?1477435947"
-                        alt="">
-                    <img class="right-fifth-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/18/thumb.png?1431433244"
-                        alt="">
-                    <img class="right-sixth-person add-animation"
-                        src="https://s3.amazonaws.com/creativetim_bucket/photos/167683/thumb.?1491014996"
-                        alt="">
-                </div>
-            </div>
-
-
-        </div>
-
-    </div>
-
-</div>
-@endif
-@if (Auth::user()->id != $user->id)
-<h3 style="text-align: center;margin: 10px">Đánh giá</h3>
-<form action="{{ route('rating') }}" method="POST">
-    @csrf
-    <div class="container1">
-        <input type="hidden" name="idUsers" value="{{ $user->id }}">
-        <div class="feedback">
-            <div class="rating">
-                <input type="radio" name="rating" id="rating-5" value="5">
-                <label for="rating-5"></label>
-                <input type="radio" name="rating" id="rating-4" value="4">
-                <label for="rating-4"></label>
-                <input type="radio" name="rating" id="rating-3" value="3">
-                <label for="rating-3"></label>
-                <input type="radio" name="rating" id="rating-2" value="2">
-                <label for="rating-2"></label>
-                <input type="radio" name="rating" id="rating-1" value="1">
-                <label for="rating-1"></label>
-                <div class="emoji-wrapper">
-                    <div class="emoji">
-                        <svg class="rating-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <circle cx="256" cy="256" r="256" fill="#ffd93b" />
-                            <path
-                                d="M512 256c0 141.44-114.64 256-256 256-80.48 0-152.32-37.12-199.28-95.28 43.92 35.52 99.84 56.72 160.72 56.72 141.36 0 256-114.56 256-256 0-60.88-21.2-116.8-56.72-160.72C474.8 103.68 512 175.52 512 256z"
-                                fill="#f4c534" />
-                            <ellipse transform="scale(-1) rotate(31.21 715.433 -595.455)" cx="166.318"
-                                cy="199.829" rx="56.146" ry="56.13" fill="#fff" />
-                            <ellipse transform="rotate(-148.804 180.87 175.82)" cx="180.871" cy="175.822"
-                                rx="28.048" ry="28.08" fill="#3e4347" />
-                            <ellipse transform="rotate(-113.778 194.434 165.995)" cx="194.433" cy="165.993"
-                                rx="8.016" ry="5.296" fill="#5a5f63" />
-                            <ellipse transform="scale(-1) rotate(31.21 715.397 -1237.664)" cx="345.695"
-                                cy="199.819" rx="56.146" ry="56.13" fill="#fff" />
-                            <ellipse transform="rotate(-148.804 360.25 175.837)" cx="360.252" cy="175.84"
-                                rx="28.048" ry="28.08" fill="#3e4347" />
-                            <ellipse transform="scale(-1) rotate(66.227 254.508 -573.138)" cx="373.794"
-                                cy="165.987" rx="8.016" ry="5.296" fill="#5a5f63" />
-                            <path
-                                d="M370.56 344.4c0 7.696-6.224 13.92-13.92 13.92H155.36c-7.616 0-13.92-6.224-13.92-13.92s6.304-13.92 13.92-13.92h201.296c7.696.016 13.904 6.224 13.904 13.92z"
-                                fill="#3e4347" />
-                        </svg>
-                        <svg class="rating-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <circle cx="256" cy="256" r="256" fill="#ffd93b" />
-                            <path
-                                d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
-                                fill="#f4c534" />
-                            <path
-                                d="M328.4 428a92.8 92.8 0 0 0-145-.1 6.8 6.8 0 0 1-12-5.8 86.6 86.6 0 0 1 84.5-69 86.6 86.6 0 0 1 84.7 69.8c1.3 6.9-7.7 10.6-12.2 5.1z"
-                                fill="#3e4347" />
-                            <path
-                                d="M269.2 222.3c5.3 62.8 52 113.9 104.8 113.9 52.3 0 90.8-51.1 85.6-113.9-2-25-10.8-47.9-23.7-66.7-4.1-6.1-12.2-8-18.5-4.2a111.8 111.8 0 0 1-60.1 16.2c-22.8 0-42.1-5.6-57.8-14.8-6.8-4-15.4-1.5-18.9 5.4-9 18.2-13.2 40.3-11.4 64.1z"
-                                fill="#f4c534" />
-                            <path
-                                d="M357 189.5c25.8 0 47-7.1 63.7-18.7 10 14.6 17 32.1 18.7 51.6 4 49.6-26.1 89.7-67.5 89.7-41.6 0-78.4-40.1-82.5-89.7A95 95 0 0 1 298 174c16 9.7 35.6 15.5 59 15.5z"
-                                fill="#fff" />
-                            <path
-                                d="M396.2 246.1a38.5 38.5 0 0 1-38.7 38.6 38.5 38.5 0 0 1-38.6-38.6 38.6 38.6 0 1 1 77.3 0z"
-                                fill="#3e4347" />
-                            <path
-                                d="M380.4 241.1c-3.2 3.2-9.9 1.7-14.9-3.2-4.8-4.8-6.2-11.5-3-14.7 3.3-3.4 10-2 14.9 2.9 4.9 5 6.4 11.7 3 15z"
-                                fill="#fff" />
-                            <path
-                                d="M242.8 222.3c-5.3 62.8-52 113.9-104.8 113.9-52.3 0-90.8-51.1-85.6-113.9 2-25 10.8-47.9 23.7-66.7 4.1-6.1 12.2-8 18.5-4.2 16.2 10.1 36.2 16.2 60.1 16.2 22.8 0 42.1-5.6 57.8-14.8 6.8-4 15.4-1.5 18.9 5.4 9 18.2 13.2 40.3 11.4 64.1z"
-                                fill="#f4c534" />
-                            <path
-                                d="M155 189.5c-25.8 0-47-7.1-63.7-18.7-10 14.6-17 32.1-18.7 51.6-4 49.6 26.1 89.7 67.5 89.7 41.6 0 78.4-40.1 82.5-89.7A95 95 0 0 0 214 174c-16 9.7-35.6 15.5-59 15.5z"
-                                fill="#fff" />
-                            <path
-                                d="M115.8 246.1a38.5 38.5 0 0 0 38.7 38.6 38.5 38.5 0 0 0 38.6-38.6 38.6 38.6 0 1 0-77.3 0z"
-                                fill="#3e4347" />
-                            <path
-                                d="M131.6 241.1c3.2 3.2 9.9 1.7 14.9-3.2 4.8-4.8 6.2-11.5 3-14.7-3.3-3.4-10-2-14.9 2.9-4.9 5-6.4 11.7-3 15z"
-                                fill="#fff" />
-                        </svg>
-                        <svg class="rating-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <circle cx="256" cy="256" r="256" fill="#ffd93b" />
-                            <path
-                                d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
-                                fill="#f4c534" />
-                            <path
-                                d="M336.6 403.2c-6.5 8-16 10-25.5 5.2a117.6 117.6 0 0 0-110.2 0c-9.4 4.9-19 3.3-25.6-4.6-6.5-7.7-4.7-21.1 8.4-28 45.1-24 99.5-24 144.6 0 13 7 14.8 19.7 8.3 27.4z"
-                                fill="#3e4347" />
-                            <path d="M276.6 244.3a79.3 79.3 0 1 1 158.8 0 79.5 79.5 0 1 1-158.8 0z" fill="#fff" />
-                            <circle cx="340" cy="260.4" r="36.2" fill="#3e4347" />
-                            <g fill="#fff">
-                                <ellipse transform="rotate(-135 326.4 246.6)" cx="326.4" cy="246.6"
-                                    rx="6.5" ry="10" />
-                                <path d="M231.9 244.3a79.3 79.3 0 1 0-158.8 0 79.5 79.5 0 1 0 158.8 0z" />
-                            </g>
-                            <circle cx="168.5" cy="260.4" r="36.2" fill="#3e4347" />
-                            <ellipse transform="rotate(-135 182.1 246.7)" cx="182.1" cy="246.7"
-                                rx="10" ry="6.5" fill="#fff" />
-                        </svg>
-                        <svg class="rating-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <circle cx="256" cy="256" r="256" fill="#ffd93b" />
-                            <path
-                                d="M407.7 352.8a163.9 163.9 0 0 1-303.5 0c-2.3-5.5 1.5-12 7.5-13.2a780.8 780.8 0 0 1 288.4 0c6 1.2 9.9 7.7 7.6 13.2z"
-                                fill="#3e4347" />
-                            <path
-                                d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
-                                fill="#f4c534" />
-                            <g fill="#fff">
-                                <path
-                                    d="M115.3 339c18.2 29.6 75.1 32.8 143.1 32.8 67.1 0 124.2-3.2 143.2-31.6l-1.5-.6a780.6 780.6 0 0 0-284.8-.6z" />
-                                <ellipse cx="356.4" cy="205.3" rx="81.1" ry="81" />
-                            </g>
-                            <ellipse cx="356.4" cy="205.3" rx="44.2" ry="44.2" fill="#3e4347" />
-                            <g fill="#fff">
-                                <ellipse transform="scale(-1) rotate(45 454 -906)" cx="375.3" cy="188.1"
-                                    rx="12" ry="8.1" />
-                                <ellipse cx="155.6" cy="205.3" rx="81.1" ry="81" />
-                            </g>
-                            <ellipse cx="155.6" cy="205.3" rx="44.2" ry="44.2" fill="#3e4347" />
-                            <ellipse transform="scale(-1) rotate(45 454 -421.3)" cx="174.5" cy="188"
-                                rx="12" ry="8.1" fill="#fff" />
-                        </svg>
-                        <svg class="rating-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <circle cx="256" cy="256" r="256" fill="#ffd93b" />
-                            <path
-                                d="M512 256A256 256 0 0 1 56.7 416.7a256 256 0 0 0 360-360c58.1 47 95.3 118.8 95.3 199.3z"
-                                fill="#f4c534" />
-                            <path
-                                d="M232.3 201.3c0 49.2-74.3 94.2-74.3 94.2s-74.4-45-74.4-94.2a38 38 0 0 1 74.4-11.1 38 38 0 0 1 74.3 11.1z"
-                                fill="#e24b4b" />
-                            <path
-                                d="M96.1 173.3a37.7 37.7 0 0 0-12.4 28c0 49.2 74.3 94.2 74.3 94.2C80.2 229.8 95.6 175.2 96 173.3z"
-                                fill="#d03f3f" />
-                            <path
-                                d="M215.2 200c-3.6 3-9.8 1-13.8-4.1-4.2-5.2-4.6-11.5-1.2-14.1 3.6-2.8 9.7-.7 13.9 4.4 4 5.2 4.6 11.4 1.1 13.8z"
-                                fill="#fff" />
-                            <path
-                                d="M428.4 201.3c0 49.2-74.4 94.2-74.4 94.2s-74.3-45-74.3-94.2a38 38 0 0 1 74.4-11.1 38 38 0 0 1 74.3 11.1z"
-                                fill="#e24b4b" />
-                            <path
-                                d="M292.2 173.3a37.7 37.7 0 0 0-12.4 28c0 49.2 74.3 94.2 74.3 94.2-77.8-65.7-62.4-120.3-61.9-122.2z"
-                                fill="#d03f3f" />
-                            <path
-                                d="M411.3 200c-3.6 3-9.8 1-13.8-4.1-4.2-5.2-4.6-11.5-1.2-14.1 3.6-2.8 9.7-.7 13.9 4.4 4 5.2 4.6 11.4 1.1 13.8z"
-                                fill="#fff" />
-                            <path
-                                d="M381.7 374.1c-30.2 35.9-75.3 64.4-125.7 64.4s-95.4-28.5-125.8-64.2a17.6 17.6 0 0 1 16.5-28.7 627.7 627.7 0 0 0 218.7-.1c16.2-2.7 27 16.1 16.3 28.6z"
-                                fill="#3e4347" />
-                            <path
-                                d="M256 438.5c25.7 0 50-7.5 71.7-19.5-9-33.7-40.7-43.3-62.6-31.7-29.7 15.8-62.8-4.7-75.6 34.3 20.3 10.4 42.8 17 66.5 17z"
-                                fill="#e24b4b" />
-                        </svg>
-                        <svg class="rating-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <g fill="#ffd93b">
-                                <circle cx="256" cy="256" r="256" />
-                                <path
-                                    d="M512 256A256 256 0 0 1 56.8 416.7a256 256 0 0 0 360-360c58 47 95.2 118.8 95.2 199.3z" />
-                            </g>
-                            <path
-                                d="M512 99.4v165.1c0 11-8.9 19.9-19.7 19.9h-187c-13 0-23.5-10.5-23.5-23.5v-21.3c0-12.9-8.9-24.8-21.6-26.7-16.2-2.5-30 10-30 25.5V261c0 13-10.5 23.5-23.5 23.5h-187A19.7 19.7 0 0 1 0 264.7V99.4c0-10.9 8.8-19.7 19.7-19.7h472.6c10.8 0 19.7 8.7 19.7 19.7z"
-                                fill="#e9eff4" />
-                            <path
-                                d="M204.6 138v88.2a23 23 0 0 1-23 23H58.2a23 23 0 0 1-23-23v-88.3a23 23 0 0 1 23-23h123.4a23 23 0 0 1 23 23z"
-                                fill="#45cbea" />
-                            <path
-                                d="M476.9 138v88.2a23 23 0 0 1-23 23H330.3a23 23 0 0 1-23-23v-88.3a23 23 0 0 1 23-23h123.4a23 23 0 0 1 23 23z"
-                                fill="#e84d88" />
-                            <g fill="#38c0dc">
-                                <path
-                                    d="M95.2 114.9l-60 60v15.2l75.2-75.2zM123.3 114.9L35.1 203v23.2c0 1.8.3 3.7.7 5.4l116.8-116.7h-29.3z" />
-                            </g>
-                            <g fill="#d23f77">
-                                <path
-                                    d="M373.3 114.9l-66 66V196l81.3-81.2zM401.5 114.9l-94.1 94v17.3c0 3.5.8 6.8 2.2 9.8l121.1-121.1h-29.2z" />
-                            </g>
-                            <path
-                                d="M329.5 395.2c0 44.7-33 81-73.4 81-40.7 0-73.5-36.3-73.5-81s32.8-81 73.5-81c40.5 0 73.4 36.3 73.4 81z"
-                                fill="#3e4347" />
-                            <path
-                                d="M256 476.2a70 70 0 0 0 53.3-25.5 34.6 34.6 0 0 0-58-25 34.4 34.4 0 0 0-47.8 26 69.9 69.9 0 0 0 52.6 24.5z"
-                                fill="#e24b4b" />
-                            <path
-                                d="M290.3 434.8c-1 3.4-5.8 5.2-11 3.9s-8.4-5.1-7.4-8.7c.8-3.3 5.7-5 10.7-3.8 5.1 1.4 8.5 5.3 7.7 8.6z"
-                                fill="#fff" opacity=".2" />
-                        </svg>
+                    <div class="media-footer" style="padding-top: 20px">
+                        <button class="btn btn-info btn-wd pull-right">Bình luận</button>
                     </div>
                 </div>
+
+            </div>
+        </form>
+    @endif
+    @if (Auth::user()->id != $user->id)
+        <div style="position: fixed; bottom: 260px;right: 370px;z-index: 100" id="myForm">
+            <div class="center" id="app">
+
+                <div class="chat">
+                    <div class="contact bar">
+                        <div class="pic stark"></div>
+                        <div class="name">
+                            {{ $user->name ?? 'User' . $user->id }}
+                        </div>
+                        <div class="seen">
+                            Today at 12:56
+                        </div>
+                        <span style="float: right;margin-left: 90%;margin-top: -30px" onclick="closeForm()"><i
+                                class="fa fa-times" aria-hidden="true"
+                                style="font-size: 25px;cursor: pointer;"></i></span>
+                    </div>
+
+                    <div class="messages" id="chat">
+                        @foreach ($inboxs as $inbox)
+                            <div class="message parker">
+
+                            </div>
+                            <div class="message stark">
+                                Kid, where'd you come from?
+                            </div>
+                        @endforeach
+                        {{-- <div class="message stark">
+                            <div class="typing typing-1"></div>
+                            <div class="typing typing-2"></div>
+                            <div class="typing typing-3"></div>
+                        </div> --}}
+                    </div>
+                    {{-- <form action="{{ route('inbox.send') }}" method="POST"> --}}
+                    
+                    <div class="input">
+                        <label for="inputTag" class="imageUp">
+
+                            <i class="fa fa-camera"></i>
+                            <input id="inputTag" type="file" class="input-file" />
+
+                        </label>
+                        <input type="hidden" name="idUser2" value="{{ $user->id }}">
+                        <input v-model="message" @keyup.enter="sendMessage" placeholder="Type your message here!"
+                            type="text" class="inputText" /> <button @click="sendMessage"
+                            style="background-color: white;border:none" class="inputText"><i
+                                class="nc-icon nc-send"></i></button>
+                    </div>
+                    {{-- </form> --}}
+                </div>
             </div>
         </div>
-        <div class="col-md-5 col-sm-6">
-            <textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters."
-                rows="6" maxlength="150" name="content"></textarea>
+        <button class="btn btn-outline-danger" style="position: fixed; bottom: 20px;z-index: 99; right: 20px;"
+            onclick="openForm()">Nhắn tin</button>
+    @endif
 
-            <div class="media-footer" style="padding-top: 20px">
-                <button class="btn btn-info btn-wd pull-right">Bình luận</button>
-            </div>
-        </div>
-
-    </div>
-</form>
-@endif 
-   
 @endsection
+@push('js')
+   
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.4.0/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.11.0/echo.common.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+    <script>
+        var chat = document.getElementById('chat');
+        chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+        
+    </script>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    message: ""
+                }
+            },
+            methods: {
+                sendMessage() {
+                    axios.post('/message', { message: this.message })
+                    this.message = ""
+                }
+            },
+        })
+    </script>
+@endpush
