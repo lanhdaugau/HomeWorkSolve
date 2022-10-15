@@ -70,7 +70,7 @@
                                                 <div class="avatar">
                                                     <img class="media-object"
                                                         src="{{ asset('uploads/avatar/' . (empty($comment->getUser->avatar) ? 'default-avatar.png' : $comment->getUser->avatar)) }}"
-                                                        alt="...">
+                                                        alt="..." onclick="window.open('{{route('detail',$comment->getUser->id)}}','_self')">
                                                 </div>
                                             </a>
                                             <div class="media-body" >

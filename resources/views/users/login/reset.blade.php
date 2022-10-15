@@ -1,13 +1,6 @@
-@extends('users.layouts.main')
-<!doctype html>
-<html lang="en">
-<head>
-	
+@extends('users.layout.main')
 
-</head>
-<body class="full-screen login">
-
-   
+@section('contents')
     <div class="wrapper">
         <div class="page-header" style="background-image: url('http://doan.test//image/bruno-abatti.jpg');">
             <div class="filter"></div>
@@ -15,34 +8,31 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 ml-auto mr-auto">
                         <div class="card card-register">
-                            <h3 class="card-title">Welcome</h3>
-                            
-                            <form class="register-form" method="POST" action="reset/{{$token}}">
+                            <h3 class="card-title">Tạo mật khẩu mới</h3>
+
+                            <form class="register-form" method="POST" action="reset/{{ $token }}">
                                 @csrf
-                                
+
                                 <label>Mật khẩu mới</label>
-                                <input type="password" class="form-control" placeholder="Password" name="password">
+                                <input type="password" class="form-control" placeholder="Mật khẩu mới" name="password">
                                 @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <label>Nhập lại mật khẩu mới</label>
-                                <input type="password" class="form-control" placeholder="Confirm Password"
+                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu mới"
                                     name="password_confirmation">
                                 @error('cpassword')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                                
+
                                 <button class="btn btn-danger btn-block btn-round">Tạo mới mới</button>
                             </form>
-                           
+
                         </div>
                     </div>
                 </div>
-				
+
             </div>
         </div>
     </div>
-
-</body>
-</html>
-
+@endsection

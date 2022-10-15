@@ -26,14 +26,14 @@
 
 <body class="full-screen login register contact-us blog-page">
 
-    @if (!(Request::is('login','register')))
+    @if (!(Request::is('login','register','forgot')))
         @include('users.layout.header')
     @endif
     @if (Request::is('/'))
       @include('users.layout.header-page')   
     @endif
     @yield('contents')
-    @if (!(Request::is('login','register')))
+    @if (!(Request::is('login','register','forgot')))
     @include('users.layout.footer')
     @endif
     

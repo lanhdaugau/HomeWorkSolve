@@ -161,6 +161,7 @@
                     </div>
                 </div>
                 <br>
+                @if (Auth::user()->id == $user->id)
                 <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
                         <ul class="nav nav-tabs" role="tablist">
@@ -173,6 +174,7 @@
                     </div>
                 </div>
                 <!-- Tab panes -->
+                
                 <div class="tab-content">
 
                     <div class="row">
@@ -197,6 +199,7 @@
                                                     class="name">{{ $user->name ? $user->name : 'USER' . $user->id }}</span>
                                             </a>
                                             <div class="meta">{{ $post->caption }}</div>
+                                            <a class="label label-success" style="color: white" href="{{ route('post.publish', $post->id) }}">Đăng lên</a>
                                             <div class="float-right meta">{{ $post->created_at }}</div>
                                         </div>
                                     </div>
@@ -209,25 +212,17 @@
 
 
                 </div>
-
+                @endif
                 <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
                         <ul class="nav nav-tabs" role="tablist">
 
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#following" role="tab">Nhận xét của bạn</a>
-                            </li>
+                            <h3>Nhận xét của mọi người</h3>
                         </ul>
                     </div>
                 </div>
                 <!-- Tab panes -->
-                <div class="tab-content">
-
-                    <div class=" text-center">
-                        <h3 class="text-muted">Not following anyone yet :(</h3>
-                        <button class="btn btn-warning btn-round">Find artists</button>
-                    </div>
-                </div>
+           
             </div>
         </div>
     </div>
@@ -288,16 +283,16 @@
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-description">
-                                                {{ $react->content }}
+                                                {{ $react->getUser->name ?? 'User' . $react->getUser->id }}
                                             </h5>
                                             <div class="card-footer">
                                                 <h4 class="card-title">
-                                                    {{ $react->getUser->name ?? 'User' . $react->getUser->id }}</h4>
-
+                                                    {{ $react->content }}</h4>
+                                                    <br>
                                                 <div class="card-stars">
-                                                    {{-- @for ($i = 0; $i < $reacts[$i]->rating; $i++)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            @endfor --}}
+                                                    @for ($i = 0; $i < $react->rating; $i++)
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                    @endfor
 
 
                                                 </div>
