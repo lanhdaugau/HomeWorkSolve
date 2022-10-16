@@ -833,97 +833,12 @@
             </div>
         </form>
     @endif
-    @if (Auth::user()->id != $user->id)
-        <div style="position: fixed; bottom: 260px;right: 370px;z-index: 100" id="myForm">
-            <div class="center" id="app">
-
-                <div class="chat">
-                    <div class="contact bar">
-                        <div class="pic stark"></div>
-                        <div class="name">
-                            {{ $user->name ?? 'User' . $user->id }}
-                        </div>
-                        <div class="seen">
-                            Today at 12:56
-                        </div>
-                        <span style="float: right;margin-left: 90%;margin-top: -30px" onclick="closeForm()"><i
-                                class="fa fa-times" aria-hidden="true"
-                                style="font-size: 25px;cursor: pointer;"></i></span>
-                    </div>
-
-                    <div class="messages" id="chat">
-                        @foreach ($inboxs as $inbox)
-                            <div class="message parker">
-
-                            </div>
-                            <div class="message stark">
-                                Kid, where'd you come from?
-                            </div>
-                        @endforeach
-                        {{-- <div class="message stark">
-                            <div class="typing typing-1"></div>
-                            <div class="typing typing-2"></div>
-                            <div class="typing typing-3"></div>
-                        </div> --}}
-                    </div>
-                    {{-- <form action="{{ route('inbox.send') }}" method="POST"> --}}
-                    
-                    <div class="input">
-                        <label for="inputTag" class="imageUp">
-
-                            <i class="fa fa-camera"></i>
-                            <input id="inputTag" type="file" class="input-file" />
-
-                        </label>
-                        <input type="hidden" name="idUser2" value="{{ $user->id }}">
-                        <input v-model="message" @keyup.enter="sendMessage" placeholder="Type your message here!"
-                            type="text" class="inputText" /> <button @click="sendMessage"
-                            style="background-color: white;border:none" class="inputText"><i
-                                class="nc-icon nc-send"></i></button>
-                    </div>
-                    {{-- </form> --}}
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-outline-danger" style="position: fixed; bottom: 20px;z-index: 99; right: 20px;"
-            onclick="openForm()">Nhắn tin</button>
-    @endif
+ 
 
 @endsection
 @push('js')
    
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.4.0/socket.io.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.11.0/echo.common.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-    <script>
-        var chat = document.getElementById('chat');
-        chat.scrollTop = chat.scrollHeight - chat.clientHeight;
-
-        function openForm() {
-            document.getElementById("myForm").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
-        
-    </script>
-    <script>
-        new Vue({
-            el: "#app",
-            data() {
-                return {
-                    message: ""
-                }
-            },
-            methods: {
-                sendMessage() {
-                    axios.post('/message', { message: this.message })
-                    this.message = ""
-                }
-            },
-        })
-    </script>
+  
+  
+   
 @endpush

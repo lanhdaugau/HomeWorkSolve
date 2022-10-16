@@ -82,7 +82,4 @@ Route::post('/rating',[CommentController::class,'rating'])->name('rating');
 Route::get('/like/{idComment}',[CommentController::class,'like'])->name('like');
 
 //inbox
-// Route::post('/message',[InboxController::class,'send'])->name('inbox.send');
-Route::post('/message',function(Request $request){
-    return $request;
-});
+
