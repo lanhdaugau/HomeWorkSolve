@@ -1,6 +1,17 @@
 @extends('users.layout.main')
 @push('css')
-
+    @section('title')
+        Trang chủ
+    @endsection
+    @push('css')
+        <style>
+            @media(max-width: 600px){
+                .card{
+                    min-height: 300px !important;
+                }
+            }    
+        </style>   
+    @endpush
     @section('contents')
         <div style="background-color: rgb(231, 231, 231)">
             <h3 class="p-5 ">Các bài đăng</h3>
@@ -12,7 +23,7 @@
                         <a href="#pablo">
                             <img class="img"
                                 src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
-                                style="height: 400px;width: 100%">
+                                style="width: 100%">
                         </a>
                     </div>
                     <div class="card-body">
@@ -25,7 +36,7 @@
                         <div class="card-footer">
                             <div class="author">
                                 <a href="#pablo">
-                                    <img src="{{ asset('uploads/avatar/' . (empty($post->getUser->avatar) ? 'default-avatar.png' : $post->getUser->avatar)) }}"
+                                    <img src="{{ asset('storage/users-avatar/' . (empty($post->getUser->avatar) ? 'avatar.png' : $post->getUser->avatar)) }}"
                                         alt="..." class="avatar img-raised">
                                     <span>{{ $post->getUser->name ? $post->getUser->name : 'User' . $post->getUser->id }}</span>
                                 </a>

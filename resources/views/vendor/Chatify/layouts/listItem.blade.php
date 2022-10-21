@@ -20,6 +20,7 @@
 
 {{-- -------------------- All users/group list -------------------- --}}
 @if($get == 'users')
+
 <table class="messenger-list-item" data-contact="{{ $user->id }}">
     <tr data-action="0">
         {{-- Avatar side --}}
@@ -28,7 +29,7 @@
                 <span class="activeStatus"></span>
             @endif
         <div class="avatar av-m"
-        style="background-image: url('{{ $user->avatar}}');">
+        style="background-image: url('{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar))}} ? ');">
         
         </div>
 
@@ -69,7 +70,7 @@
 @if($get == 'search_item')
 <table class="messenger-list-item" data-contact="{{ $user->id }}">
    
-    <tr data-action="0">
+    <tr data-action="0" >
         {{-- Avatar side --}}
         <td>
         <div class="avatar av-m"

@@ -17,8 +17,10 @@ class InterFaceController extends Controller
 
     $posts = Post::where('isActive', 1)
       ->get();
-
+   
     return view('users.index', ['posts' => $posts]);
+
+
   }
   public function search()
   {
@@ -46,8 +48,7 @@ class InterFaceController extends Controller
   public function detail($id)
   {
     $user = User::find($id);
-    $inbox=Inbox::where('idUser1',Auth::user()->id)
-    ->where('idUser2',$id)->get();
+    
     
     $posts = Post::where('userID', $user->id)
       ->where('isActive', 0)
@@ -55,6 +56,6 @@ class InterFaceController extends Controller
     $react = React::where('idUsers', $id)->get();
 
 
-    return view('users.user.profile', ['user' => $user, 'posts' => $posts, 'reacts' => $react,'inboxs'=>$inbox]);
+    return view('users.user.profile', ['user' => $user, 'posts' => $posts, 'reacts' => $react]);
   }
 }

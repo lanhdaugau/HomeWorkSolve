@@ -1,4 +1,7 @@
 @extends('users.layout.main')
+@section('title')
+    Cài đặt
+@endsection
 @section('contents')
     <div class="wrapper">
         <div class="page-header page-header-xs settings-background"
@@ -18,7 +21,7 @@
                             <div class="profile-picture">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <div class="fileinput-new img-no-padding">
-                                        <img src="{{ asset('uploads/avatar/' . (empty($user->avatar) ? 'default-avatar.png' : $user->avatar))}}" alt="...">
+                                        <img src="{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar))}}" alt="...">
                                     </div>
                                     
                                     <div class="fileinput-preview fileinput-exists img-no-padding"></div>

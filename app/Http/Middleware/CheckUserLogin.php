@@ -22,7 +22,7 @@ class CheckUserLogin
             return $next($request);
         }
         else{
-            return redirect()->route('login.login')->withError('Vui lòng đăng nhập để sử dụng dịch vụ!');
+            return redirect()->route('login')->withError('Vui lòng đăng nhập để sử dụng dịch vụ!');
         }
       
     }

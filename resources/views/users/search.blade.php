@@ -1,4 +1,7 @@
 @extends('users.layout.main')
+@section('title')
+    Tìm kiêm
+@endsection
 @push('css')
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/fc-4.1.0/fh-3.2.4/r-2.3.0/rg-1.2.0/sc-2.0.7/sb-1.3.4/sl-1.4.0/datatables.min.css" />
@@ -40,7 +43,7 @@
 
                     </div>
                 @endif
-                <table  id="table-name" class="table table-shopping " style="padding: 20px">
+                <table  id="table-name" class="table table-shopping responsive" style="padding: 20px">
                     <thead>
                         <tr>
 
@@ -77,11 +80,11 @@
                         name:'avatar',
                         render: function(data) {
                             if(data == null){
-                                data=  'default-avatar.png';
+                                data=  'avatar.png';
                             }
                            
                            return ` <div class="img-container">
-                            <img src="{{ asset('uploads/avatar/${data}') }}" >
+                            <img src="{{ asset('storage/users-avatar/${data}') }}" >
                                     </div>`;
                           
    

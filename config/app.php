@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-        \Chatify\ChatifyServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
@@ -195,6 +195,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
+        \Chatify\ChatifyServiceProvider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
     ],
 
@@ -213,5 +215,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
     'Chatify' => Chatify\Facades\ChatifyMessenger::class,
+    'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
 
 ];

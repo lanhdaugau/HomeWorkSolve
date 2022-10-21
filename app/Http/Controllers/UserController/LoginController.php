@@ -22,11 +22,13 @@ class LoginController extends Controller
             [
                 'email' => 'required|email',
                 'password' => 'required',
+                'g-recaptcha-response' => 'captcha'
 
             ],
             [
                 'required' => 'Trường này không được bỏ trống !',
                 'email' => 'Không đúng định dạng email',
+                'captcha'=>'Vui lòng xác nhận Capcha',
                 
 
             ]
@@ -74,12 +76,11 @@ class LoginController extends Controller
     }
     public function resetPass($token)
     {
-
+        
         return view('users.login.reset', ['token' => $token]);
     }
     public function confirm(Request $request, $token)
     {
-
         $request->validate(
             [
                 'password' => 'required|confirmed|min:4',
@@ -101,7 +102,7 @@ class LoginController extends Controller
                 return redirect()->route('user.index');
             }
         }
-        //alo
+        
     }
     public function logout()
     {

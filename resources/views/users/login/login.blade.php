@@ -1,4 +1,13 @@
 @extends('users.layout.main')
+@section('title')
+    Đăng nhập
+@endsection
+@push('css')
+    <style>
+      
+       
+    </style>
+@endpush
 @section('contents')
 <div class="wrapper">
     <div class="page-header" style="background-image: url('../assets/img/sections/bruno-abatti.jpg');">
@@ -33,6 +42,15 @@
                             @error('errorLogin')
                                     <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
+                            @error('g-recaptcha-response')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                {!! NoCaptcha::display() !!}
+                            </div>
+                            
+                        
+                            
                             <button class="btn btn-block btn-round">Đăng nhập</button>
                         </form>
                         <div class="login">
@@ -41,10 +59,17 @@
                         <div class="forgot">
                             <a href="{{route('forgot')}}" class="btn btn-link btn-danger">Quên mật khẩu?</a>
                         </div>
+                      
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
+@push('js')
+
+
+{!! NoCaptcha::renderJs() !!}
+@endpush

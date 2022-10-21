@@ -52,7 +52,7 @@ class UserController extends Controller
             $extension = $request->file('avatar')->extension();
             $name = $user->id;
             $newNameImage = $name . '.' . $extension;
-            $folderImage = 'uploads/avatar/';
+            $folderImage = 'storage/users-avatar/';
             $allData['avatar'] = $newNameImage;
             $image->move($folderImage, $newNameImage);
         }

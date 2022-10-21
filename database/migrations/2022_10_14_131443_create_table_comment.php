@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('isActive');
             $table->unsignedInteger('idUsers');
             $table->unsignedInteger('idPost');
+            $table->unsignedInteger('parent_id')->nullable();
             $table->timestamps();
             $table->foreign('idUsers')->references('id')->on('users');
             $table->foreign('idPost')->references('id')->on('post');

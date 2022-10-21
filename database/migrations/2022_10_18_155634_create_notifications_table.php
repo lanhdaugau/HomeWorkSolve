@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inbox', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('idUser1');
-            $table->unsignedInteger('idUser2');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
-            $table->foreign('idUser1')->references('id')->on('users');
-            $table->foreign('idUser2')->references('id')->on('users');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inbox');
+        Schema::dropIfExists('notifications');
     }
 };

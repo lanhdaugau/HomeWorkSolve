@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController\PostController;
 use App\Http\Controllers\UserController\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\UserController;
-use GuzzleHttp\Psr7\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ Route::middleware('CheckUserLogin')->group(function(){
 });
 
 //login
-Route::get('/login',[LoginController::class,'index'])->name('login.index');
+Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::post('/login',[LoginController::class,'login'])->name('login.login');
 Route::get('/logout',[LoginController::class,'logout'])->name('login.logout');
 Route::get('/forgot',[LoginController::class,'forgot'])->name('forgot');
@@ -80,6 +80,8 @@ Route::get('/active/{token}',[RegisterController::class,'active'])->name('regist
 Route::post('/comment',[CommentController::class,'comment'])->name('comment');
 Route::post('/rating',[CommentController::class,'rating'])->name('rating');
 Route::get('/like/{idComment}',[CommentController::class,'like'])->name('like');
-
+Route::post('/update/{idComment}',[CommentController::class,'update'])->name('comment.update');
+Route::delete('comment/destroy/{idComment}',[CommentController::class,'destroy'])->name('comment.destroy');
+Route::post('/reply',[CommentController::class,'reply'])->name('comment.reply');
 //inbox
 

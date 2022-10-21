@@ -46,16 +46,25 @@ class PostController extends Controller
     }
     public function detail($idPost)
     {
+       
+       
         if (Auth::check()) {
-            $comment = Comment::where('idPost', $idPost)->get();
+            $post=Post::whereId($idPost)
+              
+            ->with([
+                'getUser',
+                'comments.getUser',
+                'comments.replies.getUser',
+                'comments.replies.replies',
+                'comments.replies.replies.getUser',
+                'comments.replies.replies.replies.getUser',
+            ])->first(); 
+        //   dd($post->toArray());
+           $user = User::find(Auth::user()->id);
 
+           
 
-
-            $user = User::find(Auth::user()->id);
-
-            $posts = Post::find($idPost);
-
-            return view('users.post.detail', ['user' => $user, 'post' => $posts, 'comments' => $comment]);
+            return view('users.post.detail', ['post' => $post,'user'=>$user]);
         } else {
             return redirect()->route('login.login');
         }

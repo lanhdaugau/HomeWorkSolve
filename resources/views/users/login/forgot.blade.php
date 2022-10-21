@@ -1,5 +1,7 @@
 @extends('users.layout.main')
-
+@section('title')
+    Quên mật khẩu
+@endsection
 
 @section('contents')
     

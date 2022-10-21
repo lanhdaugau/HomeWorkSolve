@@ -44,6 +44,9 @@
 }
     </style> 
 @endpush
+@section('title')
+    Thêm bài viết
+@endsection
 @section('contents')
     <div class="wrapper">
         <div class="main">

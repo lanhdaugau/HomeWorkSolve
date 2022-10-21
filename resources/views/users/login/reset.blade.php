@@ -1,5 +1,7 @@
 @extends('users.layout.main')
-
+@section('title')
+    Mật khẩu mới
+@endsection
 @section('contents')
     <div class="wrapper">
         <div class="page-header" style="background-image: url('http://doan.test//image/bruno-abatti.jpg');">
@@ -10,7 +12,7 @@
                         <div class="card card-register">
                             <h3 class="card-title">Tạo mật khẩu mới</h3>
 
-                            <form class="register-form" method="POST" action="reset/{{ $token }}">
+                            <form class="register-form" method="POST" action="{{ route('confirm',$token) }}">
                                 @csrf
 
                                 <label>Mật khẩu mới</label>

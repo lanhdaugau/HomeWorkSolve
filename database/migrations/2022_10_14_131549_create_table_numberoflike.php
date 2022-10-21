@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idComment');
             $table->timestamps();
             $table->foreign('idUsers')->references('id')->on('users');
-            $table->foreign('idComment')->references('id')->on('comment');
+            // $table->foreign('idComment')->references('id')->on('comment');
         });
     }
 

@@ -1,5 +1,8 @@
 
 @extends('users.layout.main')
+@section('title')
+    Đăng ký
+@endsection
 @section('contents')
 <div class="wrapper">
     <div class="page-header" style="background-image: url('../assets/img/sections/soroush-karimi.jpg');">

@@ -25,4 +25,11 @@ class Post extends Model
     public function getUser(){
         return $this->hasOne(User::class,'id','userID');
     }
+    public function comments(){
+       
+        return $this->hasMany(Comment::class,'idPost','id')->whereNull('parent_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
