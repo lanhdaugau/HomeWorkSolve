@@ -5,9 +5,11 @@ namespace App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\ImagePost;
+use App\Models\Notification;
 use App\Models\NumberOfLike;
 use App\Models\Post;
 use App\Models\User;
+use App\Notifications\RepliedToThread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Termwind\Components\Li;
@@ -46,7 +48,8 @@ class PostController extends Controller
     }
     public function detail($idPost)
     {
-       
+       $notification= Notification::all()->first();
+    //   dd(json_decode($notification->data)->comment->content);
        
         if (Auth::check()) {
             $post=Post::whereId($idPost)
@@ -58,11 +61,13 @@ class PostController extends Controller
                 'comments.replies.replies',
                 'comments.replies.replies.getUser',
                 'comments.replies.replies.replies.getUser',
-            ])->first(); 
-        //   dd($post->toArray());
+            ])
+            
+            ->first(); 
+       
            $user = User::find(Auth::user()->id);
 
-           
+            
 
             return view('users.post.detail', ['post' => $post,'user'=>$user]);
         } else {
@@ -120,9 +125,7 @@ class PostController extends Controller
 
         $like = NumberOfLike::whereIn('idComment', $comment)->get('id');
         NumberOfLike::destroy($like);
-        ImagePost::destroy($image);
-
-
+        ImagePost::destroy($image); 
         Comment::destroy($comment);
         Post::destroy($id);
         

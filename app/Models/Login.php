@@ -17,4 +17,5 @@ class Login extends User
         'remember_token',
         
     ];
+    
 }

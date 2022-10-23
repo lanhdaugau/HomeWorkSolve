@@ -24,8 +24,8 @@
     @stack('css')
 </head>
 
-<body class="full-screen login register contact-us blog-page">
-
+<body class="full-screen login register contact-us blog-page" id="app">
+    
     @if (!(Request::is('login','register','forgot')))
         @include('users.layout.header')
     @endif
@@ -36,7 +36,7 @@
     @if (!(Request::is('login','register','forgot')))
     @include('users.layout.footer')
     @endif
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </body>
 

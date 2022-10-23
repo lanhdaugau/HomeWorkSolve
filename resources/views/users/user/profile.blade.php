@@ -112,7 +112,7 @@
                                                 <div class="meta">{{ $post->caption }}</div>
                                                 <a class="label label-success" style="color: white"
                                                     href="{{ route('post.publish', $post->id) }}">Đăng lên</a>
-                                                <div class="float-right meta">{{ $post->created_at }}</div>
+                                                <div class="float-right meta">{{$post->created_at->diffForHumans() }}</div>
                                             </div>
                                         </div>
                                     </div>

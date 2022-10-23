@@ -27,9 +27,7 @@ class Post extends Model
     }
     public function comments(){
        
-        return $this->hasMany(Comment::class,'idPost','id')->whereNull('parent_id');
+        return $this->hasMany(Comment::class,'idPost','id')->whereNull('parent_id')->orderBy('id','DESC');
     }
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+    
 }

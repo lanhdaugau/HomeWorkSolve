@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function comment(Request $request,Post $post)
+    public function comment(Request $request)
     {
         
         $request->mergeIfMissing(['idUsers' => Auth::user()->id]);
         $request->mergeIfMissing(['isActive' => 1]);
        
-        if($thread=Comment::create(
+        if(Comment::create(
             $request->validate(
                 [
                     'content'=>'required',
@@ -33,9 +33,11 @@ class CommentController extends Controller
                 ]
             )
          )){
-           
-            // $user=User::find(auth()->user()->id);
-            // $user->notify(new RepliedToThread($thread));
+            $idPost=$request->idPost;
+            $post=Post::find($idPost);
+            
+            
+            $post->getUser->notify(new RepliedToThread($post));
             return redirect()->back();
          }
     }
@@ -53,9 +55,12 @@ class CommentController extends Controller
     public function destroy($idComment)
     {
         
+        
         $comment=Comment::find($idComment);
         if($comment->delete()){
-            return back();
+            return response()->json([
+                'statusCode' => 200
+            ]);
         }
     }
     public function reply(Request $request){

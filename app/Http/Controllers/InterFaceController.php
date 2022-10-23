@@ -15,7 +15,7 @@ class InterFaceController extends Controller
   public function index()
   {
 
-    $posts = Post::where('isActive', 1)
+    $posts = Post::where('isActive', 1)->orderBy('id','DESC')
       ->get();
    
     return view('users.index', ['posts' => $posts]);

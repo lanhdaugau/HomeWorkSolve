@@ -10,7 +10,8 @@ use App\Http\Controllers\UserController\PostController;
 use App\Http\Controllers\UserController\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\UserController;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,3 +86,9 @@ Route::delete('comment/destroy/{idComment}',[CommentController::class,'destroy']
 Route::post('/reply',[CommentController::class,'reply'])->name('comment.reply');
 //inbox
 
+
+Route::get('/markAsRead',function(){
+    $user=User::find(Auth::user()->id);
+   $user->unreadNotifications->markAsRead();
+   return back();
+})->name('maskAsRead');

@@ -2,22 +2,23 @@
 
 namespace App\Notifications;
 use Illuminate\Bus\Queueable;
-
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class RepliedToThread extends Notification
 {
     use Queueable;
-    protected $thread;
+    public $post;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($comment)
+    public function __construct($post)
     {
-        $this->comment=$comment;
+       $this->post=$post;
     }
 
     /**
@@ -28,6 +29,7 @@ class RepliedToThread extends Notification
      */
     public function via($notifiable)
     {
+        
         
         return ['database'];
     }
@@ -40,12 +42,23 @@ class RepliedToThread extends Notification
     public function toDatabase($notifiable)
     {
         
-        return [
+        return[
             
-            'thread'=>$this->thread,
-            'user'=>$notifiable
+            'post'=>$this->post ,
+            'user'=>$notifiable,
+           
+            
         ];
     }
+    // public function toBroadcast($notifiable)
+    // {
+        
+    //     return new BroadcastMessage( [
+            
+    //         'post'=>$this->post ,
+    //         'user'=>$notifiable
+    //     ]);
+    // }
    
     /**
      * Get the array representation of the notification.
@@ -55,6 +68,7 @@ class RepliedToThread extends Notification
      */
     public function toArray($notifiable)
     {
+        
         return [
             //
         ];

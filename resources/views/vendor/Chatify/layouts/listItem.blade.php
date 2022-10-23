@@ -29,7 +29,7 @@
                 <span class="activeStatus"></span>
             @endif
         <div class="avatar av-m"
-        style="background-image: url('{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar))}} ? ');">
+        style="background-image: url('{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar))}} ');">
         
         </div>
 
@@ -74,7 +74,7 @@
         {{-- Avatar side --}}
         <td>
         <div class="avatar av-m"
-        style="background-image: url(' {{ ($user->avatar) ? $user->avatar :'1'}}');">
+        style="background-image: url('{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar))}} ');">
         </div>
         </td>
         
