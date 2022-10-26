@@ -21,27 +21,48 @@
             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">Chức năng</a>
             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                <a class="dropdown-item" href="{{route('post.addPost')}}"><i class="nc-icon nc-tile-56"></i>&nbsp; Đăng bài</a>
-               <a class="dropdown-item" href="{{route('user.search')}}"><i class="nc-icon nc-zoom-split"></i>&nbsp; Tìm kiếm</a>
+               <a class="dropdown-item" href="{{route('user.search')}}"><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp; Tìm kiếm</a>
                <a class="dropdown-item" href="{{route('chatify')}}"><i class="nc-icon nc-chat-33"></i>&nbsp; Trò chuyện</a>
+               <a class="dropdown-item" href="{{ route('searchPost') }}"><i class="nc-icon nc-zoom-split"></i>&nbsp; Tìm kiếm bài viết</a>
+               
             </ul>
          </li>
          <li class="nav-item dropdown">
-            <a class="btn btn-just-icon btn-warning  " data-toggle="dropdown">
-            <i class="nc-icon nc-sound-wave"></i>
+            <a class="btn btn-just-icon btn-primary " data-toggle="dropdown">
+               
+                   
+              
+               <i class="nc-icon nc-satisfied"></i>
+              
+            
             </a>
+            @auth
+            @if (count($userNotification->unreadNotifications->where('type','App\Notifications\RatingToUser'))>0)
+            <span class="label label-danger notification-bubble"><i class="nc-icon nc-bell-55"></i></span>
+            @endif
+            
             <ul class="dropdown-menu dropdown-menu-right dropdown-notification">
                <li class="no-notification">
-                  You're all clear!
+                  @if (count($userNotification->unreadNotifications->where('type','App\Notifications\RatingToUser'))>0)
+                  Ai đó đã đánh giá bạn..
+                  <a href="{{route('checkRating')}}" class="label label-danger">
+                     Xem liền 
+                  </a>
+                  
+                  @else
+                  Chưa có ai đánh giá bạn cả :(
+                  @endif
                </li>
             </ul>
+            @endauth
          </li>
          <li class="nav-item dropdown">
             <a class="btn btn-just-icon " data-toggle="dropdown">
-            <i class="nc-icon nc-email-85"></i>
+            <i class="nc-icon nc-bell-55"></i>
             </a>
             
             @auth
-            @if (count($userNotification->unreadNotifications)>0)
+            @if (count($userNotification->unreadNotifications->whereNotIn('type','App\Notifications\RatingToUser'))>0)
             <span class="label label-danger notification-bubble">{{count($userNotification->unreadNotifications)}}</span>
             <ul class="dropdown-menu dropdown-menu-right dropdown-wide dropdown-notification">
                <li class="dropdown-header">
@@ -50,18 +71,7 @@
                <li>
                   <ul class="dropdown-notification-list scroll-area" style="width:500px;padding:10px">
                      @foreach ($userNotification->unreadNotifications as $notification)
-                     <a href="#paper-kit" class="notification-item">
-                        <div class="notification-text">
-                           <span class="label label-icon label-success"><i class="nc-icon nc-chat-33"></i>
-                           </span>
-                           @include('users.user.notification.'.class_basename($notification->type))
-                           <br>
-                           <span class="time">{{$notification->created_at->diffForHumans()}}</span>
-                           <button class="btn btn-just-icon read-notification btn-round">
-                           <i class="nc-icon nc-check-2"></i>
-                           </button>
-                        </div>
-                     </a>
+                     @include('users.user.notification.'.class_basename($notification->type))
                      @endforeach 
                   </ul>
                </li>

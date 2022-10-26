@@ -13,4 +13,7 @@ class NumberOfLike extends Model
     public function getUserLike(){
         return $this->hasOne(User::class,'id','idUsers');
     }
+    public function getComment(){
+        return $this->hasMany('idComment','id');
+    }
 }

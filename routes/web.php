@@ -4,14 +4,15 @@ use App\Http\Controllers\AdminController\DashBoardController;
 use App\Http\Controllers\AdminController\RoleController;
 use App\Http\Controllers\InterFaceController;
 use App\Http\Controllers\UserController\CommentController;
-use App\Http\Controllers\UserController\InboxController;
 use App\Http\Controllers\UserController\LoginController;
 use App\Http\Controllers\UserController\PostController;
 use App\Http\Controllers\UserController\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\UserController;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,13 +51,18 @@ Route::delete('/destroy/{id}', [PostController::class,'destroy'])->name('post.de
 Route::get('/',[InterFaceController::class,'index'])->name('user.index');
 Route::get('/search',[InterFaceController::class,'search'])->name('user.search');
 Route::get('/api/name',[InterFaceController::class,'apiName'])->name('apiname');
-Route::get('/getUser',[InterFaceController::class,'getUser'])->name('api');
-Route::get('/profile/{id}',[InterFaceController::class,'detail'])->name('detail');
-Route::get('/profile',[UserController::class,'profile'])->name('profile');
-Route::post('/setting',[UserController::class,'update'])->name('user.setting');
+Route::get('/getUser',[InterFaceController::class,'getUserSearch'])->name('api');
+
+
+
+
 Route::middleware('CheckUserLogin')->group(function(){
     Route::get('/addPost',[UserController::class,'addPost'])->name('post.addPost');
     Route::get('/setting',[UserController::class,'setting'])->name('user.setting');
+    Route::post('/setting',[UserController::class,'update'])->name('user.setting');
+    Route::get('/profile/{id}',[InterFaceController::class,'detail'])->name('detail');
+    Route::get('/profile',[UserController::class,'profile'])->name('profile');
+   
 });
 
 //login
@@ -92,3 +98,11 @@ Route::get('/markAsRead',function(){
    $user->unreadNotifications->markAsRead();
    return back();
 })->name('maskAsRead');
+Route::get('post/detail/{idPost}/{idNotification}',[PostController::class,'detail'])->name('post.detail.read');
+
+
+Route::get('/searchPost',function(){
+    return view('users.searchPost');
+})->name('searchPost');
+
+Route::get('/checkRating',[UserController::class,'checkRating'])->name('checkRating');

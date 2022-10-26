@@ -115,7 +115,7 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                            {{-- edit comment --}}
+                                            
                                         </div>
                                         <!-- end media -->
                                     </div>
@@ -216,7 +216,7 @@
                     typedata: 'json'
 
                 }).done(function(response) {
-                    console.log(response);
+                    
                     if (response.statusCode == 200) {
                         $('.modal').modal('hide');
                         $('.comment-' + idComment).css('display', 'none');
@@ -228,5 +228,31 @@
             });
 
         });
+
+        $(document).on('click','#like',function(){
+            var idComment = this.value;
+            let url=`{{route('like',':idComment') }}`;
+            url = url.replace(':idComment', idComment);
+            $.ajax(
+                {
+                    url:url,
+                    method: 'GET',
+                    typeData: 'json'
+                }
+            ).done(function(response){
+                
+                if(response.statusCode == 200){
+                   
+                    $('.like-'+idComment).addClass('btn-danger');
+                    var num=parseInt($('#numberoflike-'+idComment).text())+1;
+                    $('#numberoflike-'+idComment).text(num);
+                }
+                else{
+                    $('.like-'+idComment).removeClass('btn-danger');
+                    var num=parseInt($('#numberoflike-'+idComment).text())-1;
+                    $('#numberoflike-'+idComment).text(num);
+                }
+            })  
+        })
     </script>
 @endpush

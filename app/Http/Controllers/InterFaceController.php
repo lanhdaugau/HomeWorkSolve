@@ -12,13 +12,16 @@ use Yajra\Datatables\Datatables;
 
 class InterFaceController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-
-    $posts = Post::where('isActive', 1)->orderBy('id','DESC')
-      ->get();
-   
-    return view('users.index', ['posts' => $posts]);
+    $search=$request->get('searchPost');
+    
+    $posts = Post::where('isActive', 1)
+    ->where('caption','like', '%' . $search . '%')
+    ->orWhere('content','like', '%' . $search . '%')
+    ->orderBy('id','DESC')->paginate(3);
+  
+    return view('users.index',['posts' => $posts]);
 
 
   }
@@ -33,14 +36,16 @@ class InterFaceController extends Controller
     return User::where('name', 'like', '%' . $rq->get('q') . '%')
       ->get([
         'id',
-        'name'
+        'name',
+        'avatar'
+
       ]);
   }
-  public function getUser()
+  public function getUserSearch()
   {
     return DataTables::of(User::query())
-      ->addColumn('detail', function ($object) {
-        return route('detail', $object);
+      ->addColumn('detail', function (User $object) {
+        return route('detail', $object->id);
       })
       ->rawColumns(['detail'])
       ->make(true);

@@ -61,13 +61,13 @@
                             @enderror
                             <div class="form-group">
                                 <label class="form-check-label">
-                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==1) ? true : false) value="1">
+                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==1 && $user->gender!=null ) ? true : false) value="1">
                                     Nam
                                     <span class="form-check-sign"></span>
                                 </label>
 
                                 <label class="form-check-label">
-                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==0) ? true : false) value="0">
+                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==0 && $user->gender!=null ) ? true : false) value="0">
                                     Nữ
                                     <span class="form-check-sign"></span>
                                 </label>

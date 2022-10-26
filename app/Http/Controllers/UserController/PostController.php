@@ -46,10 +46,14 @@ class PostController extends Controller
         }
         return redirect()->route('user.index');
     }
-    public function detail($idPost)
+    public function detail($idPost,$idNotification=null)
     {
-       $notification= Notification::all()->first();
-    //   dd(json_decode($notification->data)->comment->content);
+     
+        if($idNotification!=null){
+            Notification::find($idNotification)->update(
+                ['read_at'=>now()]
+            );
+        }       
        
         if (Auth::check()) {
             $post=Post::whereId($idPost)
@@ -144,4 +148,5 @@ class PostController extends Controller
         );
         return redirect()->back();
     }
+    
 }

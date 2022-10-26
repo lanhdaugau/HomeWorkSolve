@@ -13,7 +13,6 @@ class UserComposer
         {       
                 if (Auth::check()) {
                         $user = User::find(Auth::user()->id);
-                        
                         $view->with(['avatar'=> $user->avatar,'userNotification'=> $user]);
                                 
                 }

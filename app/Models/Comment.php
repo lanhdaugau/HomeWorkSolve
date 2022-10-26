@@ -31,21 +31,14 @@ class Comment extends Model
             return true;
         }
     }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
+   
     public function commentable()
     {
         return $this->morphTo();
     }
     public function getPost()
     {
-        return $this->belongsTo(Post::class);
+        return $this->hasOne(Post::class,'id','idPost');
     }
     public function replies()
     {

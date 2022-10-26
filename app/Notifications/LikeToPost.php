@@ -1,23 +1,25 @@
 <?php
 
 namespace App\Notifications;
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\BroadcastMessage;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 
-class RepliedToThread extends Notification
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+
+class LikeToPost extends Notification
 {
     use Queueable;
-    public $post;
+    public $comment,$like,$post;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($post)
+    public function __construct($comment,$like,$post)
     {
+       $this->comment=$comment;
+       $this->like=$like;
        $this->post=$post;
        
     }
@@ -30,11 +32,11 @@ class RepliedToThread extends Notification
      */
     public function via($notifiable)
     {
-    
         
         return ['database'];
     }
- /**
+
+    /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
@@ -42,26 +44,14 @@ class RepliedToThread extends Notification
      */
     public function toDatabase($notifiable)
     {
-        
-        return[
-            
-            'post'=>$this->post ,
+        return [
+            'comment'=>$this->comment ,
             'user'=>auth()->user()->getUser,
-            
-           
-            
+            'like'=>$this->like,
+            'post'=>$this->post
         ];
     }
-    // public function toBroadcast($notifiable)
-    // {
-        
-    //     return new BroadcastMessage( [
-            
-    //         'post'=>$this->post ,
-    //         'user'=>$notifiable
-    //     ]);
-    // }
-   
+
     /**
      * Get the array representation of the notification.
      *
@@ -70,7 +60,6 @@ class RepliedToThread extends Notification
      */
     public function toArray($notifiable)
     {
-        
         return [
             //
         ];

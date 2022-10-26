@@ -17,5 +17,7 @@ class Login extends User
         'remember_token',
         
     ];
-    
+    public function getUser(){
+        return $this->hasOne(User::class,'id','idUsers');
+    }
 }

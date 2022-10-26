@@ -237,7 +237,7 @@
                     <div class="col-md-2 ml-auto">
                         <div class="testimonials-people">
                             <img class="right-first-person add-animation"
-                                src="https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg" alt="">
+                                src="https://s3.amazonaws.com/creativetim_bucket/photos/118235/thumb.?1477435947" alt="">
                             <img class="right-second-person add-animation"
                                 src="https://s3.amazonaws.com/creativetim_bucket/photos/125268/thumb.jpeg?1497799215"
                                 alt="">

@@ -4,9 +4,8 @@ namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Notification;
 use Illuminate\Http\Request;
-use App\Models\ImagePost;
-use App\Models\NumberOfLike;
 use App\Models\Post;
 use App\Models\React;
 use App\Models\User;
@@ -15,8 +14,15 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function profile()
+    public function profile($idNotification=null)
     {
+        if($idNotification!=null){
+            Notification::where('type','App\Notifications\RatingToUser')->update(
+                [
+                    'read_at'=>now(),
+                ]
+                );
+        }   
         $user = User::find(Auth::user()->id);
 
         $posts = Post::where('userID', $user->id)
@@ -60,6 +66,13 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+    public function checkRating(){
+        $user=User::find(Auth::user()->id);
 
+        $user->unreadNotifications->where('type','App\Notifications\RatingToUser')->markAsRead();
+
+        return redirect()->route('profile');
+        
+    }
    
 }

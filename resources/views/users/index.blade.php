@@ -5,12 +5,12 @@
     @endsection
     @push('css')
         <style>
-            @media(max-width: 600px){
-                .card{
+            @media(max-width: 600px) {
+                .card {
                     min-height: 300px !important;
                 }
-            }    
-        </style>   
+            }
+        </style>
     @endpush
     @section('contents')
         <div style="background-color: rgb(231, 231, 231)">
@@ -48,7 +48,13 @@
                 <br>
                 <br><br>
                 <br>
-        
-        @endforeach
-    </div>
+            @endforeach
+            <div style="display: flex">
+                <div style="margin: auto">
+                    {!! $posts->appends(request()->query())->links("pagination::bootstrap-4") !!}
+                </div>
+               
+            </div>
+            
+        </div>
     @endsection
