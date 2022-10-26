@@ -25,7 +25,6 @@ return new class extends Migration
             $table->unsignedInteger('idCity')->nullable();
             $table->unsignedInteger('idDistrict')->nullable();
             $table->unsignedInteger('idWard')->nullable();
-            $table->boolean('role')->default(0);
             $table->string('activeToken')->nullable();
             $table->timestamps();
         });
