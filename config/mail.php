@@ -14,7 +14,18 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
-
+    // 'driver' => env('MAIL_DRIVER', 'sendmail'),
+    // 'host' => env('MAIL_HOST', 'mailhog'),
+    // 'port' => env('MAIL_PORT', 587),
+    // 'from' => [
+    //     'address' => env('MAIL_FROM_ADDRESS', 'phuocbt698@gmail.com'),
+    //     'name' => env('MAIL_FROM_NAME', 'Example'),
+    // ],
+    // 'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    // 'username' => env('phuocbt698@gmail.com'),
+ 
+    // 'password' => env('mawjgzxdbzjpnajd'),
+    // 'sendmail' => '/usr/sbin/sendmail -bs',
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -50,7 +61,9 @@ return [
         ],
 
         'mailgun' => [
-            'transport' => 'mailgun',
+            'domain' => env('MAILGUN_DOMAIN'),
+            'secret' => env('MAILGUN_SECRET'),
+            'endpoint' => env('MAILGUN_ENDPOINT', 'api.eu.mailgun.net'),
         ],
 
         'postmark' => [
@@ -91,10 +104,7 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
-    ],
+    
 
     /*
     |--------------------------------------------------------------------------
