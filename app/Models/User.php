@@ -24,19 +24,16 @@ class User extends Authenticatable
     // Auth::guard('admin')->user()
     protected $fillable = [
         'name',
-        'email',
-        'password',
-        'activeToken',
-        'isActive',
-        'phone',
         'gender',
-        'idCity',
-        'idDistrict',
-        'idWard',
+        'email',
         'birthday',
         'avatar',
-        'address'
-
+        'activeToken',
+        'phone',
+        'address',
+        'idCity',
+        'idDistrict',
+        'idWard'
     ];
 
     /**
@@ -57,6 +54,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
     public function getRouteKeyName()
     {
         return 'name';
@@ -64,4 +62,16 @@ class User extends Authenticatable
    public function posts(){
         return $this->hasMany(Post::class,'userID','id');
    }
+=======
+
+    public function infoLogin()
+    {
+        return $this->hasOne(Login::class, 'idUsers', 'id');
+    }
+
+    public function gender()
+    {
+        return ($this->gender == 0) ? 'Female' : 'Male';
+    }
+>>>>>>> 31ee70a9a4fad89bcff97151d52c6513f10eaaff
 }

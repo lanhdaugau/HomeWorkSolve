@@ -1,8 +1,9 @@
 @push('link')
-    <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('asset/admin') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="{{ asset('asset/admin') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="{{ asset('asset/admin') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('asset/admin') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"
+  href="{{ asset('asset/admin') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="{{ asset('asset/admin') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endpush
 
 @push('script')
@@ -21,20 +22,33 @@
 <script src="{{ asset('asset/admin') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
 <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
+  function renderData(url, columns){
+    var table = $("#dataTable").DataTable({
         "paging": true,
-        "lengthChange": false,
-        "searching": false,
+        "lengthChange": true,
+        "searching": true,
         "ordering": true,
+        "orderable": false,
         "info": true,
         "autoWidth": false,
-        "responsive": true,
+        "responsive": false,
+        "processing": true,
+        "serverSide": true,
+        "bDestroy": true,
+        "order": [[1, 'desc']],
+        "scrollX": true,
+        "columnDefs": [
+            { "searchable": false, "targets": [0] }  // Disable search on first and last columns
+          ],
+        ajax: url,
+        columns: columns,
       });
-    });
-  </script>
+    table.on('order.dt search.dt', function () {
+        table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
+    
+}
+</script>
 @endpush

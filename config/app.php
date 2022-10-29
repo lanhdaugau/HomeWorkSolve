@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-        
+
         /*
          * Application Service Providers...
          */
@@ -197,6 +197,7 @@ return [
         App\Providers\ViewServiceProvider::class,
         \Chatify\ChatifyServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     ])->toArray(),
     'Chatify' => Chatify\Facades\ChatifyMessenger::class,
     'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
