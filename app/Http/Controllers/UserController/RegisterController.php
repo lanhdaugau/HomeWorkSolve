@@ -23,7 +23,7 @@ class RegisterController extends Controller
 
         $request->validate(
             [
-                'email' => 'required|email|unique:users,email',
+                'email' => 'required|email|unique:login,email',
                 'password' => 'required|confirmed|min:4',
                 'password_confirmation' => 'required ',
             ],
@@ -46,7 +46,7 @@ class RegisterController extends Controller
         if ($check) {
             $idUser = $check->id;
             
-            DB::table('login')->insert(
+            $login=Login::create(
                 [
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
@@ -55,7 +55,7 @@ class RegisterController extends Controller
             );
             $route = route('register.active', $activeToken);
             
-            if(Mail::to($check->email)->send(new ActiveMail($route))){
+            if(Mail::to($login->email)->send(new ActiveMail($route))){
                 return redirect()->back()->with('success','Vui lòng kiểm tra email');
             }
         };
