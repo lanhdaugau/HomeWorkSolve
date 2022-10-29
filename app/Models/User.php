@@ -54,15 +54,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-<<<<<<< HEAD
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
+
+    
    public function posts(){
         return $this->hasMany(Post::class,'userID','id');
    }
-=======
+
 
     public function infoLogin()
     {
@@ -73,5 +70,5 @@ class User extends Authenticatable
     {
         return ($this->gender == 0) ? 'Female' : 'Male';
     }
->>>>>>> 31ee70a9a4fad89bcff97151d52c6513f10eaaff
+
 }
