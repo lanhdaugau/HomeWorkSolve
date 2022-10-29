@@ -132,7 +132,7 @@
          @else
          <li class="nav-item dropdown" >
             <a href="{{route('login.login')}}" class="nav-link "  width="30" height="30">
-            Login
+            Đăng nhập
             </a>
          </li>
          @endauth

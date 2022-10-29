@@ -20,14 +20,13 @@ class Login extends User
         'idUsers',
         'role'
     ];
-<<<<<<< HEAD
+
     public function getUser(){
         return $this->hasOne(User::class,'id','idUsers');
-=======
-
+    }
     public function role()
     {
         return ($this->role == 0) ? 'Admin' : 'Member';
->>>>>>> 31ee70a9a4fad89bcff97151d52c6513f10eaaff
+
     }
 }
