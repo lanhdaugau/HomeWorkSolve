@@ -41,7 +41,7 @@
             <i class="nav-icon fas fa-user-lock"></i>
             <p>User Admin</p>
           </a>
-          <a href="{{ route('admin.postlist') }}" class="nav-link">
+          <a href="{{ route('admin.postlist') }}" class="nav-link {{ ($title == 'Post') ? 'active' : ''}}">
             <i class="nav-icon fas fa-user-lock"></i>
             <p>Post</p>
           </a>

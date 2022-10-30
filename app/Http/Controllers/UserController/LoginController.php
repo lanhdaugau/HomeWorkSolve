@@ -111,14 +111,8 @@ class LoginController extends Controller
     }
     public function callBack($provider)
     {   
-        dd($provider);
-        if($provider=='google'){
-            $user= Socialite::driver('google')->stateless()->user();
-        }
-        else{
-            $user= Socialite::driver($provider)->user();
-        }
-        dd($user);
+        $user= Socialite::driver($provider)->user();
+        
         $userCheck=Login::where('email',$user->email)->first();
         if(!empty($userCheck)){
            Auth::loginUsingId($userCheck->id);

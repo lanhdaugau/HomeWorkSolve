@@ -36,9 +36,7 @@ Route::prefix('admin')->group(function () {
 
         Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'user', 'as' => 'admin.'], function () {
             Route::get('/', 'index')->name('index');
-            Route::get('/postlist',function(){
-                            return view('admin.user.postlist');
-            })->name('postlist');
+            
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/show/{userModel}', 'show')->name('show');
@@ -46,8 +44,15 @@ Route::prefix('admin')->group(function () {
             Route::put('/update/{userModel}', 'update')->name('update');
             Route::delete('/destroy/{userModel}', 'destroy')->name('destroy');
         });
+        Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'post', 'as' => 'admin.'], function () {
+            
+            Route::get('/postlist',function(){
+                return view('admin.user.postlist');
+            })->name('postlist');
+        });
     });
 });
+
 //post
 Route::post('/addPost', [PostController::class, 'post'])->name('post.post');
 Route::get('/post/detail/{idPost}', [PostController::class, 'detail'])->name('post.detail');

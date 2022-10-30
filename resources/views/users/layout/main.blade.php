@@ -21,6 +21,10 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,300,700" rel="stylesheet" type="text/css" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{ asset('asset/admin') }}/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('asset/admin') }}/plugins/toastr/toastr.min.css">
     @stack('css')
 </head>
 
@@ -41,6 +45,7 @@
 </body>
 
 <!-- Core JS Files -->
+
 <script src="{{ asset('assets') }}/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="{{ asset('assets') }}/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
 <script src="{{ asset('assets') }}/js/popper.js" type="text/javascript"></script>
@@ -72,13 +77,16 @@
 
 <!--  Plugins for DateTimePicker -->
 <script src="{{ asset('assets') }}/js/moment.min.js"></script>
-<script src="{{
-            asset('assets')
-        }}/js/bootstrap-datetimepicker.min.js"></script>
-
+<script src="{{asset('assets') }}/js/bootstrap-datetimepicker.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="{{ asset('asset/admin') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="{{ asset('asset/admin') }}/plugins/toastr/toastr.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script src="{{ asset('assets') }}/js/paper-kit.js?v=2.1.0"></script>
 
 <script src="{{ asset('api') }}/js/callAddress.js"></script>
+ 
 @stack('js')
 
 </html>

@@ -66,7 +66,19 @@ class User extends Authenticatable
 
     public function gender()
     {
+        
         return ($this->gender == 0) ? 'Female' : 'Male';
+    }
+    public function getAvatar(){
+        
+        if($this->avatar==null){
+            return asset('storage/users-avatar/avatar.png');
+        }
+        if(str_starts_with($this->avatar,'http')){
+            return $this->avatar;
+        }
+        
+        return asset('storage/users-avatar').'/'.$this->avatar;
     }
 
 }

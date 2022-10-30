@@ -16,12 +16,11 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 ml-auto mr-auto">
                     <div class="card card-register">
-                        <h3 class="card-title text-center">Login</h3>
+                        <h3 class="card-title text-center">Đăng nhập</h3>
                         <div class="social">
                             <a href="{{ route('socialR', 'facebook' ) }}" class="btn btn-just-icon btn-facebook"><i
                                     class="fa fa-facebook"></i></a>
-                            <a href="{{ route('socialR', 'google' ) }}" class="btn btn-just-icon btn-google"><i
-                                    class="fa fa-google"></i></a>
+                            
                         </div>
 
                         <div class="division">

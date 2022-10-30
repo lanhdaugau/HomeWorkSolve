@@ -14,5 +14,6 @@ class TitleComposer
         $arrPrefix = array_values(array_diff($arrPrefix, ["", "admin"]));
         $title = ucfirst($arrPrefix[0] ?? 'Dashboard');
         $view->with('title', $title);
+        
     }
 }

@@ -104,16 +104,16 @@
 
                         <div class="row buttons-row">
                             <div class="col-md-4 col-sm-4">
-                                <a class="btn btn-outline-danger btn-block btn-round" href="{{ url()->previous() }}">Cancel</a>
+                                <a class="btn btn-outline-danger btn-block btn-round" href="{{ url()->previous() }}">Kết thúc</a>
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <button class="btn btn-outline-primary btn-block btn-round" name="button"
-                                    value="save">Save</button>
+                                    value="save">Lưu</button>
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <button class="btn btn-primary btn-block btn-round" name="button" value="publish"
-                                    type="submit">Save
-                                    &amp; Publish </button>
+                                    type="submit">Lưu
+                                    &amp; và Đăng lên </button>
                             </div>
                         </div>
                     </form>
