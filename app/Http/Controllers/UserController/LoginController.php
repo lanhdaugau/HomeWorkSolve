@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -28,15 +29,15 @@ class LoginController extends Controller
             [
                 'required' => 'Trường này không được bỏ trống !',
                 'email' => 'Không đúng định dạng email',
-                'captcha'=>'Vui lòng xác nhận Capcha',
-                
+                'captcha' => 'Vui lòng xác nhận Capcha',
+
 
             ]
         );
-       
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
-             
-            if(Auth::user()->isActive != 1){
+
+            if (Auth::user()->isActive != 1) {
                 return redirect()->back()->withErrors(['errorLogin' => 'Vui lòng kiểm tra email!']);
             }
             return redirect()->route('user.index');
@@ -76,7 +77,7 @@ class LoginController extends Controller
     }
     public function resetPass($token)
     {
-        
+
         return view('users.login.reset', ['token' => $token]);
     }
     public function confirm(Request $request, $token)
@@ -96,18 +97,59 @@ class LoginController extends Controller
 
         if ($userLogin->update([
             'password' => bcrypt($request->password),
-        ]))
-        {
-            if(Auth::loginUsingId($userLogin->id)){
+        ])) {
+            if (Auth::loginUsingId($userLogin->id)) {
                 return redirect()->route('user.index');
             }
         }
-        
     }
     public function logout()
     {
-        
+
         Auth::logout();
         return redirect()->route('user.index');
+    }
+    public function callBack($provider)
+    {   
+        dd($provider);
+        if($provider=='google'){
+            $user= Socialite::driver('google')->stateless()->user();
+        }
+        else{
+            $user= Socialite::driver($provider)->user();
+        }
+        dd($user);
+        $userCheck=Login::where('email',$user->email)->first();
+        if(!empty($userCheck)){
+           Auth::loginUsingId($userCheck->id);
+           return redirect()->route('user.index');
+        }
+        $userNew= new User();
+        $userNew->name = $user['name'];
+        
+        $userNew->avatar=$user['avatar'];
+        $userNew= $userNew->save();
+
+        
+           
+            
+            $login=Login::create(
+                [
+                    'email' => $user->email,
+                    'password' => bcrypt($user['email']),
+                    'idUsers' => $userNew['id'],
+                ]
+            );
+            if($login){
+                Auth::loginUsingId($login->id);
+                return redirect()->route('user.index');
+            }
+        
+
+        }
+    public function redirect($provider)
+    {
+
+        return Socialite::driver($provider)->redirect();
     }
 }

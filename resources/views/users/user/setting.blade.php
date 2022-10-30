@@ -67,7 +67,7 @@
                                 </label>
 
                                 <label class="form-check-label">
-                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==0 && $user->gender!=null ) ? true : false) value="0">
+                                    <input type="radio" name="gender" class="p-2 m-2" @checked(($user->gender==0 ) ? true : false) value="0">
                                     Nữ
                                     <span class="form-check-sign"></span>
                                 </label>
@@ -125,4 +125,11 @@
     <script>
         getAddress({{ $user->idCity ?? -1}},{{$user->idDistrict ?? -1}},{{ $user->idWard ?? -1}});
     </script>
+    @if (Session::has('message'))
+    {{-- <div class="alert alert-info">{{ Session::get('message') }}</div>
+     --}}
+    <script>
+        toastMessageSuccess("{{ Session::get('message') }}")
+    </script>
+    @endif
 @endpush

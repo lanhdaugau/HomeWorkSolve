@@ -55,7 +55,7 @@ class InterFaceController extends Controller
     $user = User::find($id);
     
     
-    $posts = Post::where('userID', $user->id)
+    $posts = Post::where('idUsers', $user->id)
       ->where('isActive', 0)
       ->get();
     $react = React::where('idUsers', $id)->get();

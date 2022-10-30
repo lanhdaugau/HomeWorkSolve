@@ -25,7 +25,7 @@ class UserController extends Controller
         }   
         $user = User::find(Auth::user()->id);
 
-        $posts = Post::where('userID', $user->id)
+        $posts = Post::where('idUsers', $user->id)
             ->where('isActive', 0)
             ->get();
             $react=React::where('idUsers',Auth::user()->id)->get();
@@ -47,10 +47,12 @@ class UserController extends Controller
         return view('users.user.setting', ['user' => $user]);
     }
     public function update(Request $request)
-    {
-
+    {   
+        
+       
         $user = User::find(Auth::user()->id);
-      
+       
+     
         $allData = $request->all();
         if ($request->has('avatar')) {
 
@@ -62,8 +64,9 @@ class UserController extends Controller
             $allData['avatar'] = $newNameImage;
             $image->move($folderImage, $newNameImage);
         }
+      
         if ($user->update($allData)) {
-            return redirect()->back();
+            return redirect()->back()->with('message','Bạn đã cập nhật thông tin thành công');
         }
     }
     public function checkRating(){

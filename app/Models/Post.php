@@ -13,7 +13,8 @@ class Post extends Model
         'isActive',
         'isSolve',
         'caption',
-        'userID',
+        'idUsers',
+        'slug',
         'content'
         
         
@@ -23,7 +24,7 @@ class Post extends Model
         return $this->hasMany(ImagePost::class,'idPost','id');
     }
     public function getUser(){
-        return $this->hasOne(User::class,'id','userID');
+        return $this->hasOne(User::class,'id','idUsers');
     }
     public function comments(){
        

@@ -34,7 +34,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
-                            @if (Auth::user()->id == $post->getUser->id)
+                         
+                            @can('edit-post',$post)
+                                
+                            
                                 <div class="text-center">
                                     <a class="label label-warning main-tag" href="{{ route('post.edit', $post->id) }}">Sửa
                                         bài
@@ -73,13 +76,14 @@
                                     </a>
                                     <h6 class="title-uppercase">{!! $post->content !!}</h6>
                                 </div>
-                            @endif
+                            @endcan
+                            
                         </div>
                         <div class="col-md-8 ml-auto mr-auto">
                             <a href="javascrip: void(0);">
                                 @foreach ($post->getImagePost as $item)
                                     <div class="card" data-radius="none"
-                                        style="background-image: url('{{ asset('uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}');">
+                                        style="background-image: url('{{ asset('uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}')">
                                     </div>
                                 @endforeach
                             </a>

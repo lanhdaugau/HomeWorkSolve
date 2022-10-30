@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contact', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('content');
-            $table->boolean('status');
+        Schema::create('imagepost', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('path_image')->nullable();
+            $table->unsignedInteger('idPost');
             $table->timestamps();
+            $table->foreign('idPost')
+             ->references('id')
+            ->on('post')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('imagepost');
     }
 };

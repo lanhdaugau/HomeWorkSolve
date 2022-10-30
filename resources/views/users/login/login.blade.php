@@ -18,10 +18,10 @@
                     <div class="card card-register">
                         <h3 class="card-title text-center">Login</h3>
                         <div class="social">
-                            <button href="#paper-kit" class="btn btn-just-icon btn-facebook"><i
-                                    class="fa fa-facebook"></i></button>
-                            <button href="#paper-kit" class="btn btn-just-icon btn-google"><i
-                                    class="fa fa-google"></i></button>
+                            <a href="{{ route('socialR', 'facebook' ) }}" class="btn btn-just-icon btn-facebook"><i
+                                    class="fa fa-facebook"></i></a>
+                            <a href="{{ route('socialR', 'google' ) }}" class="btn btn-just-icon btn-google"><i
+                                    class="fa fa-google"></i></a>
                         </div>
 
                         <div class="division">

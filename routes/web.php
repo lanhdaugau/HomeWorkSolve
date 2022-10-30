@@ -36,6 +36,9 @@ Route::prefix('admin')->group(function () {
 
         Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'user', 'as' => 'admin.'], function () {
             Route::get('/', 'index')->name('index');
+            Route::get('/postlist',function(){
+                            return view('admin.user.postlist');
+            })->name('postlist');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/show/{userModel}', 'show')->name('show');
@@ -69,7 +72,10 @@ Route::middleware('CheckUserLogin')->group(function(){
     Route::post('/setting',[UserController::class,'update'])->name('user.setting');
     Route::get('/profile/{id}',[InterFaceController::class,'detail'])->name('detail');
     Route::get('/profile',[UserController::class,'profile'])->name('profile');
+
 });
+
+Route::post('/setting/{idUser}',[UserController::class,'update'])->name('admin.setting');
 // =======
 // Route::get('/', [InterFaceController::class, 'index'])->name('user.index');
 // Route::get('/search', [InterFaceController::class, 'search'])->name('user.search');
@@ -92,6 +98,9 @@ Route::get('/forgot', [LoginController::class, 'forgot'])->name('forgot');
 Route::post('/forgot', [LoginController::class, 'checkMail'])->name('checkMail');
 Route::get('/reset/{token}', [LoginController::class, 'resetPass'])->name('resetPass');
 Route::post('/reset/{token}', [LoginController::class, 'confirm'])->name('confirm');
+Route::get('/login/social/callback/{provider}',[LoginController::class, 'callBack'])->name('social');
+Route::get('/login/social/redirect/{provider}',[LoginController::class, 'redirect'])->name('socialR');
+
 
 //register
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');

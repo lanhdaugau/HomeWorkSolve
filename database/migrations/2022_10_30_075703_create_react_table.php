@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comment', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('react', function (Blueprint $table) {
+            $table->id();
             $table->string('content');
-            $table->boolean('isActive');
+            $table->integer('rating');
             $table->unsignedInteger('idUsers');
-            $table->unsignedInteger('idPost');
-            $table->unsignedInteger('parent_id')->nullable();
+            $table->unsignedInteger('idAuthur');
             $table->timestamps();
-            $table->foreign('idUsers')->references('id')->on('users');
-            $table->foreign('idPost')->references('id')->on('post');
+            $table->foreign('idUsers')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idAuthur')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('react');
     }
 };

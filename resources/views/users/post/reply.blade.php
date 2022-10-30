@@ -51,10 +51,12 @@
          </div>
       </form>
       @include('users.post.reply', ['comments' => $comment->replies])
-      @if (Auth::user()->id == $comment->getUser->id)
+     @can('edit-comment', $comment)
+         
+    
       <div class="action d-flex pull-right align-self-end " style="position: absolute;top: 0;right: 0;">
          <button type="button" class="btn btn-primary btn-just-icon" data-toggle="modal"
-            data-target="#{{ $comment->id }}" style="margin-right: 10px">
+            data-target="#{{ $comment->id }}" style="margin-right: 10px" id="editComment">
          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
          </button>
          <!-- Modal -->
@@ -93,20 +95,14 @@
             </div>
          </div>
          {{-- delete-comment --}}
-         {{-- 
-         <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-just-icon"></button>
-         </form>
-         --}}
+
          <!-- Button trigger modal -->
          <button type="button" id="confirm" value="{{ $comment->id }}"
-            class="btn btn-danger btn-just-icon" data-toggle="modal" data-target="#1">
+            class="btn btn-danger btn-just-icon" data-toggle="modal" data-target="#deleteComment{{ $comment->id }}">
          <i class="fa fa-trash" aria-hidden="true"></i>
          </button>
          <!-- Modal -->
-         <div class="modal fade" id="1" tabindex="-1" role="dialog"
+         <div class="modal fade" id="deleteComment{{ $comment->id }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                <div class="modal-content">
@@ -132,7 +128,7 @@
             </div>
          </div>
       </div>
-      @endif
+      @endcan
      
    </div>
 </div>

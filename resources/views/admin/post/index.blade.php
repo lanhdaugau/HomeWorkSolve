@@ -79,5 +79,4 @@
     ];
     renderData(url, columns);
 </script>
-
 @endpush

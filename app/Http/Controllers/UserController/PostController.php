@@ -12,18 +12,23 @@ use App\Models\User;
 use App\Notifications\RepliedToThread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Termwind\Components\Li;
+use Illuminate\Support\Str;
+
 
 class PostController extends Controller
 {
     public function post(Request $request)
     {
-
-
+        
+        $slug=Str::slug($request->caption,'-').'-'.time();
+        
         if ($request->button == 'publish') {
-            $request->mergeIfMissing(['isActive' => 1]);
+            $request->mergeIfMissing(['idUsers' => Auth::user()->id,'isActive' => 1,'slug'=>$slug]);
+            
         }
-        $request->mergeIfMissing(['userID' => Auth::user()->id]);
+        
+        $request->mergeIfMissing(['idUsers' => Auth::user()->id,'slug'=>$slug]);
+        
         $post = Post::create(
             $request->all()
         );
@@ -46,7 +51,7 @@ class PostController extends Controller
         }
         return redirect()->route('user.index');
     }
-    public function detail($idPost,$idNotification=null)
+    public function detail($slug,$idNotification=null)
     {
      
         if($idNotification!=null){
@@ -56,7 +61,7 @@ class PostController extends Controller
         }       
        
         if (Auth::check()) {
-            $post=Post::whereId($idPost)
+            $post=Post::whereSlug($slug)
               
             ->with([
                 'getUser',

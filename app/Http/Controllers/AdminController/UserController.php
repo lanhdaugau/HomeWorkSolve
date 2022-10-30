@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest\UserRequest\UpdateRequest;
 use App\Http\Request\AdminRequest\UserRequest\CreateRequest;
 use App\Models\Login;
+use App\Models\Post;
+use App\Models\React;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -108,8 +110,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $userModel)
-    {
-        return view('admin.user.detail', compact('userModel'));
+    {   
+        $reacts= React::where('idUsers',$userModel->id)->get(); 
+        $posts= Post::where('idUsers',$userModel->id)->get(); 
+        return view('admin.user.detail', compact('userModel','reacts','posts'));
     }
 
     /**

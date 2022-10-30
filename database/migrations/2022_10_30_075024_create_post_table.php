@@ -19,12 +19,13 @@ return new class extends Migration
             $table->boolean('isSolve')->default(0);
             $table->string('caption');
             $table->string('content');
-            $table->unsignedInteger('userID');
+            $table->unsignedInteger('idUsers');
             $table->boolean('isActive')->default(0);
+            $table->string('slug');
             $table->timestamps();
-            $table->foreign('userID')
+            $table->foreign('idUsers')
                     ->references('id')
-                    ->on('users');
+                    ->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -27,7 +27,7 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <a class="label label-warning" style="color: white" href="{{ route('post.detail', $post->id) }}">Chi
+                        <a class="label label-warning" style="color: white" href="{{ route('post.detail', $post->slug) }}">Chi
                             tiết</a>
                         <h5 class="card-title">
                             {{ $post->caption }}
@@ -38,7 +38,7 @@
                                 <a href="#pablo">
                                     <img src="{{ asset('storage/users-avatar/' . (empty($post->getUser->avatar) ? 'avatar.png' : $post->getUser->avatar)) }}"
                                         alt="..." class="avatar img-raised">
-                                    <span>{{ $post->getUser->name ? $post->getUser->name : 'User' . $post->getUser->id }}</span>
+                                    <span>{{ $post->getUser->name}}</span>
                                 </a>
                             </div>
 
