@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\RatingRequest;
 use App\Models\Comment;
 use App\Models\Notification;
 use App\Models\NumberOfLike;
@@ -21,7 +22,7 @@ class CommentController extends Controller
     public function comment(Request $request)
     {
 
-        $request->mergeIfMissing(['idUsers' => Auth::user()->id]);
+        $request->mergeIfMissing(['idUsers' => Auth::user()->idUsers]);
         $request->mergeIfMissing(['isActive' => 1]);
 
         if (Comment::create(
@@ -33,14 +34,14 @@ class CommentController extends Controller
                     'idPost' => '',
                 ],
                 [
-                    'required' => 'Trường này không được bỏ trống !',
+                    'required' => 'Nội dung bình luận không được bỏ trống !',
                 ]
             )
         )) {
             $idPost = $request->idPost;
             $post = Post::find($idPost);
 
-            if ($post->getUser->id != Auth::user()->id) {
+            if ($post->getUser->id != Auth::user()->idUsers) {
                 $post->getUser->notify(new RepliedToThread($post));
             }
 
@@ -72,7 +73,7 @@ class CommentController extends Controller
     public function reply(Request $request)
     {
 
-        $request->mergeIfMissing(['idUsers' => Auth::user()->id, 'isActive' => 1]);
+        $request->mergeIfMissing(['idUsers' => Auth::user()->idUsers, 'isActive' => 1]);
         if ($comment = Comment::create(
             $request->validate(
                 [
@@ -95,17 +96,18 @@ class CommentController extends Controller
                 $comment_parent->getUser->notify(new ReplyToUser($comment_parent, $post));
             }
             
-            if ($post->getUser->id != Auth::user()->id) {
+            if ($post->getUser->id != Auth::user()->idUsers) {
                 $post->getUser->notify(new RepliedToThread($post));
             }
 
             return back();
         }
     }
-    public function rating(Request $request)
+    public function rating(RatingRequest $request)
     {
         
-        $request->mergeIfMissing(['idAuthur' => Auth::user()->id]);
+        
+        $request->mergeIfMissing(['idAuthur' => Auth::user()->idUsers]);
         if (React::create(
             $request->all()
         )) {
@@ -119,7 +121,7 @@ class CommentController extends Controller
         $comment = Comment::find($idComment);
 
 
-        $like = NumberOfLike::where('idUsers', Auth::user()->id)
+        $like = NumberOfLike::where('idUsers', Auth::user()->idUsers)
             ->where('idComment', $idComment)
             ->first();
         $notifications = Notification::where('type', 'App\Notifications\LikeToPost')->get();
@@ -143,12 +145,12 @@ class CommentController extends Controller
 
             if ($like = NumberOfLike::create(
                 [
-                    'idUsers' => Auth::user()->id,
+                    'idUsers' => Auth::user()->idUsers,
                     'idComment' => $idComment,
                 ]
             )) {
                 $post = Post::find($comment->idPost);
-                if ($comment->getUser->id != Auth::user()->id) {
+                if ($comment->getUser->id != Auth::user()->idUsers) {
                     $comment->getUser->notify(new LikeToPost($comment, $like, $post));
                 }
 

@@ -8,6 +8,7 @@
             style="background-image: url('../assets/img/sections/joshua-earles.jpg');">
             <div class="filter"></div>
         </div>
+       
         <div class="profile-content section">
             <div class="container">
                 <div class="row">
@@ -21,7 +22,7 @@
                             <div class="profile-picture">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <div class="fileinput-new img-no-padding">
-                                        <img src="{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar))}}" alt="...">
+                                        <img src="{{ $user->getAvatar()}}" alt="...">
                                     </div>
                                     
                                     <div class="fileinput-preview fileinput-exists img-no-padding"></div>
@@ -126,8 +127,8 @@
         getAddress({{ $user->idCity ?? -1}},{{$user->idDistrict ?? -1}},{{ $user->idWard ?? -1}});
     </script>
     @if (Session::has('message'))
-    {{-- <div class="alert alert-info">{{ Session::get('message') }}</div>
-     --}}
+  
+    
      <script>
         $(function() {
           var Toast = Swal.mixin({
@@ -144,4 +145,5 @@
         });
       </script>
     @endif
+    
 @endpush

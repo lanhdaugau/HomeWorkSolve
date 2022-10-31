@@ -112,17 +112,20 @@ class LoginController extends Controller
     public function callBack($provider)
     {   
         $user= Socialite::driver($provider)->user();
-        
+       
         $userCheck=Login::where('email',$user->email)->first();
         if(!empty($userCheck)){
            Auth::loginUsingId($userCheck->id);
            return redirect()->route('user.index');
         }
         $userNew= new User();
-        $userNew->name = $user['name'];
+        $data = [
+            'name'=>$user['name'],
+            'avatar'=>$user->avatar
+        ];
         
-        $userNew->avatar=$user['avatar'];
-        $userNew= $userNew->save();
+        
+        $userNew= $userNew->create($data);
 
         
            
@@ -131,7 +134,7 @@ class LoginController extends Controller
                 [
                     'email' => $user->email,
                     'password' => bcrypt($user['email']),
-                    'idUsers' => $userNew['id'],
+                    'idUsers' => $userNew->id,
                 ]
             );
             if($login){

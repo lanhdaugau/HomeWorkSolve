@@ -46,16 +46,14 @@ Route::prefix('admin')->group(function () {
         });
         Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'post', 'as' => 'admin.'], function () {
             
-            Route::get('/postlist',function(){
-                return view('admin.user.postlist');
-            })->name('postlist');
+            Route::get('/postlist','showPost')->name('postlist');
         });
     });
 });
 
 //post
 Route::post('/addPost', [PostController::class, 'post'])->name('post.post');
-Route::get('/post/detail/{idPost}', [PostController::class, 'detail'])->name('post.detail');
+Route::get('/post/detail/{slug}', [PostController::class, 'detail'])->name('post.detail');
 Route::get('/post/edit/{idPost}', [PostController::class, 'editPost'])->name('post.edit');
 Route::post('/post/edit/{idPost}', [PostController::class, 'updatePost'])->name('post.update');
 Route::get('/post/publish/{idPost}', [PostController::class, 'publish'])->name('post.publish');
@@ -128,7 +126,7 @@ Route::post('/reply', [CommentController::class, 'reply'])->name('comment.reply'
 
 
 Route::get('/markAsRead',function(){
-    $user=User::find(Auth::user()->id);
+    $user=User::find(Auth::user()->idUsers);
    $user->unreadNotifications->markAsRead();
    return back();
 })->name('maskAsRead');

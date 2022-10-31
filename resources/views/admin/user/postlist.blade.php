@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Project Detail</h1>
+                        <h1>Bài viết</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Projects Detail</h3>
+                    <h3 class="card-title">Quản trị bài viết</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -38,92 +38,66 @@
                                 <div class="col-12 col-sm-4">
                                     <div class="info-box bg-light">
                                         <div class="info-box-content">
-                                            <span class="info-box-text text-center text-muted">Estimated budget</span>
-                                            <span class="info-box-number text-center text-muted mb-0">2300</span>
+                                            <span class="info-box-text text-center text-muted">Tổng các bài đăng</span>
+                                            <span class="info-box-number text-center text-muted mb-0">{{count($posts)}}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="info-box bg-light">
+                                <div class="col-12 col-sm-4 " >
+                                    <div class="info-box bg-light ">
                                         <div class="info-box-content">
-                                            <span class="info-box-text text-center text-muted">Total amount spent</span>
-                                            <span class="info-box-number text-center text-muted mb-0">2000</span>
+                                            <span class="info-box-text text-center text-muted">Tổng các bình luận</span>
+                                            <span class="info-box-number text-center text-muted mb-0">
+                                          
+                                            {{count($comments)}}
+                                            
+                                                
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-4">
-                                    <div class="info-box bg-light">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text text-center text-muted">Estimated project
-                                                duration</span>
-                                            <span class="info-box-number text-center text-muted mb-0">20</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                       
                             </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <h4>Recent Activity</h4>
-                                    <div class="post">
-                                        <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg"
-                                                alt="user image">
-                                            <span class="username">
-                                                <a href="#">Jonathan Burke Jr.</a>
-                                            </span>
-                                            <span class="description">Shared publicly - 7:45 PM today</span>
-                                        </div>
+                                <div class="col-12 px-5">
+                                    <h4>Bài đăng gần đây</h4>
 
-                                        <p>
-                                            Lorem ipsum represents a long-held tradition for designers,
-                                            typographers and the like. Some people hate it and argue for
-                                            its demise, but others ignore.
-                                        </p>
-                                        <p>
-                                            <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i>
-                                                Demo File 1 v2</a>
-                                        </p>
+                                @foreach ($posts as $post)
+                                
+                                <div class="post">
+                                    <div class="user-block">
+                                        <img class="img-circle img-bordered-sm" src="{{ $post->getUser->getAvatar() }}"
+                                            alt="user image" >
+                                        <span class="username">
+                                            <a href="#">{{$post->getUser->name}}</a>
+                                        </span>
+                                        <span class="description">{{$post->created_at->diffForHumans()}}</span>
                                     </div>
-                                    <div class="post clearfix">
-                                        <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg"
-                                                alt="User Image">
-                                            <span class="username">
-                                                <a href="#">Sarah Ross</a>
-                                            </span>
-                                            <span class="description">Sent you a message - 3 days ago</span>
-                                        </div>
 
-                                        <p>
-                                            Lorem ipsum represents a long-held tradition for designers,
-                                            typographers and the like. Some people hate it and argue for
-                                            its demise, but others ignore.
-                                        </p>
-                                        <p>
-                                            <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i>
-                                                Demo File 2</a>
-                                        </p>
+                                    <h5>
+                                        {{$post->caption}}
+                                    </h5>
+                                    <p>
+                                        {!!$post->content!!}
+                                    </p>
+                                    
+                                    
+                                    <div class="image">
+                                        <a href="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}" data-toggle="lightbox" data-title="sample 9 - red">
+                                           
+                                          
+                                        <img class="img-fluid mb-2" alt="red sample" src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}" alt="" style="width: 25vw;height: auto;">
+                                    </a>
                                     </div>
-                                    <div class="post">
-                                        <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg"
-                                                alt="user image">
-                                            <span class="username">
-                                                <a href="#">Jonathan Burke Jr.</a>
-                                            </span>
-                                            <span class="description">Shared publicly - 5 days ago</span>
-                                        </div>
-
-                                        <p>
-                                            Lorem ipsum represents a long-held tradition for designers,
-                                            typographers and the like. Some people hate it and argue for
-                                            its demise, but others ignore.
-                                        </p>
-                                        <p>
-                                            <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i>
-                                                Demo File 1 v1</a>
-                                        </p>
-                                    </div>
+                                    <br>
+                                    <p>
+                                        <a href="{{ route('post.detail', $post->slug) }}" class="link-black text-sm btn btn-warning" style="color: white"><i class="fas fa-link mr-1"></i>
+                                            Xem chi tiết</a>
+                                    </p>
+                                </div>
+                                @endforeach
+                                    
+                                   
                                 </div>
                             </div>
                         </div>

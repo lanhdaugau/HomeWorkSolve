@@ -36,7 +36,7 @@
                         <div class="card-footer">
                             <div class="author">
                                 <a href="#pablo">
-                                    <img src="{{ asset('storage/users-avatar/' . (empty($post->getUser->avatar) ? 'avatar.png' : $post->getUser->avatar)) }}"
+                                    <img src="{{ $post->getUser->getAvatar() }}"
                                         alt="..." class="avatar img-raised">
                                     <span>{{ $post->getUser->name}}</span>
                                 </a>

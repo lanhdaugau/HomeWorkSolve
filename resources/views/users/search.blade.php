@@ -51,7 +51,6 @@
                             <th>id</th>
                             <th>Ảnh</th>
                             <th>Họ và tên</th>
-                            <th>Email</th>
                             <th>Địa chỉ</th>
                             <th>Tuổi tác</th>
                             <th>Giới tính</th>
@@ -186,11 +185,6 @@
                         data: 'name',
                         name: 'name',
 
-
-                    },
-                    {
-                        data: 'email',
-                        name: 'email',
 
                     },
                     {

@@ -9,7 +9,7 @@
            </span>
            
           
-          <a class="message" href="{{ route('post.detail.read',[$notification->data['post']['id'],$notification->id ]) }}" style="color: black">
+          <a class="message" href="{{ route('post.detail.read',[$notification->data['post']['slug'],$notification->id ]) }}" style="color: black">
             
             <b> {{$notification->data['user']['name']}} </b>đã thich bình luận của bạn {{$notification->data['comment']['content']}}
             

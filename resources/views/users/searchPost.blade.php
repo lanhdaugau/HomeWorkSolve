@@ -130,7 +130,7 @@
                             </div>
                             <div class='search_con'>
                                 <form action="{{ route('user.index') }}" method="get" class="input_con">
-                                  <input name="searchPost" type="text" placeholder='Tìm kiếm...' spellCheck="False" id="queryFind"/>
+                                  <input name="searchPost" type="text" placeholder='Tìm kiếm...' id="queryFind"/>
                                   <span id="clearBtn"><i class="bi bi-x-lg"></i></span>
                                   <span class='h-line'></span>
                                   <a href="https://t.me/rawnge" target="_blank">

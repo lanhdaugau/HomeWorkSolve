@@ -25,7 +25,7 @@ class Comment extends Model
 
         if (
             $this->getLike()
-            ->where('idUsers', Auth::user()->id)
+            ->where('idUsers', Auth::user()->idUsers)
             ->first()
         ) {
             return true;

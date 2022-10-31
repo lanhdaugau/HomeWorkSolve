@@ -23,11 +23,11 @@ class PostController extends Controller
         $slug=Str::slug($request->caption,'-').'-'.time();
         
         if ($request->button == 'publish') {
-            $request->mergeIfMissing(['idUsers' => Auth::user()->id,'isActive' => 1,'slug'=>$slug]);
+            $request->mergeIfMissing(['idUsers' => Auth::user()->idUsers,'isActive' => 1,'slug'=>$slug]);
             
         }
         
-        $request->mergeIfMissing(['idUsers' => Auth::user()->id,'slug'=>$slug]);
+        $request->mergeIfMissing(['idUsers' => Auth::user()->idUsers,'slug'=>$slug]);
         
         $post = Post::create(
             $request->all()
@@ -71,10 +71,10 @@ class PostController extends Controller
                 'comments.replies.replies.getUser',
                 'comments.replies.replies.replies.getUser',
             ])
-            
+          
             ->first(); 
-       
-           $user = User::find(Auth::user()->id);
+          
+           $user = User::find(Auth::user()->idUsers);
 
             
 

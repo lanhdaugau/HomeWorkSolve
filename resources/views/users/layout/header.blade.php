@@ -116,7 +116,7 @@
          <li class="nav-item dropdown" >
             <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
                <div class="profile-photo-small" >
-                  <img src="{{ asset('storage/users-avatar/' . (empty($avatar) ? 'avatar.png' : $avatar))}}" alt="Circle Image"
+                  <img src="{{$avatar}}" alt="Circle Image"
                      class="img-circle img-responsive img-no-padding" style="object-fit: cover !important; width:38.5px;height:38.5px;">
                </div>
             </a>

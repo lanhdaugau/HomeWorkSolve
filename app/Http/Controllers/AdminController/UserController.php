@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest\UserRequest\UpdateRequest;
 use App\Http\Request\AdminRequest\UserRequest\CreateRequest;
+use App\Models\Comment;
 use App\Models\Login;
 use App\Models\Post;
 use App\Models\React;
@@ -167,5 +168,13 @@ class UserController extends Controller
         } else {
             return response()->json(['statusCode' => 400]);
         }
+    }
+
+    public function showPost(){
+        $posts= Post::orderBy('id','DESC')->get();
+        
+        $comments=Comment::all();
+       
+        return view('admin.user.postlist',compact(['posts','comments']));
     }
 }

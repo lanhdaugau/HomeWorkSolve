@@ -23,12 +23,12 @@ class UserController extends Controller
                 ]
                 );
         }   
-        $user = User::find(Auth::user()->id);
-
+        $user = User::find(Auth::user()->idUsers);
+        
         $posts = Post::where('idUsers', $user->id)
             ->where('isActive', 0)
             ->get();
-            $react=React::where('idUsers',Auth::user()->id)->get();
+            $react=React::where('idUsers',Auth::user()->idUsers)->get();
         return view('users.user.profile', ['user' => $user, 'posts' => $posts,'reacts'=>$react]);
     }
     public function addPost()
@@ -37,10 +37,9 @@ class UserController extends Controller
     }
     public function setting()
     {
-        $user = DB::table('users')
-            ->join('login', 'users.id', '=', 'login.idUsers')
+        $user = User::join('login', 'users.id', '=', 'login.idUsers')
             ->select('users.*', 'login.*')
-            ->where('users.id', Auth::user()->id)
+            ->where('users.id', Auth::user()->idUsers)
             ->first();
 
 
@@ -50,7 +49,7 @@ class UserController extends Controller
     {   
         
        
-        $user = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->idUsers);
        
      
         $allData = $request->all();
@@ -70,7 +69,7 @@ class UserController extends Controller
         }
     }
     public function checkRating(){
-        $user=User::find(Auth::user()->id);
+        $user=User::find(Auth::user()->idUsers);
 
         $user->unreadNotifications->where('type','App\Notifications\RatingToUser')->markAsRead();
 

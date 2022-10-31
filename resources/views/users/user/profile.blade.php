@@ -48,7 +48,7 @@
                     <div class="profile-picture">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                             <div class="fileinput-new img-no-padding m">
-                                <img src="{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar)) }}"
+                                <img src="{{ $user->getAvatar()}}"
                                     alt="...">
                             </div>
                             
@@ -64,7 +64,7 @@
                             Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel
                             with a solid groove structure. </p>
                         <br>
-                        @if (Auth::user()->id==$user->id)
+                        @if (Auth::user()->idUsers==$user->id)
                             
                        
                         <a  href="{{ route('user.setting') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</a>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <br>
-                @if (Auth::user()->id == $user->id)
+                @if (Auth::user()->idUsers == $user->id)
                     <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
                             <ul class="nav nav-tabs" role="tablist">
@@ -102,7 +102,7 @@
                                             <div class="card-body">
                                                 <a href="#paper-kit">
                                                     <div class="author">
-                                                        <img src="{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar)) }}"
+                                                        <img src="{{ $user->getAvatar() }}"
                                                             alt="Circle Image"
                                                             class="img-circle img-no-padding img-responsive img-raised">
                                                     </div>
@@ -185,14 +185,13 @@
                                 </ol>
                                 <div class="carousel-inner" role="listbox">
                                     @foreach ($reacts as $key => $react)
-                                        <div
-                                            class="carousel-item 
+                                        <div class="carousel-item 
                         @if ($key == 0) {{ 'active' }} @endif
                         ">
                                             <div class="card card-testimonial card-plain">
                                                 <div class="card-avatar">
                                                     <img class="img"
-                                                        src="{{ asset('storage/users-avatar/' . (empty($react->getUser->avatar) ? 'avatar.png' : $react->getUser->avatar)) }}">
+                                                        src="{{$react->getUser->getAvatar()}}">
                                                 </div>
                                                 <div class="card-body">
                                                     <h5 class="card-description">
@@ -263,7 +262,7 @@
 
         </div>
     @endif
-    @if (Auth::user()->id != $user->id)
+    @if (Auth::user()->idUsers != $user->id)
         <h3 style="text-align: center;margin: 10px">Đánh giá</h3>
         <form action="{{ route('rating') }}" method="POST">
             @csrf
@@ -454,7 +453,7 @@
                         rows="6" maxlength="150" name="content"></textarea>
 
                     <div class="media-footer" style="padding-top: 20px">
-                        <button class="btn btn-info btn-wd pull-right">Bình luận</button>
+                        <button class="btn btn-info btn-wd pull-right">Đánh giá</button>
                     </div>
                 </div>
 
@@ -466,7 +465,27 @@
 @endsection
 @push('js')
    
+@if ($errors->any())
+    
+@foreach ($errors->all() as $error)
+<script>
+$(function() {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000
+      });
   
+      toastr.error('{{$error}}')
+  
+      
+      
+    });
+  </script>
+
+  @endforeach
+@endif
   
    
 @endpush
