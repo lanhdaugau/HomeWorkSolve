@@ -35,6 +35,7 @@
         </div>
 
         <!-- Navbar -->
+        @if (!(Request::is('admin/login','admin/forgot')))
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
@@ -45,11 +46,15 @@
             </ul>
 
         </nav>
+        @endif
         <!-- /.navbar -->
-
+        @if (!(Request::is('admin/login','admin/forgot','reset/{token}')))
         @include('admin.layout.sidebar')
+        @endif
         @yield('content')
+        @if (!(Request::is('admin/login','admin/forgot')))
         @include('admin.layout.footer')
+        @endif
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResetPassWordRequest;
 use App\Mail\ActiveMail;
+use App\Mail\ForgotMail;
 use App\Models\Login;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -65,10 +67,10 @@ class LoginController extends Controller
         $email = $request->email;
         $userLogin = Login::where('email', $email)->first();
 
-        if ($userLogin = Login::where('email', $email)->first()) {
+        if ($userLogin) {
             $activeToken = base64_encode($request->email);
             $route = route('resetPass', $activeToken);
-            if (Mail::to($userLogin->email)->send(new ActiveMail($route))) {
+            if (Mail::to($userLogin->email)->send(new ForgotMail($route))) {
                 return redirect()->back()->with('success', 'Vui lòng kiểm tra email');
             }
         } else {
@@ -76,22 +78,17 @@ class LoginController extends Controller
         }
     }
     public function resetPass($token)
-    {
-
-        return view('users.login.reset', ['token' => $token]);
+    {   
+        
+        if(User::where('activeToken',$token)->first()){
+            return view('users.login.reset', ['token' => $token]);
+        }
+        return view('errors.404');
+        
     }
-    public function confirm(Request $request, $token)
+    public function confirm(ResetPassWordRequest $request, $token)
     {
-        $request->validate(
-            [
-                'password' => 'required|confirmed|min:4',
-                'password_confirmation' => 'required ',
-            ],
-            [
-                'required' => 'Trường này không được bỏ trống !',
-                'min' => 'Độ dài quá ngắn',
-            ]
-        );
+        
         $user = User::where('activeToken', $token)->first();
         $userLogin = Login::where('idUsers', $user->id)->first();
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController\DashBoardController;
+use App\Http\Controllers\AdminController\LoginController as AdminControllerLoginController;
 use App\Http\Controllers\AdminController\RoleController;
 use App\Http\Controllers\AdminController\UserController as AdminControllerUserController;
 use App\Http\Controllers\InterFaceController;
@@ -48,7 +49,18 @@ Route::prefix('admin')->group(function () {
             
             Route::get('/postlist','showPost')->name('postlist');
         });
+        
     });
+    Route::group(['controller' => AdminControllerLoginController::class, 'as' => 'admin.'], function () {
+        Route::get('/login','index')->name('login');
+        Route::post('/login','login')->name('login.in');
+        Route::get('/logout','logout')->name('logout');
+        Route::get('/forgot','forgot')->name('forgot');
+        Route::post('/forgot','reset')->name('reset');
+        Route::get('/reset/{token}','resetPass')->name('resetPass');
+        Route::post('/reset/{token}','confirm')->name('confirm');
+
+    }); 
 });
 
 //post

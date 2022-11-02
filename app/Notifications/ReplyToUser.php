@@ -44,7 +44,7 @@ class ReplyToUser extends Notification
     {
         return [
             'comment'=>$this->comment ,
-            'user'=>$notifiable,
+            'user'=>auth()->user()->getUser,
             
             'post'=>$this->post
         ];

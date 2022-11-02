@@ -64,13 +64,15 @@
             @auth
             @if (count($userNotification->unreadNotifications->whereNotIn('type','App\Notifications\RatingToUser'))>0)
             <span class="label label-danger notification-bubble">{{count($userNotification->unreadNotifications)}}</span>
+            @endif
+            @if(count($userNotification->Notifications->whereNotIn('type','App\Notifications\RatingToUser'))>0)
             <ul class="dropdown-menu dropdown-menu-right dropdown-wide dropdown-notification">
                <li class="dropdown-header">
                   Bạn có {{count($userNotification->unreadNotifications)}} thông báo chưa đọc 
                </li>
                <li>
                   <ul class="dropdown-notification-list scroll-area" style="width:500px;padding:10px">
-                     @foreach ($userNotification->unreadNotifications as $notification)
+                     @foreach ($userNotification->Notifications as $notification)
                      @include('users.user.notification.'.class_basename($notification->type))
                      @endforeach 
                   </ul>

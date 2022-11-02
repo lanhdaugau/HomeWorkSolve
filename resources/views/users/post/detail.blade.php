@@ -25,7 +25,7 @@
                         <a class="pull-left" href="#paper-kit">
                             <div class="avatar big-avatar">
                                 <img class="media-object" alt="64x64"
-                                    src="{{ asset('storage/users-avatar/' . (empty($post->getUser->avatar) ? 'avatar.png' : $post->getUser->avatar)) }}">
+                                    src="{{ $post->getUser->getAvatar() }}">
                             </div>
                         </a>
                         <div class="media-body" style="min-width: 670px">
@@ -98,7 +98,7 @@
                                             <a class="pull-left" href="#paper-kit">
                                                 <div class="avatar">
                                                     <img class="media-object" alt="64x64"
-                                                        src="{{ asset('storage/users-avatar/' . (empty($user->avatar) ? 'avatar.png' : $user->avatar)) }}">
+                                                        src="{{$user->getAvatar() }}">
                                                 </div>
                                             </a>
                                             <div class="media-body">

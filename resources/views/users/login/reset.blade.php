@@ -4,7 +4,7 @@
 @endsection
 @section('contents')
     <div class="wrapper">
-        <div class="page-header" style="background-image: url('http://doan.test//image/bruno-abatti.jpg');">
+        <div class="page-header" style="background-image: url('{{asset('')}}/assets/img/sections/bruno-abatti.jpg');">
             <div class="filter"></div>
             <div class="container">
                 <div class="row">
