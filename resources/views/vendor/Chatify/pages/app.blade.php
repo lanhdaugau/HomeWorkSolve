@@ -5,7 +5,7 @@
         {{-- Header and search bar --}}
         <div class="m-header">
             <nav>
-                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">TIN NHẮN</span> </a>
+                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     <a href="#"><i class="fas fa-cog settings-btn"></i></a>
@@ -13,12 +13,13 @@
                 </nav>
             </nav>
             {{-- Search input --}}
-            <input type="text" class="messenger-search" placeholder="Tìm kiếm" />
+            <input type="text" class="messenger-search" placeholder="Search" />
             {{-- Tabs --}}
             <div class="messenger-listView-tabs">
                 <a href="#" @if($type == 'user') class="active-tab" @endif data-view="users">
-                    <span class="far fa-user"></span> Bạn bè</a>
-                
+                    <span class="far fa-user"></span> People</a>
+                <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
+                    <span class="fas fa-users"></span> Groups</a>
             </div>
         </div>
         {{-- tabs and lists --}}
@@ -26,7 +27,7 @@
            {{-- Lists [Users/Group] --}}
            {{-- ---------------- [ User Tab ] ---------------- --}}
            <div class="@if($type == 'user') show @endif messenger-tab users-tab app-scroll" data-view="users">
-            
+
                {{-- Favorites --}}
                <div class="favorites-section">
                 <p class="messenger-title">Favorites</p>
@@ -115,7 +116,6 @@
         </nav>
         {!! view('Chatify::layouts.info')->render() !!}
     </div>
-
 </div>
 
 @include('Chatify::layouts.modals')

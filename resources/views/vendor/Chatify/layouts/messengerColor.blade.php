@@ -63,8 +63,7 @@
     color: {{ $messengerColor }} !important;
 }
 
-.messenger-favorites div.
-{
+.messenger-favorites div.avatar{
     box-shadow: 0px 0px 0px 2px {{ $messengerColor }};
 }
 
