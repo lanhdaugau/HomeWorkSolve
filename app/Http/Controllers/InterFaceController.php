@@ -14,6 +14,7 @@ class InterFaceController extends Controller
 {
   public function index(Request $request)
   {
+    
     $search=$request->get('searchPost');
     
     $posts = Post::where('isActive', 1)
@@ -34,18 +35,30 @@ class InterFaceController extends Controller
   {
 
     return User::where('name', 'like', '%' . $rq->get('q') . '%')
+    ->whereHas('infoLogin',function($query){
+      $query->where('role',1);
+    })
       ->get([
         'id',
         'name',
         'avatar'
 
       ]);
+      
   }
   public function getUserSearch()
   {
-    return DataTables::of(User::query())
+    $user=User::whereHas('infoLogin',function($query){
+      $query->where('role',1);
+    })->get();
+    
+    return DataTables::of($user)
+      
       ->addColumn('detail', function (User $object) {
         return route('detail', $object->id);
+      })
+      ->addColumn('avatar',function(User $user){
+        return $user->getAvatar();
       })
       ->rawColumns(['detail'])
       ->make(true);

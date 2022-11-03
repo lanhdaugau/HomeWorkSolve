@@ -83,15 +83,26 @@
                     
                     return state.text;
                 }
+              
+                if(state.avatar==null){
+                    var baseUrl = "{{ asset('storage/users-avatar') }}/avatar.png" ;
+                }
+                else if(state.avatar.indexOf("http")==-1){
+                    var baseUrl = "{{ asset('storage/users-avatar') }}/" + state.avatar;
+                }
                 
-                var baseUrl = "{{ asset('storage/users-avatar') }}";
-                
+                else{
+                    var baseUrl =  state.avatar;
+                }
+                // var baseUrl = "{{ asset('storage/users-avatar') }}/" + state.avatar;
                 var $state = $(
 
                         '<div class="d-flex"><span><img style="width: 70px;height: 70px;" class="img-container" /> <span></span></span>'
                         +'<div class="name" style="padding: 20px">'+state.name+'</div></div>'
                 );
-                $state.find("img").attr("src", baseUrl + "/" + ((state.avatar) ?? 'avatar.png') );
+                console.log($state);
+                $state.find("img").attr("src", baseUrl);
+                 
                
                 
                 return $state;
@@ -170,12 +181,10 @@
                         data: 'avatar',
                         name: 'avatar',
                         render: function(data) {
-                            if (data == null) {
-                                data = 'avatar.png';
-                            }
+                            
 
                             return ` <div class="img-container">
-                            <img src="{{ asset('storage/users-avatar/${data}') }}" >
+                            <img src="{{ '${data}' }}" >
                                     </div>`;
 
 

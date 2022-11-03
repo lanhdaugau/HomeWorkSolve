@@ -29,15 +29,17 @@
 </head>
 
 <body class="full-screen login register contact-us blog-page" id="app">
-    
-    @if (!(Request::is('login','register','forgot')))
+   
+    @if (!(Request::is('login','register','forgot')) && (Route::currentRouteName() !='resetPass'))
+
         @include('users.layout.header')
     @endif
     @if (Request::is('/'))
       @include('users.layout.header-page')   
     @endif
+   
     @yield('contents')
-    @if (!(Request::is('login','register','forgot')))
+    @if (!(Request::is('login','register','forgot')) && (Route::currentRouteName() !='resetPass'))
     @include('users.layout.footer')
     @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
