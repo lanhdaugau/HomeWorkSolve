@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     <p class="mt-3 mb-1">
-                        <a href="login.html">Đăng nhập</a>
+                        <a href="{{ route('admin.login') }}">Đăng nhập</a>
                     </p>
                 </div>
 
