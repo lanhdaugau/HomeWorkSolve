@@ -127,6 +127,7 @@
             CKEDITOR.replace('content');
         </script>
         <script>
+            
             $(document).ready(function() {
                 var fileArr = [];
                 $("#images").change(function() {
@@ -173,6 +174,28 @@
                     return b.files
                 }
             });
+            
         </script>
+        @if ($errors->any())
+    
+        @foreach ($errors->all() as $error)
+        <script>
+        $(function() {
+              var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+              });
+          
+              toastr.error('{{$error}}')
+          
+              
+              
+            });
+          </script>
+        
+          @endforeach
+        @endif
     @endpush
 @endsection

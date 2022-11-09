@@ -108,6 +108,7 @@ class LoginController extends Controller
     }
     public function callBack($provider)
     {   
+        
         $user= Socialite::driver($provider)->user();
        
         $userCheck=Login::where('email',$user->email)->first();
@@ -143,7 +144,7 @@ class LoginController extends Controller
         }
     public function redirect($provider)
     {
-
+        
         return Socialite::driver($provider)->redirect();
     }
 }

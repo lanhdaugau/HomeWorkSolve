@@ -44,6 +44,7 @@ return [
         'options' => [
             'cluster' => env('PUSHER_APP_CLUSTER'),
             'encrypted' => false,
+            'useTLS' => true
         ],
     ],
 

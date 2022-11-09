@@ -77,7 +77,7 @@ Route::get('/',[InterFaceController::class,'index'])->name('user.index');
 Route::get('/search',[InterFaceController::class,'search'])->name('user.search');
 Route::get('/api/name',[InterFaceController::class,'apiName'])->name('apiname');
 Route::get('/getUser',[InterFaceController::class,'getUserSearch'])->name('api');
-
+Route::get('/contact',[InterFaceController::class,'contact'])->name('contact');
 
 
 

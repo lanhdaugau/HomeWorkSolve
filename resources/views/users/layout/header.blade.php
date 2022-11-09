@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-lg fixed-top bg-danger {{ (Request::is('/', 'login', 'register', 'profile')) ? 'navbar-transparent' : '' }} nav-down"
-{{ (Request::is('/', 'login' , 'register' , 'profile' )) ? 'color-on-scroll="500"' : '' }} >
+<nav class="navbar navbar-expand-lg fixed-top bg-danger {{ (Request::is('/', 'searchPost', 'login', 'register', 'profile')) ? 'navbar-transparent' : '' }} nav-down"
+{{ (Request::is('/', 'login' , 'register' , 'profile')) ? 'color-on-scroll="500"' : '' }}
+>
 <div class="container">
     
    <a class="navbar-brand" href="{{ route('user.index') }}">HomeWorkSolve</a>
@@ -24,7 +25,7 @@
                <a class="dropdown-item" href="{{route('user.search')}}"><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp; Tìm kiếm</a>
                <a class="dropdown-item" href="{{route('chatify')}}"><i class="nc-icon nc-chat-33"></i>&nbsp; Trò chuyện</a>
                <a class="dropdown-item" href="{{ route('searchPost') }}"><i class="nc-icon nc-zoom-split"></i>&nbsp; Tìm kiếm bài viết</a>
-               
+               <a class="dropdown-item" href="{{ route('contact') }}"><i class="nc-icon nc-zoom-split"></i>&nbsp; Liên hệ với chung tôi</a>
             </ul>
          </li>
          <li class="nav-item dropdown">

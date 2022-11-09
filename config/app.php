@@ -182,6 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        \Chatify\ChatifyServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -189,13 +190,14 @@ return [
         /*
          * Application Service Providers...
          */
+
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        \Chatify\ChatifyServiceProvider::class,
+        
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         
@@ -216,8 +218,9 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Chatify' => Chatify\Facades\ChatifyMessenger::class,
     ])->toArray(),
-    'Chatify' => Chatify\Facades\ChatifyMessenger::class,
+    // 'Chatify' => Chatify\Facades\ChatifyMessenger::class,
     'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
 
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\PostRequest;
 use App\Models\Comment;
 use App\Models\ImagePost;
 use App\Models\Notification;
@@ -17,7 +18,7 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    public function post(Request $request)
+    public function post(PostRequest $request)
     {
         
         $slug=Str::slug($request->caption,'-').'-'.time();

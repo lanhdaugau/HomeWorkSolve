@@ -76,4 +76,7 @@ class InterFaceController extends Controller
 
     return view('users.user.profile', ['user' => $user, 'posts' => $posts, 'reacts' => $react]);
   }
+  public function contact(){
+    return view('users.contact');
+  }
 }

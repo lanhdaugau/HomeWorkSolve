@@ -20,8 +20,11 @@
                         <div class="social">
                             <a href="{{ route('socialR', 'facebook' ) }}" class="btn btn-just-icon btn-facebook"><i
                                     class="fa fa-facebook"></i></a>
+                            {{-- <a href="{{ route('socialR', 'zalo' ) }}" class="btn btn-just-icon btn-facebook"><i
+                                        class="fa fa-google"></i></a> --}}
                             
                         </div>
+                        
 
                         <div class="division">
                             <div class="line l"></div>
