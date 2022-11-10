@@ -48,7 +48,7 @@
         </nav>
         @endif
         <!-- /.navbar -->
-        @if (!(Request::is('admin/login','admin/forgot','reset/{token}')) && Route::currentRouteName() !='admin.resetPass')
+        @if (!(Request::is('admin/login','admin/forgot')) && Route::currentRouteName() !='admin.resetPass')
         @include('admin.layout.sidebar')
         @endif
         @yield('content')
@@ -63,6 +63,7 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- jQuery -->
     <script src="{{ asset('asset/admin') }}/plugins/jquery/jquery.min.js"></script>

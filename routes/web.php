@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController\ContactAdminController;
 use App\Http\Controllers\UserController\LoginController;
 use App\Http\Controllers\UserController\PostController;
 use App\Http\Controllers\UserController\RegisterController;
+use App\Http\Controllers\UserController\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\UserController;
 use App\Models\Notification;
@@ -51,6 +52,10 @@ Route::prefix('admin')->group(function () {
         Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'post', 'as' => 'admin.'], function () {
             
             Route::get('/postlist','showPost')->name('postlist');
+        });
+        Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'statistical', 'as' => 'admin.'], function () {
+            
+            Route::get('/','statistical')->name('statistical');
         });
         
     });
@@ -159,6 +164,9 @@ Route::get('/checkRating',[UserController::class,'checkRating'])->name('checkRat
 Route::group(['controller' => ContactAdminController::class, 'as' => 'contact.'], function () {
     Route::post('/contact','send')->name('send');
     Route::get('/contact','contact')->name('contact');
-  
+    
 
 }); 
+Route::group(['controller'=>ReportController::class, 'as' => 'report.'],function(){
+    Route::post('/report','send')->name('send');
+});

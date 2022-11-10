@@ -30,5 +30,10 @@ class Post extends Model
        
         return $this->hasMany(Comment::class,'idPost','id')->whereNull('parent_id')->orderBy('id','DESC');
     }
+    public function getMonth()
+    {
+        
+       return date("m",strtotime($this->created_at->format('M')));
+    }
     
 }

@@ -177,4 +177,32 @@ class UserController extends Controller
        
         return view('admin.user.postlist',compact(['posts','comments']));
     }
+    public function statistical()
+    {
+        
+        
+        $jan=count(Post::whereMonth('created_at',1)->get());
+        
+        $feb=count(Post::whereMonth('created_at',2)->get());
+        $mar=count(Post::whereMonth('created_at',3)->get());
+        $apr=count(Post::whereMonth('created_at',4)->get());
+        $may=count(Post::whereMonth('created_at',5)->get());
+        $jun=count(Post::whereMonth('created_at',6)->get());
+        $jul=count(Post::whereMonth('created_at',7)->get());
+        $aug=count(Post::whereMonth('created_at',8)->get());
+        $sep=count(Post::whereMonth('created_at',9)->get());
+        $oct=count(Post::whereMonth('created_at',10)->get());
+        $nov=count(Post::whereMonth('created_at',11)->get());
+        $dec=count(Post::whereMonth('created_at',12)->get());
+      
+        $star1=count(React::where('rating',1)->get());
+        $star2=count(React::where('rating',2)->get());
+        $star3=count(React::where('rating',3)->get());
+        $star4=count(React::where('rating',4)->get());
+        $star5=count(React::where('rating',5)->get());
+        return view('admin.statistical.index',compact([
+            'jan','feb','mar','apr','may',
+            'jun','jul','aug','sep','oct','nov','dec',
+            'star1','star2','star3','star4','star5']));
+    }
 }

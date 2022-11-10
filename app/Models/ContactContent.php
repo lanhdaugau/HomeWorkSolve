@@ -12,7 +12,8 @@ class ContactContent extends Model
     protected $fillable=[
         'content',
         'idContact',
-        'idAuthur'
+        'idAuthur',
+        'seen'
     ];
     public function getUser()
     {

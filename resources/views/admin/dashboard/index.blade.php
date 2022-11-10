@@ -1,98 +1,116 @@
 @extends('admin.layout.main')
+@push('link')
+    <style>
+        .dot {
+            height: 20px;
+            width: 20px;
+            background-color: rgb(205, 58, 58);
+            border-radius: 50%;
+            display: inline-block;
+            text-align: center;
+            color: white;
+            font-size: small
+        }
+    </style>
+@endpush
 @section('content')
- <!-- Content Wrapper. Contains page content -->
- <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ asset('asset/admin') }}/#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
-
-                <p>New Orders</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Bounce Rate</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>44</h3>
-
-                <p>User Registrations</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Dashboard</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ asset('asset/admin') }}/#">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard v1</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-7 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            {{-- <div class="card">
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>150</h3>
+
+                                <p>New Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                <p>Bounce Rate</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>44</h3>
+
+                                <p>User Registrations</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>65</h3>
+
+                                <p>Unique Visitors</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="{{ asset('asset/admin') }}/#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-7 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        {{-- <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
@@ -122,123 +140,141 @@
                 </div>
               </div><!-- /.card-body -->
             </div> --}}
-            <!-- /.card -->
+                        <!-- /.card -->
 
-            <!-- DIRECT CHAT -->
-            <div class="card direct-chat direct-chat-primary">
-              <div class="card-header">
-                <h3 class="card-title">Tư vấn khách hàng</h3>
+                        <!-- DIRECT CHAT -->
+                        <div class="card direct-chat direct-chat-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Tư vấn khách hàng</h3>
 
-                <div class="card-tools">
-                  <span title="3 New Messages" class="badge badge-primary"></span>
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
-                    <i class="fas fa-comments"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                
-                    
-              
-                <!-- Conversations are loaded here -->
-                <div class="direct-chat-messages">
-                  
-                  <!-- Message. Default to the left -->
-                  @foreach ($userContact->getContent as $content)
-                  @if ($content->getUser->id != 1)
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-left">{{$content->getUser->name}}</span>
-                      <span class="direct-chat-timestamp float-right">{{$content->created_at->diffForHumans()}}</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="{{$content->getUser->getAvatar()}}" alt="message user image">
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      {{$content->content}}
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  @endif
-                  
-                <!-- /.direct-chat-msg -->
+                                <div class="card-tools">
+                                    <span title="3 New Messages" class="badge badge-primary"></span>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" title="Contacts"
+                                        data-widget="chat-pane-toggle">
+                                        <i class="fas fa-comments"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
 
-                @if ($content->getUser->id == 1)
-                  <!-- Message to the right -->
-                  <div class="direct-chat-msg right">
-                    <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-right">Admin</span>
-                      <span class="direct-chat-timestamp float-left">{{$content->created_at->diffForHumans()}}</span>
-                    </div>
-                    <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="{{$content->getUser->getAvatar()}}" alt="message user image">
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      {{$content->content}}
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-                @endif
-                  @endforeach
-                </div>
-                <!--/.direct-chat-messages-->
 
-                <!-- Contacts are loaded here -->
-                <div class="direct-chat-contacts">
-                  <ul class="contacts-list">
-                    @foreach ($contacts as $contact)
-                        
-                    
-                    <li>
-                      <a href="{{ route('dashboard.read', $contact->id) }}">
-                        
-                        <img class="contacts-list-img" src="{{ $contact->getUser->getAvatar() }}" alt="User Avatar">
 
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            {{$contact->getUser->name}}
-                            <small class="contacts-list-date float-right">{{$contact->created_at->diffForHumans()}}</small>
-                          </span>
-                          <span class="contacts-list-msg">{{$contact->getContent->last()->content}}</span>
+                                <!-- Conversations are loaded here -->
+                                <div class="direct-chat-messages">
+
+                                    <!-- Message. Default to the left -->
+                                    @if ($userContact)
+                                        @foreach ($userContact->getContent as $content)
+                                            @if ($content->getUser->id != 1)
+                                                <div class="direct-chat-msg">
+                                                    <div class="direct-chat-infos clearfix">
+                                                        <span
+                                                            class="direct-chat-name float-left">{{ $content->getUser->name }}</span>
+                                                        <span
+                                                            class="direct-chat-timestamp float-right">{{ $content->created_at->diffForHumans() }}</span>
+                                                    </div>
+                                                    <!-- /.direct-chat-infos -->
+                                                    <img class="direct-chat-img" src="{{ $content->getUser->getAvatar() }}"
+                                                        alt="message user image">
+                                                    <!-- /.direct-chat-img -->
+                                                    <div class="direct-chat-text">
+                                                        {{ $content->content }}
+                                                    </div>
+                                                    <!-- /.direct-chat-text -->
+                                                </div>
+                                            @endif
+
+                                            <!-- /.direct-chat-msg -->
+
+                                            @if ($content->getUser->id == 1)
+                                                <!-- Message to the right -->
+                                                <div class="direct-chat-msg right">
+                                                    <div class="direct-chat-infos clearfix">
+                                                        <span class="direct-chat-name float-right">Admin</span>
+                                                        <span
+                                                            class="direct-chat-timestamp float-left">{{ $content->created_at->diffForHumans() }}</span>
+                                                    </div>
+                                                    <!-- /.direct-chat-infos -->
+                                                    <img class="direct-chat-img" src="{{ $content->getUser->getAvatar() }}"
+                                                        alt="message user image">
+                                                    <!-- /.direct-chat-img -->
+                                                    <div class="direct-chat-text">
+                                                        {{ $content->content }}
+                                                    </div>
+                                                    <!-- /.direct-chat-text -->
+                                                </div>
+                                                <!-- /.direct-chat-msg -->
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <!--/.direct-chat-messages-->
+
+                                <!-- Contacts are loaded here -->
+                                <div class="direct-chat-contacts">
+                                    <ul class="contacts-list">
+                                        @if ($contacts)
+                                            @foreach ($contacts as $contact)
+                                                <li>
+                                                    <a href="{{ route('dashboard.read', $contact->id) }}">
+
+                                                        <img class="contacts-list-img"
+                                                            src="{{ $contact->getUser->getAvatar() }}" alt="User Avatar">
+
+                                                        <div class="contacts-list-info">
+                                                            <span class="contacts-list-name">
+                                                                {{ $contact->getUser->name }}
+                                                                <small
+                                                                    class="contacts-list-date float-right">{{ $contact->getContent->last()->created_at->diffForHumans() }}
+                                                                </small>
+                                                            </span>
+                                                            <span
+                                                                class="contacts-list-msg">{{ $contact->getContent->last()->content }}
+                                                                @if ($contact->getContent->last()->seen == 0)
+                                                                    <span
+                                                                        class="dot float-right">{{ count($contact->getContent->where('seen', 0)) }}</span>
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                        <!-- /.contacts-list-info -->
+                                                    </a>
+                                                </li>
+                                                <!-- End Contact Item -->
+                                            @endforeach
+                                        @endif
+
+                                    </ul>
+                                    <!-- /.contacts-list -->
+                                </div>
+                                <!-- /.direct-chat-pane -->
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <form action="{{ route('dashboard.send', $userContact->id) }}" method="POST">
+                                    @csrf
+                                    <div class="input-group">
+
+                                        <input type="text" name="content" placeholder="Nhập tin nhắn..."
+                                            class="form-control">
+                                        <span class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">Gửi</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card-footer-->
                         </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                    @endforeach
-                   
-                  </ul>
-                  <!-- /.contacts-list -->
-                </div>
-                <!-- /.direct-chat-pane -->
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                <form action="{{ route('dashboard.send', $userContact->id) }}" method="POST">
-                  @csrf
-                  <div class="input-group">
-                    
-                    <input type="text" name="content" placeholder="Nhập tin nhắn..." class="form-control">
-                    <span class="input-group-append">
-                      <button type="submit" class="btn btn-primary">Gửi</button>
-                    </span>
-                  </div>
-                </form>
-              </div>
-              <!-- /.card-footer-->
-            </div>
-            <!--/.direct-chat -->
+                        <!--/.direct-chat -->
 
-            <!-- TO DO List -->
-            {{-- <div class="card">
+                        <!-- TO DO List -->
+                        {{-- <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="ion ion-clipboard mr-1"></i>
@@ -366,11 +402,11 @@
                 <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
               </div>
             </div> --}}
-            <!-- /.card -->
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          {{-- <section class="col-lg-5 connectedSortable">
+                        <!-- /.card -->
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    {{-- <section class="col-lg-5 connectedSortable">
 
             <!-- Map card -->
             <div class="card bg-gradient-primary">
@@ -508,12 +544,61 @@
             </div>
             <!-- /.card -->
           </section> --}}
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
+                    <!-- right col -->
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+        <section class="content">
+            <div class="container-fluid">
 
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="timeline">
+                            @foreach ($reports as $report)
+                                @if ($report->type === 1)
+                                    <div>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fas fa-clock"></i> {{$report->created_at->diffForHumans()}}</span>
+                                            <h3 class="timeline-header"><a href="#">{{$report->getUser->name}}</a> báo cáo người dùng
+                                            </h3>
+                                            <div class="timeline-body">
+                                              Link trang cá nhân:
+                                                <a href="{{$report->content}}">{{$report->content}}</a>  
+                                                <br>
+                                                Chi tiết : {{$report->detail}}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                @endif
+                                @if ($report->type === 0)
+                                    <div>
+                                        <i class="fas fa-comments bg-yellow"></i>
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fas fa-clock"></i>{{$report->created_at->diffForHumans()}}</span>
+                                            <h3 class="timeline-header"><a href="#">{{$report->getUser->name}}</a> báo cáo bài viết
+                                            </h3>
+                                            <div class="timeline-body">
+                                              Link bài viết:
+                                              <a href="{{$report->content}}">{{$report->content}}</a>  
+                                              <br>
+                                              Chi tiết : {{$report->detail}}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
 @endsection

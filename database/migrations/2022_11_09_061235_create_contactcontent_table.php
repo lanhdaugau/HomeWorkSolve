@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('content');
             $table->unsignedInteger('idContact');
             $table->unsignedInteger('idAuthur');
+            $table->boolean('seen')->default(false);
             $table->timestamps();
             $table->foreign('idAuthur')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('idContact')->references('id')->on('contact')->onDelete('cascade')->onUpdate('cascade');

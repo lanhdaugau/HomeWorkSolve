@@ -39,14 +39,22 @@
         <li class="nav-item ">
           <a href="{{ route('admin.index') }}" class="nav-link {{ ($title == 'User') ? 'active' : ''}}">
             <i class="nav-icon fas fa-user-lock"></i>
-            <p>User Admin</p>
+            <p>Danh sách người dùng</p>
           </a>
           
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.postlist') }}" class="nav-link {{ ($title == 'Post') ? 'active' : ''}}">
-            <i class="nav-icon fas fa-user-lock"></i>
-            <p>Post</p>
+            
+            <i class="nav-icon fa fa-list-alt" aria-hidden="true"></i>
+            <p>Bài viết</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.statistical') }}" class="nav-link {{ ($title == 'Statistical') ? 'active' : ''}}">
+            
+            <i class="nav-icon fas fa-chart-pie mr-1"></i>
+            <p>Thống kê</p>
           </a>
         </li>
         

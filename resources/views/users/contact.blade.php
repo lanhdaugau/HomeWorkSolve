@@ -206,33 +206,35 @@
                 <div class="row">
                     <div class="col-md-6 ml-auto mr-auto text-center">
                         <h3 class="title"><small></small></h3>
-                        <form class="contact">
+                        <form class="contact" method="POST" action="{{ route('report.send') }}">
+                            @csrf
                             <div class="row">
 
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <select class="form-control" id="select_designatfirst">
-                                        <option value="-1">--Chọn nội dung--</option>
+                                    <select class="form-control" id="select_designatfirst" name="options">
+                                        <option value="-1"> --Chọn nội dung--</option>
                                         <option value="0">Báo cáo người dùng</option>
-                                        <option value="1">Báo cáo trang web</option>
+                                        <option value="1">Báo cáo bài viết</option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="empSearch">
+                                    <input type="text" class="form-control" id="empSearch" name="content"
+                                        autocomplete="off">
                                 </div>
                             </div>
 
-                            <textarea class="form-control" id="textArea" rows="7"></textarea>
+                            <textarea class="form-control" id="textArea" rows="7" name="detail" autocomplete="off"></textarea>
 
                             <div class="row">
                                 <div class="col-md-6 ml-auto mr-auto">
-                                    <button class="btn btn-primary btn-block btn-round">Send </button>
+                                    <button class="btn btn-primary btn-block btn-round">Gửi</button>
                                 </div>
                             </div>
                         </form>
-                        <h3 class="visit"><small>Or come and visit</small></h3>
+                        s
                     </div>
                 </div>
             </div>
@@ -259,49 +261,49 @@
                     Bạn có thể trò truyện trực tiếp với người quản trị
                 </div>
                 @if ($contacts)
-                @foreach ($contacts->getContent as $contact)
-                @if ($contact->idAuthur != 1)
-                    <div class="chat-message clearfix">
+                    @foreach ($contacts->getContent as $contact)
+                        @if ($contact->idAuthur != 1)
+                            <div class="chat-message clearfix">
 
 
-                        <img src="{{ $contact->getUser->getAvatar() }}" alt="" width="32" height="32"
-                            style="float: right;">
-                        <div class="chat-message-content clearfix" style="">
+                                <img src="{{ $contact->getUser->getAvatar() }}" alt="" width="32" height="32"
+                                    style="float: right;">
+                                <div class="chat-message-content clearfix" style="">
 
 
 
 
-                            <h5 style="margin-left: 50px">Bạn</h5>
-                            <p>{{ $contact->content }}</p>
+                                    <h5 style="margin-left: 50px">Bạn</h5>
+                                    <p>{{ $contact->content }}</p>
 
-                        </div> <!-- end chat-message-content -->
+                                </div> <!-- end chat-message-content -->
 
-                    </div> <!-- end chat-message -->
+                            </div> <!-- end chat-message -->
+                        @endif
+
+
+
+                        @if ($contact->idAuthur == 1)
+                            <div class="chat-message clearfix">
+
+                                <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt=""
+                                    width="32" height="32">
+
+                                <div class="chat-message-content-2 clearfix">
+
+
+
+                                    <h5>Admin</h5>
+
+                                    <p>{{ $contact->content }}</p>
+
+                                </div> <!-- end chat-message-content -->
+
+                            </div> <!-- end chat-message -->
+                        @endif
+                    @endforeach
                 @endif
 
-
-
-                @if ($contact->idAuthur == 1)
-                    <div class="chat-message clearfix">
-
-                        <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt=""
-                            width="32" height="32">
-
-                        <div class="chat-message-content-2 clearfix">
-
-
-
-                            <h5>Admin</h5>
-
-                            <p>{{ $contact->content }}</p>
-
-                        </div> <!-- end chat-message-content -->
-
-                    </div> <!-- end chat-message -->
-                @endif
-            @endforeach 
-                @endif
-               
 
 
 
@@ -326,6 +328,45 @@
     </div> <!-- end live-chat -->
 @endsection
 @push('js')
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                $(function() {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 5000
+                    });
+
+                    toastr.error('{{ $error }}')
+
+
+
+                });
+            </script>
+        @endforeach
+    @endif
+     @if (Session::has('message'))
+  
+    
+     <script>
+        $(function() {
+          var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+      
+          toastr.success("{{ Session::get('message') }}")
+      
+          
+          
+        });
+      </script>
+    @endif
     <script>
         var select_designatfirst = $('#select_designatfirst'),
             empSearch = $('#empSearch');
@@ -336,8 +377,8 @@
                 text.attr('placeholder', 'Báo cáo những nội dung, bình luận.. không tốt của người này');
             }
             if (this.value == 1) {
-                empSearch.attr('placeholder', 'Lỗi');
-                text.attr('placeholder', 'Nội dung cụ thể của lỗi');
+                empSearch.attr('placeholder', 'Đường dẫn bài viết');
+                text.attr('placeholder', 'Nội dung quy phạm của bài viêt');
             }
 
         });
