@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController\ContactAdminController;
+use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashBoardController extends Controller
 {
@@ -12,11 +15,27 @@ class DashBoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($idUserContact=null)
     {
-        return view('admin.dashboard.index');
-    }
+        
+        $userContact= Contact::all()->last();
 
+      
+        if($idUserContact){
+            $userContact=Contact::where('idUsers',$idUserContact)->first();
+            
+        }
+        
+        $contacts= Contact::orderBy('id','DESC')->get();
+        
+        return view('admin.dashboard.index',['contacts'=>$contacts,'userContact'=>$userContact]);
+    }
+    public function send($idUserContact,Request $request){
+       
+        $saveContent = new ContactAdminController();
+        $saveContent->saveMessage($request->content,$idUserContact);
+        return back();
+    }
     /**
      * Show the form for creating a new resource.
      *

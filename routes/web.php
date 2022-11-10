@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController\RoleController;
 use App\Http\Controllers\AdminController\UserController as AdminControllerUserController;
 use App\Http\Controllers\InterFaceController;
 use App\Http\Controllers\UserController\CommentController;
+use App\Http\Controllers\UserController\ContactAdminController;
 use App\Http\Controllers\UserController\LoginController;
 use App\Http\Controllers\UserController\PostController;
 use App\Http\Controllers\UserController\RegisterController;
@@ -33,6 +34,8 @@ Route::prefix('admin')->group(function () {
     Route::middleware('checkAdminLogin')->group(function () {
         Route::group(['controller' => DashBoardController::class, 'as' => 'dashboard.'], function () {
             Route::get('/', 'index')->name('index');
+            Route::get('/contact/{idUserContact}','index')->name('read');
+            Route::post('/contact/{idUserContact}','send')->name('send');
         });
 
         Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'user', 'as' => 'admin.'], function () {
@@ -152,3 +155,10 @@ Route::get('/searchPost',function(){
 Route::get('/checkRating',[UserController::class,'checkRating'])->name('checkRating');
 
 
+// chat admin
+Route::group(['controller' => ContactAdminController::class, 'as' => 'contact.'], function () {
+    Route::post('/contact','send')->name('send');
+    Route::get('/contact','contact')->name('contact');
+  
+
+}); 

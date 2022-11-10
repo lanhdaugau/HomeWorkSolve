@@ -1,382 +1,363 @@
 @extends('users.layout.main')
 @push('css')
-<style>
- /* start chat box*/
-#live-chat {
-  bottom: 0;
-  font-size: 12px;
-  position: fixed;
-  right: 15px;
-  width: 300px;
-  z-index: 99;
+    <style>
+        @charset "utf-8";
+        /* CSS Document */
 
-  -webkit-box-shadow: 0 4px 4px #797979;
-  -moz-box-shadow: 0 4px 4px #797979;
-  -ms-box-shadow: 0 4px 4px #797979;
-  -o-box-shadow: 0 4px 4px #797979;
-  box-shadow: 0 4px 4px #797979;
-}
-#live-chat .chat-header {
-  border: medium none;
-  background: rgba(41, 186, 237, 0.83);
+        /* ---------- GENERAL ---------- */
 
-  color: #ffffff;
-  cursor: pointer;
-  float: left;
-  padding: 7.5px 24px;
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
 
-  width: 100%;
-}
-#live-chat .chat-header:hover,
-#scroll-top:hover {
-  background: none repeat scroll 0 0 #29baed;
-}
 
-#live-chat h4:before {
-  background: #A6D87A;
-  content: "";
-  display: inline-block;
-  height: 8px;
-  margin: 0 8px 0 0;
-  width: 8px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-}
-#live-chat h4 {
-  color: #fff;
-  float: left;
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-}
+        a {
+            text-decoration: none;
+        }
 
-#live-chat h5 {
-  color: #333333;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  line-height: 10px;
-  margin-bottom: 15px;
-}
+        fieldset {
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
 
-#live-chat form {
-  padding: 15px;
-}
+        h4,
+        h5 {
+            line-height: 1.5em;
+            margin: 0;
+        }
 
-#live-chat input[type="text"] {
-  border: 1px solid #ccc;
+        hr {
+            background: #e9e9e9;
+            border: 0;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            height: 1px;
+            margin: 0;
+            min-height: 1px;
+        }
 
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  -ms-border-radius: 1px;
-  -o-border-radius: 1px;
-  border-radius: 1px;
+        img {
+            border: 0;
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
 
-  font-family: Roboto;
-  letter-spacing: 0.3px;
-  outline: medium none;
-  padding: 8px 18px;
-  width: 100%;
-}
+        input {
+            border: 0;
+            color: inherit;
+            font-family: inherit;
+            font-size: 100%;
+            line-height: normal;
+            margin: 0;
+        }
 
-.chat-close {
-  background: none repeat scroll 0 0 rgba(0,0,0,.5);
-  color: #FFFFFF;
-  display: block;
-  float: right;
-  font-size: 22px;
-  height: 20px;
-  line-height: 18px;
-  margin: 9px 0 0;
-  text-align: center;
-  width: 20px;
+        p {
+            margin: 0;
+        }
 
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-}
-.chat-close:hover {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-.chat {
-  background: none repeat scroll 0 0 #ffffff;
-  float: left;
-  overflow: hidden;
-  width: 100%;
-}
-.chat-history {
-  height: 252px;
-  padding: 0;
-  width: 100% !important;
-  overflow-x: hidden;
-  overflow-y: scroll
-}
+        .clearfix {
+            *zoom: 1;
+        }
 
-.ds-chat-message-content {
-  float: left;
-  width: 100%;
-}
+        /* For IE 6/7 */
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+        }
 
-.ds-chat-message {
-  border-bottom: 5px dashed #d8dcdc;
-  float: left;
-  padding: 20px 20px;
-  position: relative;
-  width: 100%;
-}
+        .clearfix:after {
+            clear: both;
+        }
 
-.ds-chat-message img {
+        /* ---------- LIVE-CHAT ---------- */
 
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  border: 0 none;
-  float: none;
-  right: 20px;
-  max-width: 100%;
-  position: absolute;
-  top: 20px;
-}
-.ds-chat-time {
-  float: left;
-  font-family: Roboto;
-  font-size: 11px;
-}
+        #live-chat {
+            bottom: 0;
+            font-size: 12px;
+            right: 24px;
+            position: fixed;
+            width: 300px;
+        }
 
-.support-chat
-{
-  background: #d8dcdc;
-  margin-bottom: 2px;
-  float: left;
-  padding: 20px 20px 20px 10px;
-  position: relative;
-  width: 100%;
-}
+        #live-chat header {
+            background: #293239;
+            border-radius: 5px 5px 0 0;
+            color: #fff;
+            cursor: pointer;
+            padding: 16px 24px;
+        }
 
-#live-chat .support-chat h5 {color: #29baed;text-align: center;}
+        #live-chat h4:before {
+            background: #1a8a34;
+            border-radius: 50%;
+            content: "";
+            display: inline-block;
+            height: 8px;
+            margin: 0 8px 0 0;
+            width: 8px;
+        }
 
-#live-chat .support-chat p {text-align: right;margin: 15px 30px 0}
-/* message two */
-.ds-chat-message-2 {
-  border-bottom: 5px dashed #d8dcdc;
-  border-top: 5px dashed #d8dcdc;
-  float: left;
-  padding: 20px 20px;
-  position: relative;
-  width: 100%;
-}
+        #live-chat h4 {
+            font-size: 12px;
+        }
 
-.ds-chat-message-2 img {
+        #live-chat h5 {
+            font-size: 10px;
+        }
 
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  border: 0 none;
-  float: none;
-  left: 20px;
-  max-width: 100%;
-  position: absolute;
-  top: 20px;
-}
-.ds-chat-time-2 {
-  float: right;
-  font-family: Roboto;
-  font-size: 11px;
-}
+        #live-chat form {
+            padding: 24px;
+        }
 
-.support-chat-2
-{
-  margin-bottom: 2px;
-  float: left;
-  padding: 20px 20px 20px 73px;
-  position: relative;
-  width: 100%;
-}
+        #live-chat input[type="text"] {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 8px;
+            outline: none;
+            width: 234px;
+        }
 
-#live-chat .support-chat-2 h5 {color: #444;}
+        .chat-message-counter {
+            background: #e62727;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            display: none;
+            font-size: 12px;
+            font-weight: bold;
+            height: 28px;
+            left: 0;
+            line-height: 28px;
+            margin: -15px 0 0 -15px;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 28px;
+        }
 
-#live-chat .support-chat-2 p {margin: 15px 0px 0;color: #666}
+        .chat-close {
+            background: #1b2126;
+            border-radius: 50%;
+            color: #fff;
+            display: block;
+            float: right;
+            font-size: 10px;
+            height: 16px;
+            line-height: 16px;
+            margin: 2px 0 0 0;
+            text-align: center;
+            width: 16px;
+        }
 
-/* start input */
-label {
-  cursor: pointer;
-  background: #29baed;
-  padding: 8px;
-  color: #fff;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  margin: 5px 
-  /* Style as you please, it will become the visible UI component. */
-}
+        .chat {
+            background: #fff;
+        }
 
-#upload-photo {
-  opacity: 0;
-  position: absolute;
-  z-index: -1;
-}
+        .chat-history {
+            height: 252px;
+            padding: 8px 24px;
+            overflow-y: scroll;
+        }
 
-fieldset {min-width: 100%}
+        .chat-message {
+            margin: 16px 0;
+        }
 
-fieldset input[type="text"] {
-  max-width: 85%;
-  float: left;
-}
+        .chat-message img {
+            border-radius: 50%;
+            float: left;
+        }
 
-fieldset .bg_none {
-  max-width: 10%;
-  margin: -1px 0 0;
-  float: right;
-}
+        .chat-message-content {
+            margin-left: 130px;
+        }
 
-/* end chat box*/
+        .chat-message-content-2 {
+            margin-left: 50px;
+        }
 
+        .chat-time {
+            float: right;
+            font-size: 10px;
+        }
+
+        .chat-feedback {
+            font-style: italic;
+            margin: 0 0 0 80px;
+        }
+
+        .preview {
+            text-align: center;
+            padding: 20px
+        }
     </style>
 @endpush
 @section('contents')
-
-<div class="main">
-    <div class="section section-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">Liên hệ với chúng tôi</h2>
-                    <p>Nếu bạn có sự hài vòng về trang web hoặc báo cáo cá nhân có hành vi không tốt bạn có thể gửi về chúng tôi</p>
+    <div class="main">
+        <div class="section section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2 class="title">Liên hệ với chúng tôi</h2>
+                        <p>Nếu bạn có sự hài vòng về trang web hoặc báo cáo cá nhân có hành vi không tốt bạn có thể gửi về
+                            chúng tôi</p>
+                    </div>
                 </div>
-            </div>
-           
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto text-center">
-                    <h3 class="title"><small></small></h3>
-                    <form class="contact">
-                        <div class="row">
-                          
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <select class="form-control" id="select_designatfirst" >
-                                    <option value="-1">--Chọn nội dung--</option>
-                                    <option value="0">Báo cáo người dùng</option>
-                                    <option value="1">Báo cáo trang web</option>
-                                </select>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="empSearch">
-                            </div>
-                        </div>
-                        
-                        <textarea class="form-control" id="textArea" rows="7"></textarea>
 
-                        <div class="row">
-                            <div class="col-md-6 ml-auto mr-auto">
-                                <button class="btn btn-primary btn-block btn-round">Send </button>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto text-center">
+                        <h3 class="title"><small></small></h3>
+                        <form class="contact">
+                            <div class="row">
+
                             </div>
-                        </div>
-                    </form>
-                    <h3 class="visit"><small>Or come and visit</small></h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select class="form-control" id="select_designatfirst">
+                                        <option value="-1">--Chọn nội dung--</option>
+                                        <option value="0">Báo cáo người dùng</option>
+                                        <option value="1">Báo cáo trang web</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="empSearch">
+                                </div>
+                            </div>
+
+                            <textarea class="form-control" id="textArea" rows="7"></textarea>
+
+                            <div class="row">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                    <button class="btn btn-primary btn-block btn-round">Send </button>
+                                </div>
+                            </div>
+                        </form>
+                        <h3 class="visit"><small>Or come and visit</small></h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- start chat box -->
-<div id="live-chat">
-    <div class="clearfix chat-header">
-      <a class="chat-close">-</a>
-      <h4>7Dsoftware Support</h4>
-    </div>
-    <div class="chat" style="display:none;"><!---->
-      <div class="chat-history">
-        
-        <div class="ds-chat-message support-chat">
-          <div class="message-message">
-            <img src="https://lh3.googleusercontent.com/-v-nOreIwytQ/WXYGOTJfxwI/AAAAAAAAABA/gmB02KQ5YukxO7WQDS_lo0xl5OBrphA5ACEwYBhgL/w139-h140-p/17022164_281947275571825_7574097377909968664_n.jpg" alt="" width="32" height="32" />
-            <div class="ds-chat-message-content">
-              <span class="ds-chat-time">11:54</span>
-              <h5>7Ds Support</h5>
-              <p>welcome to our website.</p>
-            </div> <!-- end chat-message-content -->
-          </div>
-        </div> <!-- end chat-message -->
-        
-        <div class="ds-chat-message-2 support-chat-2">
-          <img src="https://lh3.googleusercontent.com/-v-nOreIwytQ/WXYGOTJfxwI/AAAAAAAAABA/gmB02KQ5YukxO7WQDS_lo0xl5OBrphA5ACEwYBhgL/w139-h140-p/17022164_281947275571825_7574097377909968664_n.jpg" alt="" width="32" height="32" />
-          <div class="ds-chat-message-content">
-            <span class="ds-chat-time-2">11:54</span>
-            <h5>shaban abd al shafy</h5>
-            <p>welcome to our website, welcome to our website, welcome to our website, welcome to our website, </p>
-          </div> <!-- end chat-message-content -->
-        </div> <!-- end chat-message -->
-  
-        <!-- end chat-message -->
-        
+    <!-- start chat box -->
+    <div id="live-chat">
 
-        <!-- end chat-message -->
-        
-        <!-- end chat-message -->
-      </div> <!-- end chat-history -->
-      <form action="#" method="post">
-        <fieldset>
-          <input type="text" placeholder="Type your message…" autofocus>
-          <input type="hidden">
-          <label  class="bg_none" for="upload-photo">
-            <i class="glyphicon glyphicon-paperclip"></i>
-          </label>
-          <input type="file" name="photo" id="upload-photo"/>
-        </fieldset>
-      </form>
-    </div> <!-- end chat -->
-  </div> <!-- end live-chat -->
-  
-  <!-- end chat box -->
+        <header class="clearfix">
+
+
+
+            <h4>Admin</h4>
+
+
+        </header>
+
+        <div class="chat">
+
+
+
+            <div class="chat-history">
+                <div class="preview">
+                    Bạn có thể trò truyện trực tiếp với người quản trị
+                </div>
+                @if ($contacts)
+                @foreach ($contacts->getContent as $contact)
+                @if ($contact->idAuthur != 1)
+                    <div class="chat-message clearfix">
+
+
+                        <img src="{{ $contact->getUser->getAvatar() }}" alt="" width="32" height="32"
+                            style="float: right;">
+                        <div class="chat-message-content clearfix" style="">
+
+
+
+
+                            <h5 style="margin-left: 50px">Bạn</h5>
+                            <p>{{ $contact->content }}</p>
+
+                        </div> <!-- end chat-message-content -->
+
+                    </div> <!-- end chat-message -->
+                @endif
+
+
+
+                @if ($contact->idAuthur == 1)
+                    <div class="chat-message clearfix">
+
+                        <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt=""
+                            width="32" height="32">
+
+                        <div class="chat-message-content-2 clearfix">
+
+
+
+                            <h5>Admin</h5>
+
+                            <p>{{ $contact->content }}</p>
+
+                        </div> <!-- end chat-message-content -->
+
+                    </div> <!-- end chat-message -->
+                @endif
+            @endforeach 
+                @endif
+               
+
+
+
+
+            </div> <!-- end chat-history -->
+
+
+
+            <form action="{{ route('contact.send') }}" method="post">
+                @csrf
+                <fieldset>
+
+                    <input type="text" placeholder="Nhập nội dung chat" name="content" autocomplete="off" autofocus>
+
+
+                </fieldset>
+
+            </form>
+
+        </div> <!-- end chat -->
+
+    </div> <!-- end live-chat -->
 @endsection
 @push('js')
     <script>
-  var select_designatfirst = $('#select_designatfirst'),
-  empSearch = $('#empSearch');
-    text=$('#textArea');
-select_designatfirst.on('change', function () {
-    if(this.value ==0){
-        empSearch.attr('placeholder', 'Đường link trang cá nhân ');
-        text.attr('placeholder', 'Báo cáo những nội dung, bình luận.. không tốt của người này');
-    }
-    if(this.value ==1){
-        empSearch.attr('placeholder', 'Lỗi');
-        text.attr('placeholder', 'Nội dung cụ thể của lỗi');
-    }
-  
-});
-$('#live-chat .chat-header').click(function () {
-  $('.chat').slideToggle();
-});
+        var select_designatfirst = $('#select_designatfirst'),
+            empSearch = $('#empSearch');
+        text = $('#textArea');
+        select_designatfirst.on('change', function() {
+            if (this.value == 0) {
+                empSearch.attr('placeholder', 'Đường link trang cá nhân ');
+                text.attr('placeholder', 'Báo cáo những nội dung, bình luận.. không tốt của người này');
+            }
+            if (this.value == 1) {
+                empSearch.attr('placeholder', 'Lỗi');
+                text.attr('placeholder', 'Nội dung cụ thể của lỗi');
+            }
 
-//$(".chat").delay(5000).slideToggle();
+        });
+        (function() {
 
-setTimeout(function(){
-  $('.chat').css({
-    display: "block",
-    opacity: "1"
-  });
-}, 6000);
+            $('#live-chat header').on('click', function() {
+
+                $('.chat').slideToggle(300, 'swing');
+                $('.chat-message-counter').fadeToggle(300, 'swing');
+
+            });
+
+        })();
+        //$(".chat").delay(5000).slideToggle();
+
+        // setTimeout(function() {
+        //     $('.chat').css({
+        //         display: "block",
+        //         opacity: "1"
+        //     });
+        // }, 6000);
     </script>
 @endpush
