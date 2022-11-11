@@ -5,12 +5,14 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest\UserRequest\UpdateRequest;
 use App\Http\Request\AdminRequest\UserRequest\CreateRequest;
+use App\Mail\BanAccount;
 use App\Models\Comment;
 use App\Models\Login;
 use App\Models\Post;
 use App\Models\React;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -137,11 +139,18 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, User $userModel)
     {
+        
         $dataMerge = $request->validated();
+       
+       if($request->isActive==0){
+        Mail::to($userModel->infoLogin->email)->send(new BanAccount());
+       }
+       
+       
         if ($request->hasFile('avatar')) {
             $avatar = $request->avatar;
             $nameAvatar = $avatar->getClientOriginalName();
-            $dirFolder = 'uploads/avatar/admin/';
+            $dirFolder = 'storage/users-avatar';
             $newAvatar = $dirFolder . 'admin-' . time() . '-' . $nameAvatar;
             $dataMerge['avatar'] = $newAvatar;
             $avatar->move($dirFolder, $newAvatar);

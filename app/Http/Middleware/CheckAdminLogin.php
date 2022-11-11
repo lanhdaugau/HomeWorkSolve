@@ -23,7 +23,8 @@ class CheckAdminLogin
             return $next($request);
         }
         else{
-            return redirect()->route('admin.login')->withError('Vui lòng đăng nhập để sử dụng dịch vụ!');
+            
+            return redirect()->route('admin.login')->withErrors(['errorLogin'=>'Tài khoản hoặc mật khẩu không chính xác']);
         }
     }
 }

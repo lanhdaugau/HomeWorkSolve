@@ -35,7 +35,7 @@
         </div>
 
         <!-- Navbar -->
-        @if (!(Request::is('admin/login','admin/forgot'))&& Route::currentRouteName() !='admin.resetPass')
+        @if (!(Request::is('admin/login','admin/forgot','admin/setting/reset'))&& Route::currentRouteName() !='admin.resetPass')
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
@@ -48,11 +48,11 @@
         </nav>
         @endif
         <!-- /.navbar -->
-        @if (!(Request::is('admin/login','admin/forgot')) && Route::currentRouteName() !='admin.resetPass')
+        @if (!(Request::is('admin/login','admin/forgot','admin/setting/reset')) && Route::currentRouteName() !='admin.resetPass')
         @include('admin.layout.sidebar')
         @endif
         @yield('content')
-        @if (!(Request::is('admin/login','admin/forgot'))&& Route::currentRouteName() !='admin.resetPass')
+        @if (!(Request::is('admin/login','admin/forgot','admin/setting/reset'))&& Route::currentRouteName() !='admin.resetPass')
         @include('admin.layout.footer')
         @endif
 

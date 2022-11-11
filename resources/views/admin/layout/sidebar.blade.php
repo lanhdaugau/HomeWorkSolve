@@ -57,6 +57,13 @@
             <p>Thống kê</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.profileadmin') }}" class="nav-link {{ ($title == '') ? 'active' : ''}}">
+            
+            <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+            <p>Cài đặt</p>
+          </a>
+        </li>
         
         <li class="nav-header"></li>
         <li class="nav-header"></li>

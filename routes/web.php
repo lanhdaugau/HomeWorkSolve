@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController\DashBoardController;
 use App\Http\Controllers\AdminController\LoginController as AdminControllerLoginController;
 use App\Http\Controllers\AdminController\RoleController;
+use App\Http\Controllers\AdminController\SettingController;
 use App\Http\Controllers\AdminController\UserController as AdminControllerUserController;
 use App\Http\Controllers\InterFaceController;
 use App\Http\Controllers\UserController\CommentController;
@@ -49,14 +50,25 @@ Route::prefix('admin')->group(function () {
             Route::put('/update/{userModel}', 'update')->name('update');
             Route::delete('/destroy/{userModel}', 'destroy')->name('destroy');
         });
-        Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'post', 'as' => 'admin.'], function () {
+        Route::group(['as'=>'admin.'],function(){
+            Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'post'], function () {
             
-            Route::get('/postlist','showPost')->name('postlist');
-        });
-        Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'statistical', 'as' => 'admin.'], function () {
+                Route::get('/postlist','showPost')->name('postlist');
+            });
+            Route::group(['controller' => AdminControllerUserController::class, 'prefix' => 'statistical'], function () {
+                
+                Route::get('/','statistical')->name('statistical');
+            });
+            Route::group(['controller' => SettingController::class, 'prefix' => 'setting'], function () {
             
-            Route::get('/','statistical')->name('statistical');
+                Route::get('/','setting')->name('profileadmin');
+                Route::put('/','update')->name('updateadmin');
+                Route::get('/reset','reset')->name('resetPassAdmin');
+                Route::post('/reset','resetUpdate')->name('resetPassAdminUpdate');
+            });
         });
+        
+       
         
     });
     Route::group(['controller' => AdminControllerLoginController::class, 'as' => 'admin.'], function () {

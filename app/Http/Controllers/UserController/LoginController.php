@@ -40,7 +40,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
 
             if (Auth::user()->isActive != 1) {
-                return redirect()->back()->withErrors(['errorLogin' => 'Vui lòng kiểm tra email!']);
+                return redirect()->back()->withErrors(['errorLogin' => 'Tài khoản của bạn đã bị khóa!']);
             }
             return redirect()->route('user.index');
         }
@@ -113,6 +113,9 @@ class LoginController extends Controller
        
         $userCheck=Login::where('email',$user->email)->first();
         if(!empty($userCheck)){
+            if($userCheck->isActive !=1){
+                return redirect()->route('login')->withErrors(['errorLogin' => 'Tài khoản của bạn đã bị khóa!']);
+            }
            Auth::loginUsingId($userCheck->id);
            return redirect()->route('user.index');
         }

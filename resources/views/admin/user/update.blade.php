@@ -137,7 +137,7 @@
                                         <div class="d-flex align-items-start flex-column">
                                             <label>Avatar(old) </label>
                                             <img style="width: 200px; height: 200px; object-fit: cover; "
-                                                src="{{ asset($userModel->avatar) }}" alt="Lỗi!"
+                                                src="{{ $userModel->getAvatar() }}" alt="Lỗi!"
                                                 class="rounded-circle  img-thumbnail preview-img" />
                                         </div>
                                     </div>
@@ -191,12 +191,32 @@
 @push('script')
 <script>
     getAddress({{ $userModel->idCity ?? -1 }}, {{ $userModel->idDistrict ?? -1 }}, {{ $userModel->idWard ?? -1 }});
-    preview('preview')
 </script>
 @if (Session::has('message'))
-<div class="alert alert-info">{{ Session::get('message') }}</div>
+
 <script>
     toastMessageSuccess("{{ Session::get('message') }}")
 </script>
+@endif
+@if ($errors->any())
+    
+@foreach ($errors->all() as $error)
+<script>
+$(function() {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000
+      });
+  
+      toastr.error('{{$error}}')
+  
+      
+      
+    });
+  </script>
+
+  @endforeach
 @endif
 @endpush
