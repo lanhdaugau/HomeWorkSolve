@@ -94,7 +94,7 @@
                                     <div class="card card-plain">
 
                                         <div class="card-image">
-                                            <a href="{{ route('post.detail', $post->id) }}">
+                                            <a href="{{ route('post.detail', $post->slug) }}">
                                                 <img src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
                                                     alt="Rounded Image" class="img-rounded img-responsive"
                                                     style="height: 155px;width:255px">
