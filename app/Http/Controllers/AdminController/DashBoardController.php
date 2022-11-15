@@ -19,10 +19,12 @@ class DashBoardController extends Controller
      */
     public function index($idUserContact=null)
     {
-        
+        $userContact=null;
         $contenLast=ContactContent::whereNot('idAuthur',1)->orderBy('created_at','DESC')->first();
+        if($contenLast){
+            $userContact= Contact::where('idUsers',$contenLast->idAuthur)->first(); 
+        }
         
-        $userContact= Contact::where('idUsers',$contenLast->idAuthur)->first(); 
         
         
         if($idUserContact){
@@ -38,12 +40,7 @@ class DashBoardController extends Controller
                 );
            }
                 
-            
-            // $userContact->update(
-            //     [
-            //         'seen'=>1
-            //     ]
-            //     );
+
         }
         
         $contacts= Contact::orderBy('id','DESC')->get();

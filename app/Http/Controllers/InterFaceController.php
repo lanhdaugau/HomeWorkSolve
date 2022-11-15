@@ -2,36 +2,30 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Inbox;
 use App\Models\Post;
 use App\Models\React;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
 class InterFaceController extends Controller
 {
-  public function __construct()
+  public function index(Request $request)
   {
     
-  }
-  public function index()
-  {
-    $search=request('searchPost');
-   
+    $search=$request->get('searchPost');
+    
     $posts = Post::where('content','like', '%' . $search . '%')
     ->where('caption','like', '%' . $search . '%')
     ->where('isActive',1)
     ->orderBy('id','DESC')->paginate(3);
 
     return view('users.index',['posts' => $posts]);
-   
-   
-
+ 
 
   }
- 
   public function search()
   {
 
@@ -51,12 +45,12 @@ class InterFaceController extends Controller
 
       ]);
       
-  } 
+  }
   public function getUserSearch()
   {
     $user=User::whereHas('infoLogin',function($query){
       $query->where('role',1);
-    })->get();  
+    })->get();
     
     return DataTables::of($user)
       
@@ -82,7 +76,5 @@ class InterFaceController extends Controller
 
     return view('users.user.profile', ['user' => $user, 'posts' => $posts, 'reacts' => $react]);
   }
-  public function contact(){
-    return view('users.contact');
-  }
+  
 }

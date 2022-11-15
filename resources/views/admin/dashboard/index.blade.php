@@ -257,17 +257,20 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <form action="{{ route('dashboard.send', $userContact->id) }}" method="POST">
-                                    @csrf
-                                    <div class="input-group">
+                              @if ($userContact)
+                              <form action="{{ route('dashboard.send', $userContact->id) }}" method="POST">
+                                @csrf
+                                <div class="input-group">
 
-                                        <input type="text" name="content" placeholder="Nhập tin nhắn..."
-                                            class="form-control">
-                                        <span class="input-group-append">
-                                            <button type="submit" class="btn btn-primary">Gửi</button>
-                                        </span>
-                                    </div>
-                                </form>
+                                    <input type="text" name="content" placeholder="Nhập tin nhắn..."
+                                        class="form-control">
+                                    <span class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Gửi</button>
+                                    </span>
+                                </div>
+                            </form>
+                              @endif
+                                
                             </div>
                             <!-- /.card-footer-->
                         </div>

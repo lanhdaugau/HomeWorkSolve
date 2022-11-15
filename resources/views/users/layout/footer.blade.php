@@ -27,7 +27,7 @@
                                 </li>
                                 
                                 <li>
-                                    <a href="{{ route('', ['id'=>1]) }}">
+                                    <a href="">
                                         Hỗ trợ
                                     </a>
                                 </li>

@@ -161,5 +161,5 @@
             ]
         })
     </script>
-    {!! NoCaptcha::renderJs() !!}
+    {{-- {!! NoCaptcha::renderJs() !!} --}}
 @endpush
