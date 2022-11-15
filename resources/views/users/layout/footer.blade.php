@@ -21,89 +21,23 @@
                         <div class="links">
                             <ul class="uppercase-links stacked-links">
                                 <li>
-                                    <a href="#paper-kit">
-                                        Home
+                                    <a href="{{ route('user.index') }}">
+                                        Trang chủ
                                     </a>
                                 </li>
+                                
                                 <li>
-                                    <a href="#paper-kit">
-                                        Discover
+                                    <a href="{{ route('', ['id'=>1]) }}">
+                                        Hỗ trợ
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#paper-kit">
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#paper-kit">
-                                        Live Support
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#paper-kit">
-                                        Money Back
-                                    </a>
-                                </li>
+                               
                             </ul>
 
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3 col-6">
-                        <div class="links">
-                            <ul class="uppercase-links stacked-links">
-                                <li>
-                                    <a href="#paper-kit">
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#paper-kit">
-                                        We're Hiring
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#paper-kit">
-                                        About Us
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-6">
-                        <div class="links">
-                            <ul class="uppercase-links stacked-links">
-                                <li>
-                                    <a href="#paper-kit">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#paper-kit">
-                                        How it works
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#paper-kit">
-                                        Testimonials
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-6">
-                        <div class="links">
-                            <ul class="stacked-links">
-                                <li>
-                                    <h4>13.723<br> <small>accounts</small></h4>
-                                </li>
-                                <li>
-                                    <h4>55.234<br> <small>downloads</small></h4>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
+                   
+                   
                 </div>
                 <hr>
                 <div class="copyright">

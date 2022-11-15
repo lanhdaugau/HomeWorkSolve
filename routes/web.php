@@ -92,7 +92,7 @@ Route::get('/post/publish/{idPost}', [PostController::class, 'publish'])->name('
 Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 
 //user
-// <<<<<<< HEAD
+
 Route::get('/',[InterFaceController::class,'index'])->name('user.index');
 Route::get('/search',[InterFaceController::class,'search'])->name('user.search');
 Route::get('/api/name',[InterFaceController::class,'apiName'])->name('apiname');

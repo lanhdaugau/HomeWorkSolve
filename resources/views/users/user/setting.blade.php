@@ -17,7 +17,7 @@
                 <div class="row">
                    
                     <div class="col-md-6 ml-auto mr-auto">
-                        <form class="settings-form" method="POST" action="{{route('user.setting')}}" enctype="multipart/form-data">
+                        <form class="settings-form" id="form-1" method="POST" action="{{route('user.setting')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="profile-picture">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -48,6 +48,9 @@
 
 
                             </div>
+                            @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="text" class="form-control border-input" disabled
@@ -123,6 +126,7 @@
     </div>
 @endsection
 @push('js')
+
     <script>
         getAddress({{ $user->idCity ?? -1}},{{$user->idDistrict ?? -1}},{{ $user->idWard ?? -1}});
     </script>

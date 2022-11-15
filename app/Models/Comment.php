@@ -10,7 +10,7 @@ class Comment extends Model
 {
     use HasFactory;
     protected $table = 'comment';
-    protected $fillable = ['content', 'idPost', 'idUsers', 'isActive','parent_id'];
+    protected $fillable = ['content', 'idPost', 'idUsers','parent_id'];
     public function getUser()
     {
         return $this->hasOne(User::class, 'id', 'idUsers');

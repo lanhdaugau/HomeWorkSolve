@@ -16,7 +16,6 @@ return new class extends Migration
         
         Schema::create('post', function(Blueprint $table){
             $table->increments('id');
-            $table->boolean('isSolve')->default(0);
             $table->string('caption');
             $table->string('content');
             $table->unsignedInteger('idUsers');

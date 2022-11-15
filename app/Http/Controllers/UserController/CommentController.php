@@ -73,7 +73,7 @@ class CommentController extends Controller
     public function reply(Request $request)
     {
 
-        $request->mergeIfMissing(['idUsers' => Auth::user()->idUsers, 'isActive' => 1]);
+        $request->mergeIfMissing(['idUsers' => Auth::user()->idUsers]);
         if ($comment = Comment::create(
             $request->validate(
                 [

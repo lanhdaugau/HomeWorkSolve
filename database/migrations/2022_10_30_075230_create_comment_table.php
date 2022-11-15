@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('comment', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
-            $table->boolean('isActive');
             $table->unsignedInteger('idUsers');
             $table->unsignedInteger('idPost');
             $table->unsignedInteger('parent_id')->nullable();

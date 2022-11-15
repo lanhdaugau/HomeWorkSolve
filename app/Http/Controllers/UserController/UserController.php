@@ -47,7 +47,14 @@ class UserController extends Controller
     }
     public function update(Request $request)
     {   
-        
+        $request->validate(
+            [
+                'name'=>'required'
+            ],
+            [
+                'required'=>'Trường này không được bỏ trống'
+            ]
+            );
        
         $user = User::find(Auth::user()->idUsers);
        
