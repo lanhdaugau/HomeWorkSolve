@@ -62,17 +62,22 @@ class RegisterController extends Controller
 
     public function active($token)
     {
+        
         $user = User::where('activeToken', $token)->first();
-        $user->update(
-            [
-                'name'=>'User'.$user->id
-            ]
-        );
-        $userLogin = Login::where('idUsers',$user->id)->first();
-        $userLogin->update(['isActive' => 1]);
-        if(Auth::loginUsingId($userLogin->id)){
-            return redirect()->route('user.index');
+        if($user){
+            $user->update(
+                [
+                    'name'=>'User'.$user->id
+                ]
+            );
+            $userLogin = Login::where('idUsers',$user->id)->first();
+            $userLogin->update(['isActive' => 1]);
+            if(Auth::loginUsingId($userLogin->id)){
+                return redirect()->route('user.index');
+            }
         }
+        return view('errors.404');
+        
     }
   
 }

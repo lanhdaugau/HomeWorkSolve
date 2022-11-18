@@ -27,19 +27,26 @@ class UpdateRequest extends FormRequest
 
         return [
             'name' => 'required|min:3|max:250',
-            'gender' => 'required',
+            'gender' => '',
             'password' => '',
             'birthday' => 'required|date',
             'avatar' => 'image',
-            'idCity' => 'required',
-            'idDistrict' => 'required',
-            'idWard' => 'required',
+            'idCity' => '',
+            'idDistrict' => '',
+            'idWard' => '',
             'isActive' => ''
         ];
     }
 
     public function prepareForValidation()
     {
+        if(!$this->idCity)
+        {
+            $this->merge([
+                'idDistrict'=>null,
+                'idWard'=>null
+            ]);
+        }
         if (!$this->filled('isActive')) {
             $this->merge([
                 'isActive' => 0

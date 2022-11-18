@@ -3,66 +3,7 @@
     Đăng nhập
 @endsection
 @push('css')
-    <style>
-        .form-group {
-            display: flex;
-            margin-bottom: 16px;
-            flex-direction: column;
-        }
-
-        .form-label,
-        .form-message {
-            text-align: left;
-        }
-
-        .form-label {
-            font-weight: 700;
-            padding-bottom: 6px;
-            line-height: 1.8rem;
-            font-size: 1.4rem;
-        }
-
-        .form-control {
-            height: 40px;
-            padding: 8px 12px;
-            border: 1px solid #b3b3b3;
-            border-radius: 3px;
-            outline: none;
-            font-size: 14px
-        }
-
-        .form-control:hover {
-            border-color: #1dbfaf;
-        }
-
-        .form-group.invalid .form-control {
-            border-color: #f33a58;
-        }
-
-        .form-group.invalid .form-message {
-            color: #f33a58;
-        }
-
-        .form-message {
-            font-size: 1.2rem;
-            line-height: 1.6rem;
-            padding: 4px 0 0;
-        }
-
-        .form-submit {
-            outline: none;
-            background-color: #1dbfaf;
-            margin-top: 12px;
-            padding: 12px 16px;
-            font-weight: 600;
-            color: #fff;
-            border: none;
-            width: 100%;
-            font-size: 14px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('/css')}}/invalid.css">
 @endpush
 @section('contents')
     <div class="wrapper">
@@ -161,5 +102,5 @@
             ]
         })
     </script>
-    {{-- {!! NoCaptcha::renderJs() !!} --}}
+    {!! NoCaptcha::renderJs() !!}
 @endpush

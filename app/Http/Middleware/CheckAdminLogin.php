@@ -24,7 +24,7 @@ class CheckAdminLogin
         }
         else{
             
-            return redirect()->route('admin.login')->withErrors(['errorLogin'=>'Tài khoản hoặc mật khẩu không chính xác']);
+            return redirect()->route('admin.login');
         }
     }
 }

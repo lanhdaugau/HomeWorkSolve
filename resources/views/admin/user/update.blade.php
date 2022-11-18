@@ -144,10 +144,13 @@
                                     @endif
                                     <div id="preview-image-new"></div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <textarea class="form-control" id="address" name="address" rows="3"
-                                        placeholder="Enter address">{{ $userModel->address }}</textarea>
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">Địa chỉ</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputEmail"
+                                            placeholder="Địa chỉ" name="address"
+                                            value="{{ $userModel->address }}">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -190,8 +193,13 @@
 @endsection
 @push('script')
 <script>
-    getAddress({{ $userModel->idCity ?? -1 }}, {{ $userModel->idDistrict ?? -1 }}, {{ $userModel->idWard ?? -1 }});
+     getAddress({{ $userModel->idCity ?? -1}},{{$userModel->idDistrict ?? -1}},{{ $userModel->idWard ?? -1}});
+        
+       
 </script>
+<script>
+        
+    </script>
 @if (Session::has('message'))
 
 <script>

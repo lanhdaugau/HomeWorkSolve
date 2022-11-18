@@ -221,7 +221,7 @@
                                                     <input type="text" class="form-control" id="inputEmail"
                                                         placeholder="Địa chỉ" name="address"
                                                         value="{{ $userModel->address }}">
-                                                </div>
+                                                </div>  
                                             </div>
                                             <div class="form-group d-flex justify-content-between">
                                                 <div style="width: 48%">
@@ -268,10 +268,10 @@
 @endsection
 @push('script')
     <script>
-        getFullAddress('address', '{{ $userModel->address }}', {{ $userModel->idWard }}, {{ $userModel->idDistrict }},
-            {{ $userModel->idCity }});
         getAddress({{ $userModel->idCity ?? -1 }}, {{ $userModel->idDistrict ?? -1 }}, {{ $userModel->idWard ?? -1 }});
-    </script>
+
+        
+        </script>  
     @if (Session::has('message'))
         
         <script>

@@ -58,7 +58,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.profileadmin') }}" class="nav-link {{ ($title == '') ? 'active' : ''}}">
+          <a href="{{ route('admin.profileadmin') }}" class="nav-link {{ ($title == 'Setting') ? 'active' : ''}}">
             
             <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
             <p>Cài đặt</p>

@@ -74,7 +74,7 @@
                                                     <div class="form-group">
                                                         <label for="images">Thêm ảnh</label>
                                                         <input type="file" name="images[]" id="images" multiple
-                                                            class="form-control" required>
+                                                            class="form-control">
                                                     </div>
 
                                                     <div class="form-group">

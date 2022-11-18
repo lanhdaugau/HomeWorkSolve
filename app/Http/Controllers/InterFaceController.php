@@ -49,7 +49,7 @@ class InterFaceController extends Controller
   public function getUserSearch()
   {
     $user=User::whereHas('infoLogin',function($query){
-      $query->where('role',1);
+      $query->where('role',1)->where('isActive',1);
     })->get();
     
     return DataTables::of($user)

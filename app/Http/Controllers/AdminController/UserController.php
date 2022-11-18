@@ -90,7 +90,7 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->avatar;
             $nameAvatar = $avatar->getClientOriginalName();
-            $dirFolder = 'uploads/avatar/user/';
+            $dirFolder = 'storage/users-avatar';
             $newAvatar = $dirFolder . time() . '-' . $nameAvatar;
             $dataUser =  $request->except(['email', 'phone', 'isActive', 'password']);
             $dataUser['avatar'] = $newAvatar;

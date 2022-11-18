@@ -4,9 +4,13 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController\ContactAdminController;
+use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\ContactContent;
+use App\Models\Post;
+use App\Models\React;
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,10 +46,13 @@ class DashBoardController extends Controller
                 
 
         }
-        
+        $posts= Post::all();
+        $users=User::all();
+        $reacts=React::all();
+        $comments=Comment::all();
         $contacts= Contact::orderBy('id','DESC')->get();
         $report= Report::orderBy('id','DESC')->get();
-        return view('admin.dashboard.index',['contacts'=>$contacts,'userContact'=>$userContact,'reports'=>$report]);
+        return view('admin.dashboard.index',['contacts'=>$contacts,'userContact'=>$userContact,'reports'=>$report,'posts'=>$posts,'users'=>$users,'reacts'=>$reacts,'comments'=>$comments]);
     }
     public function send($idUserContact,Request $request){
        
