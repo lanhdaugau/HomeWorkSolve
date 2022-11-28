@@ -11,16 +11,19 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
     public function index()
     {
+
         return view('users.login.login');
     }
     public function login(Request $request)
     {
+        
         $request->validate(
             [
                 'email' => 'required|email',
@@ -42,7 +45,14 @@ class LoginController extends Controller
             if (Auth::user()->isActive != 1) {
                 return redirect()->back()->withErrors(['errorLogin' => 'Tài khoản của bạn đã bị khóa!']);
             }
-            return redirect()->route('user.index');
+            else{
+                if($request->urlRedirect)
+                {
+                    return redirect($request->urlRedirect);
+                }
+                return redirect()->route('user.index');
+            }
+            
         }
         return redirect()->back()->withErrors(['errorLogin' => 'Email hoặc mật khẩu không chính xác!']);
     }
@@ -78,17 +88,16 @@ class LoginController extends Controller
         }
     }
     public function resetPass($token)
-    {   
-        
-        if(User::where('activeToken',$token)->first()){
+    {
+
+        if (User::where('activeToken', $token)->first()) {
             return view('users.login.reset', ['token' => $token]);
         }
         return view('errors.404');
-        
     }
     public function confirm(ResetPassWordRequest $request, $token)
     {
-        
+
         $user = User::where('activeToken', $token)->first();
         $userLogin = Login::where('idUsers', $user->id)->first();
 
@@ -107,47 +116,45 @@ class LoginController extends Controller
         return redirect()->route('user.index');
     }
     public function callBack($provider)
-    {   
-        
-        $user= Socialite::driver($provider)->user();
-       
-        $userCheck=Login::where('email',$user->email)->first();
-        if(!empty($userCheck)){
-            if($userCheck->isActive !=1){
+    {
+
+        $user = Socialite::driver($provider)->user();
+
+        $userCheck = Login::where('email', $user->email)->first();
+        if (!empty($userCheck)) {
+            if ($userCheck->isActive != 1) {
                 return redirect()->route('login')->withErrors(['errorLogin' => 'Tài khoản của bạn đã bị khóa!']);
             }
-           Auth::loginUsingId($userCheck->id);
-           return redirect()->route('user.index');
+            Auth::loginUsingId($userCheck->id);
+            return redirect()->route('user.index');
         }
-        $userNew= new User();
+        $userNew = new User();
         $data = [
-            'name'=>$user['name'],
-            'avatar'=>$user->avatar
+            'name' => $user['name'],
+            'avatar' => $user->avatar
         ];
-        
-        
-        $userNew= $userNew->create($data);
 
-        
-           
-            
-            $login=Login::create(
-                [
-                    'email' => $user->email,
-                    'password' => bcrypt($user['email']),
-                    'idUsers' => $userNew->id,
-                ]
-            );
-            if($login){
-                Auth::loginUsingId($login->id);
-                return redirect()->route('user.index');
-            }
-        
 
+        $userNew = $userNew->create($data);
+
+
+
+
+        $login = Login::create(
+            [
+                'email' => $user->email,
+                'password' => bcrypt($user['email']),
+                'idUsers' => $userNew->id,
+            ]
+        );
+        if ($login) {
+            Auth::loginUsingId($login->id);
+            return redirect()->route('user.index');
         }
+    }
     public function redirect($provider)
     {
-        
+
         return Socialite::driver($provider)->redirect();
     }
 }

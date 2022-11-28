@@ -67,7 +67,7 @@
                                     {!! NoCaptcha::display() !!}
                                 </div>
 
-
+                                <input type="hidden" value="{{session('urlRedirect')}}" name="urlRedirect">
 
                                 <button class="btn btn-block btn-round">Đăng nhập</button>
                             </form>

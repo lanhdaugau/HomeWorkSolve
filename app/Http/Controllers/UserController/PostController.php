@@ -79,7 +79,10 @@ class PostController extends Controller
                 ])
 
                 ->first();
-
+            if($post==null)
+            {
+                return view('errors.404');
+            }
             $user = User::find(Auth::user()->idUsers);
 
 
@@ -130,7 +133,9 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-
+        
+        $notifications = Notification::where('data->post->id',$id)->get()->pluck('id');
+        Notification::destroy($notifications);
         $image = ImagePost::where('idPost', $id)->pluck('id');
         $image_path = ImagePost::where('idPost', $id)->pluck('path_image');
         foreach ($image_path as $item) {
@@ -142,6 +147,7 @@ class PostController extends Controller
         NumberOfLike::destroy($like);
         ImagePost::destroy($image);
         Comment::destroy($comment);
+        
         Post::destroy($id);
 
         return response()->json([

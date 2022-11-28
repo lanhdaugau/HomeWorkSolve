@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class CheckUserLogin
 {
@@ -22,7 +23,8 @@ class CheckUserLogin
             return $next($request);
         }
         else{
-            return redirect()->route('login')->withError('Vui lòng đăng nhập để sử dụng dịch vụ!');
+            
+            return redirect()->route('login')->with('urlRedirect',URL::current());
         }
       
     }

@@ -147,8 +147,11 @@ Route::middleware('CheckUserLogin')->group(function () {
 
 //login
 Route::group(['controller' =>LoginController::class], function () {
+    // Route::get('/login/{url}', 'index')->name('login');
     Route::get('/login', 'index')->name('login');
+    // Route::get('/login/{url}','login')->
     Route::post('/login', 'login')->name('login.login');
+    
     Route::get('/logout', 'logout')->name('login.logout');
     Route::get('/forgot', 'forgot')->name('forgot');
     Route::post('/forgot', 'checkMail')->name('checkMail');

@@ -207,6 +207,7 @@
             var idComment = this.value;
             let url = `{{ route('comment.destroy', ':idComment') }}`;
             url = url.replace(':idComment', idComment);
+            console.log(url);
             $(document).on('click', '#okDeleteComment', function() {
 
                 $.ajax({

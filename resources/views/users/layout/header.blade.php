@@ -25,7 +25,7 @@
                <a class="dropdown-item" href="{{route('user.search')}}"><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp; Tìm kiếm</a>
                <a class="dropdown-item" href="{{route('chatify')}}"><i class="nc-icon nc-chat-33"></i>&nbsp; Trò chuyện</a>
                <a class="dropdown-item" href="{{ route('searchPost') }}"><i class="nc-icon nc-zoom-split"></i>&nbsp; Tìm kiếm bài viết</a>
-               <a class="dropdown-item" href="{{ route('contact.contact') }}"><i class="nc-icon nc-zoom-split"></i>&nbsp; Liên hệ với chung tôi</a>
+               <a class="dropdown-item" href="{{ route('contact.contact') }}"><i class="fa fa-flag" aria-hidden="true"></i>&nbsp; Liên hệ với chung tôi</a>
             </ul>
          </li>
          <li class="nav-item dropdown">

@@ -62,7 +62,8 @@ class CommentController extends Controller
     public function destroy($idComment)
     {
 
-
+        $notifications = Notification::where('data->comment->id', $idComment)->get()->pluck('id');
+        Notification::destroy($notifications);
         $comment = Comment::find($idComment);
         if ($comment->delete()) {
             return response()->json([
@@ -90,12 +91,12 @@ class CommentController extends Controller
         )) {
 
             $post = Post::find($request->idPost);
-            $comment_parent=Comment::find($comment->parent_id);
-            
-            if($comment->getUser->id != $comment_parent->getUser->id){
+            $comment_parent = Comment::find($comment->parent_id);
+
+            if ($comment->getUser->id != $comment_parent->getUser->id) {
                 $comment_parent->getUser->notify(new ReplyToUser($comment_parent, $post));
             }
-            
+
             if ($post->getUser->id != Auth::user()->idUsers) {
                 $post->getUser->notify(new RepliedToThread($post));
             }
@@ -105,13 +106,13 @@ class CommentController extends Controller
     }
     public function rating(RatingRequest $request)
     {
-        
-        
+
+
         $request->mergeIfMissing(['idAuthur' => Auth::user()->idUsers]);
         if (React::create(
             $request->all()
         )) {
-            $userIsRating=User::find($request->idUsers);
+            $userIsRating = User::find($request->idUsers);
             $userIsRating->notify(new RatingToUser());
             return redirect()->back();
         }
@@ -125,8 +126,6 @@ class CommentController extends Controller
             ->where('idComment', $idComment)
             ->first();
         $notifications = Notification::where('type', 'App\Notifications\LikeToPost')->get();
-
-
         if ($like != null) {
             foreach ($notifications as $notification) {
                 if (json_decode($notification->data)->like->id === $like->id) {
