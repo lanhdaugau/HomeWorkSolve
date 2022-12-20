@@ -11,7 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\URL;
+
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -23,36 +23,28 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
-        
         $request->validate(
             [
                 'email' => 'required|email',
                 'password' => 'required',
                 'g-recaptcha-response' => 'captcha'
-
             ],
             [
                 'required' => 'Trường này không được bỏ trống !',
                 'email' => 'Không đúng định dạng email',
                 'captcha' => 'Vui lòng xác nhận Capcha',
-
-
             ]
         );
-
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
 
             if (Auth::user()->isActive != 1) {
                 return redirect()->back()->withErrors(['errorLogin' => 'Tài khoản của bạn đã bị khóa!']);
-            }
-            else{
-                if($request->urlRedirect)
-                {
+            } else {
+                if ($request->urlRedirect) {
                     return redirect($request->urlRedirect);
                 }
                 return redirect()->route('user.index');
             }
-            
         }
         return redirect()->back()->withErrors(['errorLogin' => 'Email hoặc mật khẩu không chính xác!']);
     }
@@ -117,9 +109,7 @@ class LoginController extends Controller
     }
     public function callBack($provider)
     {
-
         $user = Socialite::driver($provider)->user();
-
         $userCheck = Login::where('email', $user->email)->first();
         if (!empty($userCheck)) {
             if ($userCheck->isActive != 1) {
@@ -133,13 +123,7 @@ class LoginController extends Controller
             'name' => $user['name'],
             'avatar' => $user->avatar
         ];
-
-
         $userNew = $userNew->create($data);
-
-
-
-
         $login = Login::create(
             [
                 'email' => $user->email,

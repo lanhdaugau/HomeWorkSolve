@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Auth;
 class RepliedToThread extends Notification
 {
     use Queueable;
-    public $post;
+    public $post,$comment;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($post)
+    public function __construct($post,$comment)
     {
        $this->post=$post;
-       
+       $this->comment=$comment;
     }
 
     /**
@@ -47,6 +47,7 @@ class RepliedToThread extends Notification
             
             'post'=>$this->post ,
             'user'=>auth()->user()->getUser,
+            'comment'=>$this->comment
             
            
             

@@ -39,7 +39,7 @@
     @endif
    
     @yield('contents')
-    @if (!(Request::is('login','register','forgot','contact')) && (Route::currentRouteName() !='resetPass'))
+    @if (!(Request::is('login','register','forgot','contact','searchPost')) && (Route::currentRouteName() !='resetPass'))
     @include('users.layout.footer')
     @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

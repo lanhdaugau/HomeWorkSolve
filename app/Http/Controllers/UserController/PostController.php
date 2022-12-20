@@ -53,21 +53,15 @@ class PostController extends Controller
     }
     public function detail($slug, $idNotification = null)
     {
-
         if ($idNotification != null) {
-            
-           $notification= Notification::find($idNotification);
+            $notification= Notification::find($idNotification);
             if($notification){
                 $notification->update(
                     ['read_at' => now()]
                 );
             }
-           
-            
         }
-
-        
-            $post = Post::whereSlug($slug)
+        $post = Post::whereSlug($slug)
 
                 ->with([
                     'getUser',
@@ -84,9 +78,6 @@ class PostController extends Controller
                 return view('errors.404');
             }
             $user = User::find(Auth::user()->idUsers);
-
-
-
             return view('users.post.detail', ['post' => $post, 'user' => $user]);
        
     }

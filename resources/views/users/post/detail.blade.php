@@ -77,6 +77,7 @@
                                 @endif
                             
                         </div>
+                        {{-- {{dd(route('comment.destroy',['idComment'=>'32','content'=>'hello']) )}} --}}
                         <div class="col-md-8 ml-auto mr-auto">
                             <a href="javascrip: void(0);">
                                 @foreach ($post->getImagePost as $item)
@@ -91,7 +92,8 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="comments media-area">
-                                            <h3 class="text-center">Comments</h3>
+                                            <h3 class="text-center">Tất cả bình luận</h3>
+                                            <br>
                                             @include('users.post.reply', ['comments' => $post->comments])
                                         </div>
                                         <div class="media">
@@ -204,6 +206,7 @@
 
 
         $(document).on('click', '#confirm', function() {
+            
             var idComment = this.value;
             let url = `{{ route('comment.destroy', ':idComment') }}`;
             url = url.replace(':idComment', idComment);
@@ -231,6 +234,7 @@
             });
 
         });
+        
 
         $(document).on('click','#like',function(){
             var idComment = this.value;
@@ -256,7 +260,33 @@
                     $('#numberoflike-'+idComment).text(num);
                 }
             })  
-        })
+        });
+        
+        $(document).on('click','#save-comment',function(){
+           
+            var content=$('#content-edit').val();
+           
+            var idComment=this.value;
+          
+            let url='http://homeworksolve.test/comment/update/' + idComment + '/'+ content;
+  
+            $.ajax(
+                {
+                    url:url,
+                    method:'POST',
+                    data: {
+                        _method: 'put'
+                    },
+                    typeData: 'json'
+                }).done(function(response){
+                    if(response.statusCode==200)
+                    {
+                        $('.modal').modal('hide');
+                        $('#comment-content-'+idComment).text(content);
+                    }
+                });
+
+        });
     </script>
      @if (Session::has('message'))
   

@@ -15,7 +15,7 @@
                 <div class="">
                     <h6 class="text-muted" style="font-size: x-small">{{ $comment->created_at->diffForHumans() }}</h6>
                 </div>
-                <p>{{ $comment->content }}
+                <p id="comment-content-{{$comment->id}}">{{ $comment->content }}
                 </p>
                 <div class="media-footer">
                     {{-- <a href="{{ route('like', $comment->id) }}"  > --}}
@@ -32,7 +32,7 @@
                     </button>
                 </div>
                 <button type="button" data-toggle="reply-form" data-target="comment-{{ $comment->id }}-reply-form"
-                    class="btn btn-info btn-link "><i class="fa fa-reply"></i> Reply</button>
+                    class="btn btn-info btn-link "><i class="fa fa-reply"></i> Trả lời</button>
                 <form action="{{ route('comment.reply') }}" method="POST" class="reply-form d-none"
                     id="comment-{{ $comment->id }}-reply-form" style="padding: 10px 0 30px 0">
                     @csrf
@@ -71,10 +71,10 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('comment.update', $comment->id) }} " method="POST">
+                                        
                                             @csrf
                                             <input type="hidden" value="{{ $post->id }}" name="idPost">
-                                            <textarea class="form-control border-input" placeholder="Bình luận đi.." rows="6" name="content">{{ $comment->content }}</textarea>
+                                            <textarea class="form-control border-input" placeholder="Bình luận đi.." rows="6" name="content" id="content-edit">{{ $comment->content }}</textarea>
                                             @error('content')
                                                 <div class="alert alert-danger">
                                                     {{ $message }}
@@ -82,10 +82,10 @@
                                             @enderror
                                             <button type="button" class="btn btn-secondary" style="margin-top: 10px"
                                                 data-dismiss="modal">Đóng</button>
-                                            <button type="submit" style="margin-top: 10px" class="btn btn-primary">Lưu
+                                            <button type="submit" id="save-comment" value="{{$comment->id}}" style="margin-top: 10px" class="btn btn-primary">Lưu
                                                 thay
                                                 đổi</button>
-                                        </form>
+                                        
                                     </div>
                                     <div class="modal-footer">
                                     </div>

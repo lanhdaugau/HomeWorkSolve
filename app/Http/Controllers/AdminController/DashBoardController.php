@@ -21,43 +21,41 @@ class DashBoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($idUserContact=null)
+    public function index($idUserContact = null)
     {
-        $userContact=null;
-        $contenLast=ContactContent::whereNot('idAuthur',1)->orderBy('created_at','DESC')->first();
-        if($contenLast){
-            $userContact= Contact::where('idUsers',$contenLast->idAuthur)->first(); 
+        $userContact = null;
+        $contenLast = ContactContent::whereNot('idAuthur', 1)->orderBy('created_at', 'DESC')->first();
+        if ($contenLast) {
+            $userContact = Contact::where('idUsers', $contenLast->idAuthur)->first();
         }
-        
-        
-        
-        if($idUserContact){
-            $userContact=Contact::find($idUserContact);
-           $contentInbox= ContactContent::where('idAuthur',$userContact->idUsers)->get();
-           foreach($contentInbox as $content)
-           {
-           
-            $content->update(
-                [
-                    'seen'=>true
-                ]
-                );
-           }
-                
 
+
+
+        if ($idUserContact) {
+            $userContact = Contact::find($idUserContact);
+            $contentInbox = ContactContent::where('idAuthur', $userContact->idUsers)->get();
+            foreach ($contentInbox as $content) {
+
+                $content->update(
+                    [
+                        'seen' => true
+                    ]
+                );
+            }
         }
-        $posts= Post::all();
-        $users=User::all();
-        $reacts=React::all();
-        $comments=Comment::all();
-        $contacts= Contact::orderBy('id','DESC')->get();
-        $report= Report::orderBy('id','DESC')->get();
-        return view('admin.dashboard.index',['contacts'=>$contacts,'userContact'=>$userContact,'reports'=>$report,'posts'=>$posts,'users'=>$users,'reacts'=>$reacts,'comments'=>$comments]);
+        $posts = Post::all();
+        $users = User::all();
+        $reacts = React::all();
+        $comments = Comment::all();
+        $contacts = Contact::orderBy('id', 'DESC')->get();
+        $report = Report::orderBy('id', 'DESC')->get();
+        return view('admin.dashboard.index', ['contacts' => $contacts, 'userContact' => $userContact, 'reports' => $report, 'posts' => $posts, 'users' => $users, 'reacts' => $reacts, 'comments' => $comments]);
     }
-    public function send($idUserContact,Request $request){
-       
+    public function send($idUserContact, Request $request)
+    {
+
         $saveContent = new ContactAdminController();
-        $saveContent->saveMessage($request->content,$idUserContact);
+        $saveContent->saveMessage($request->content, $idUserContact);
         return back();
     }
     /**

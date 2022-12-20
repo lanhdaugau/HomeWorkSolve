@@ -125,7 +125,7 @@ Route::middleware('CheckUserLogin')->group(function () {
         Route::post('/comment',  'comment')->name('comment');
         Route::post('/rating',  'rating')->name('rating');
         Route::get('/like/{idComment}',  'like')->name('like');
-        Route::post('/update/{idComment}',  'update')->name('comment.update');
+        Route::put('comment/update/{idComment}/{content}','update')->name('comment.update');
         Route::delete('comment/destroy/{idComment}',  'destroy')->name('comment.destroy');
         Route::post('/reply',  'reply')->name('comment.reply');
     });

@@ -25,7 +25,7 @@ class CommentController extends Controller
         $request->mergeIfMissing(['idUsers' => Auth::user()->idUsers]);
         $request->mergeIfMissing(['isActive' => 1]);
 
-        if (Comment::create(
+        if ($comment=Comment::create(
             $request->validate(
                 [
                     'content' => 'required',
@@ -42,27 +42,34 @@ class CommentController extends Controller
             $post = Post::find($idPost);
 
             if ($post->getUser->id != Auth::user()->idUsers) {
-                $post->getUser->notify(new RepliedToThread($post));
+                $post->getUser->notify(new RepliedToThread($post,$comment));
             }
 
             return redirect()->back();
         }
     }
-    public function update($idComment, Request $request)
+    public function update($idComment, $content)
     {
+    
         $comment = Comment::find($idComment);
+     
         if ($comment->update(
             [
-                'content' => $request->content
+                'content' => $content
             ]
         )) {
-            return back();
+        
+            return response()->json([
+                'statusCode' => 200
+            ]);
         }
+        
     }
     public function destroy($idComment)
     {
-
+       
         $notifications = Notification::where('data->comment->id', $idComment)->get()->pluck('id');
+       
         Notification::destroy($notifications);
         $comment = Comment::find($idComment);
         if ($comment->delete()) {
@@ -98,7 +105,7 @@ class CommentController extends Controller
             }
 
             if ($post->getUser->id != Auth::user()->idUsers) {
-                $post->getUser->notify(new RepliedToThread($post));
+                $post->getUser->notify(new RepliedToThread($post,$comment));
             }
 
             return back();
@@ -120,8 +127,6 @@ class CommentController extends Controller
     public function like($idComment)
     {
         $comment = Comment::find($idComment);
-
-
         $like = NumberOfLike::where('idUsers', Auth::user()->idUsers)
             ->where('idComment', $idComment)
             ->first();
