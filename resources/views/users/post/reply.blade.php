@@ -12,6 +12,10 @@
                 <h5 class="media-heading">
                     {{ $comment->getUser->name ? $comment->getUser->name : 'User' . $comment->getUser->id }}
                 </h5>
+                <div class="star-rating"
+                        style="background-image: linear-gradient(to right,gold 0%,gold {{$user->getStar()}}%,transparent {{$user->getStar()}}%, transparent 100%);">
+                        <!-- Don't forget to add an accessible alternative! -->
+                </div>
                 <div class="">
                     <h6 class="text-muted" style="font-size: x-small">{{ $comment->created_at->diffForHumans() }}</h6>
                 </div>

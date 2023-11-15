@@ -7,10 +7,20 @@
         .d-none {
             display: none !important
         }
+
+        .star-rating::before {
+            content: "⭐⭐⭐⭐⭐";
+        }
+
+        .star-rating {
+            display: inline-block;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: rgba(0, 0, 0, 0.1);
+        }
     </style>
 @endpush
 @section('contents')
-
     <div class="wrapper">
         <div class="main">
             <div class="section section-white">
@@ -24,8 +34,7 @@
                     <div class="media">
                         <a class="pull-left" href="#paper-kit">
                             <div class="avatar big-avatar">
-                                <img class="media-object" alt="64x64"
-                                    src="{{ $post->getUser->getAvatar() }}">
+                                <img class="media-object" alt="64x64" src="{{ $post->getUser->getAvatar() }}">
                             </div>
                         </a>
                         <div class="media-body" style="min-width: 670px">
@@ -35,7 +44,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
-                            @if(Gate::check('edit-post',$post) || Gate::check('admin-view'))
+                            @if (Gate::check('edit-post', $post) || Gate::check('admin-view'))
                                 <div class="text-center">
                                     <a class="label label-warning main-tag" href="{{ route('post.edit', $post->id) }}">Sửa
                                         bài
@@ -48,7 +57,9 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <br>Cảnh báo !</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel"> <i
+                                                            class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                                        <br>Cảnh báo !</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -58,7 +69,7 @@
                                                     <h6 style="color: red;text-align: center">
                                                         Bạn có chắc xóa bài viết này không?
                                                     </h6>
-                                                      
+
                                                 </div>
                                                 <div class="modal-footer" style="padding: 10px">
                                                     <button type="button" class="btn btn-secondary"
@@ -74,8 +85,8 @@
                                     </a>
                                     <h6 class="title-uppercase">{!! $post->content !!}</h6>
                                 </div>
-                                @endif
-                            
+                            @endif
+
                         </div>
                         {{-- {{dd(route('comment.destroy',['idComment'=>'32','content'=>'hello']) )}} --}}
                         <div class="col-md-8 ml-auto mr-auto">
@@ -99,8 +110,7 @@
                                         <div class="media">
                                             <a class="pull-left" href="#paper-kit">
                                                 <div class="avatar">
-                                                    <img class="media-object" alt="64x64"
-                                                        src="{{$user->getAvatar() }}">
+                                                    <img class="media-object" alt="64x64" src="{{ $user->getAvatar() }}">
                                                 </div>
                                             </a>
                                             <div class="media-body">
@@ -119,7 +129,7 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                            
+
                                         </div>
                                         <!-- end media -->
                                     </div>
@@ -185,9 +195,9 @@
                     }
                 })
             });
-          
 
-           
+
+
         });
         //reply
         document.addEventListener(
@@ -206,7 +216,7 @@
 
 
         $(document).on('click', '#confirm', function() {
-            
+
             var idComment = this.value;
             let url = `{{ route('comment.destroy', ':idComment') }}`;
             url = url.replace(':idComment', idComment);
@@ -222,7 +232,7 @@
                     typedata: 'json'
 
                 }).done(function(response) {
-                    
+
                     if (response.statusCode == 200) {
                         $('.modal').modal('hide');
                         $('.comment-' + idComment).css('display', 'none');
@@ -234,77 +244,70 @@
             });
 
         });
-        
 
-        $(document).on('click','#like',function(){
+
+        $(document).on('click', '#like', function() {
             var idComment = this.value;
-            let url=`{{route('like',':idComment') }}`;
+            let url = `{{ route('like', ':idComment') }}`;
             url = url.replace(':idComment', idComment);
-            $.ajax(
-                {
-                    url:url,
-                    method: 'GET',
-                    typeData: 'json'
+            $.ajax({
+                url: url,
+                method: 'GET',
+                typeData: 'json'
+            }).done(function(response) {
+
+                if (response.statusCode == 200) {
+
+                    $('.like-' + idComment).addClass('btn-danger');
+                    var num = parseInt($('#numberoflike-' + idComment).text()) + 1;
+                    $('#numberoflike-' + idComment).text(num);
+                } else {
+                    $('.like-' + idComment).removeClass('btn-danger');
+                    var num = parseInt($('#numberoflike-' + idComment).text()) - 1;
+                    $('#numberoflike-' + idComment).text(num);
                 }
-            ).done(function(response){
-                
-                if(response.statusCode == 200){
-                   
-                    $('.like-'+idComment).addClass('btn-danger');
-                    var num=parseInt($('#numberoflike-'+idComment).text())+1;
-                    $('#numberoflike-'+idComment).text(num);
-                }
-                else{
-                    $('.like-'+idComment).removeClass('btn-danger');
-                    var num=parseInt($('#numberoflike-'+idComment).text())-1;
-                    $('#numberoflike-'+idComment).text(num);
-                }
-            })  
+            })
         });
-        
-        $(document).on('click','#save-comment',function(){
-           
-            var content=$('#content-edit').val();
-           
-            var idComment=this.value;
-          
-            let url='http://homeworksolve.test/comment/update/' + idComment + '/'+ content;
-  
-            $.ajax(
-                {
-                    url:url,
-                    method:'POST',
-                    data: {
-                        _method: 'put'
-                    },
-                    typeData: 'json'
-                }).done(function(response){
-                    if(response.statusCode==200)
-                    {
-                        $('.modal').modal('hide');
-                        $('#comment-content-'+idComment).text(content);
-                    }
-                });
+
+        $(document).on('click', '#save-comment', function() {
+
+            var content = $('#content-edit').val();
+
+            var idComment = this.value;
+
+            let url = 'http://homeworksolve.test/comment/update/' + idComment + '/' + content;
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: {
+                    _method: 'put'
+                },
+                typeData: 'json'
+            }).done(function(response) {
+                if (response.statusCode == 200) {
+                    $('.modal').modal('hide');
+                    $('#comment-content-' + idComment).text(content);
+                }
+            });
 
         });
     </script>
-     @if (Session::has('message'))
-  
-    
-     <script>
-        $(function() {
-          var Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-          });
-      
-          toastr.success("{{ Session::get('message') }}")
-      
-          
-          
-        });
-      </script>
+    @if (Session::has('message'))
+        <script>
+            $(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                toastr.success("{{ Session::get('message') }}")
+
+
+
+            });
+        </script>
     @endif
 @endpush

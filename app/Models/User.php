@@ -80,5 +80,13 @@ class User extends Authenticatable
         
         return asset('storage/users-avatar').'/'.$this->avatar;
     }
+    public function getStar()
+    {
+        $ratings = $this->hasMany(React::class, 'idUsers', 'id')->get()->pluck('rating');
+        $num = $ratings->count(); 
+        $starSum = $ratings->sum(); 
+        $starAvg = $num > 0 ? $starSum / $num : 0; 
+        return $starAvg*100/5;
+    }
 
 }
