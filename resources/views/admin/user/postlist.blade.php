@@ -83,10 +83,10 @@
                                     
                                     
                                     <div class="image">
-                                        <a href="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}" data-toggle="lightbox" data-title="sample 9 - red">
+                                        <a href="{{ asset('storage/uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}" data-toggle="lightbox" data-title="sample 9 - red">
                                            
                                           
-                                        <img class="img-fluid mb-2" alt="red sample" src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}" alt="" style="width: 25vw;height: auto;">
+                                        <img class="img-fluid mb-2" alt="red sample" src="{{ asset('storage/uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}" alt="" style="width: 25vw;height: auto;">
                                     </a>
                                     </div>
                                     <br>

@@ -114,8 +114,3 @@
     <!-- /.content -->
 </div>
 @endsection
-@push('script')
-<script>
-    getFullAddress('address', '{{$userModel->address}}', {{$userModel->idWard}}, {{$userModel->idDistrict}}, {{$userModel->idCity}})
-</script>
-@endpush

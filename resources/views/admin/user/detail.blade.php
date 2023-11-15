@@ -162,7 +162,7 @@
 
                                                 </p>
                                                 <div class="image">
-                                                    <img src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
+                                                    <img src="{{ asset('storage/uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
                                                         alt="">
                                                 </div>
                                                 <br>

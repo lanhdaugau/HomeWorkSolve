@@ -124,7 +124,6 @@
                </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-               <div class="dropdown-header">Dropdown header</div>
                <a class="dropdown-item" href="{{ route('profile') }}">Tôi</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="{{ route('user.setting') }}">Cài đặt</a>

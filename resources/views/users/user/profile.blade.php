@@ -60,14 +60,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 ml-auto mr-auto text-center">
-                        <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based
-                            Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel
-                            with a solid groove structure. </p>
+                        <p>"Trong cuộc hành trình học tập, mỗi bước tiến nhỏ đều đóng vai trò quan trọng trong việc xây dựng nền tảng kiến thức vững chắc và mở ra cánh cửa của tri thức và cơ hội vô tận." </p>
                         <br>
                         @if (Auth::user()->idUsers==$user->id)
                             
                        
-                        <a  href="{{ route('user.setting') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</a>
+                        <a  href="{{ route('user.setting') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Cài đặt</a>
                         @endif
                     </div>
                 </div>
@@ -95,7 +93,7 @@
 
                                         <div class="card-image">
                                             <a href="{{ route('post.detail', $post->slug) }}">
-                                                <img src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
+                                                <img src="{{ asset('storage/uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}"
                                                     alt="Rounded Image" class="img-rounded img-responsive"
                                                     style="height: 155px;width:255px">
                                             </a>

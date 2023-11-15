@@ -72,7 +72,7 @@ class User extends Authenticatable
     public function getAvatar(){
         
         if($this->avatar==null){
-            return asset('storage/users-avatar/avatar.png');
+            return asset('avatar.png');
         }
         if(str_starts_with($this->avatar,'http')){
             return $this->avatar;

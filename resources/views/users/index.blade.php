@@ -22,18 +22,18 @@
                         <div class="row">
                             @foreach ($posts as $post)
                                 <div class="col-md-4" >
-                                    <div class="card card-blog" style="min-height: 575.92px">
+                                    <div class="card card-blog" style="min-height: 575.92px" onclick="window.open('{{ route('post.detail', $post->slug) }}')">
                                         <div class="card-image">
                                             <a href="#pablo">
                                                 <img style="min-width: 286.66px;min-height:300.98px;max-width: 286.66px;max-height:300.98px;"
                                                     class="img img-raised"
-                                                    src="{{ asset('uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}">
+                                                    src="{{ asset('storage/uploads/post/' . (empty($post->getImagePost()->first()->path_image) ? '' : $post->getImagePost()->first()->path_image)) }}">
                                             </a>
                                         </div>
                                         <div class="card-body">
                                             <h6 class="card-category text-info">Chủ đề</h6>
                                             <h5 class="card-title">
-                                                <a href="{{ route('post.detail', $post->slug) }}">{{ $post->caption }}</a>
+                                                <div>{{ $post->caption }}</div>
                                             </h5>
                                             <p class="card-description">
                                                 {!! strlen($post->content) > 40 ? trim(substr($post->content, 0, 12)) . '..' : $post->content !!}<br>

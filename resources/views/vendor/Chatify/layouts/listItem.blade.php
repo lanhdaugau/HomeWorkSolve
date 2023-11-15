@@ -10,8 +10,8 @@
             </td>
             {{-- center side --}}
             <td>
-                <p data-id="{{ Auth::user()->id }}" data-type="user">Saved Messages <span>You</span></p>
-                <span>Save messages secretly</span>
+                <p data-id="{{ Auth::user()->id }}" data-type="user">Tin nhắn đã lưu <span>Bạn</span></p>
+                <span>Lưu tin nhắn bí mật</span>
             </td>
         </tr>
     </table>
@@ -39,7 +39,7 @@
             {{-- Last Message user indicator --}}
             {!!
                 $lastMessage->from_id == Auth::user()->id
-                ? '<span class="lastMessageIndicator">You :</span>'
+                ? '<span class="lastMessageIndicator">Bạn :</span>'
                 : ''
             !!}
             {{-- Last message body --}}
@@ -50,7 +50,7 @@
                 : $lastMessage->body
             !!}
             @else
-            <span class="fas fa-file"></span> Attachment
+            <span class="fas fa-file"></span> Đính kèm
             @endif
         </span>
         {{-- New messages counter --}}

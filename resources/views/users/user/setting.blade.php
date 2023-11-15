@@ -17,7 +17,7 @@
                 <div class="row">
 
                     <div class="col-md-6 ml-auto mr-auto">
-                        <form class="settings-form" method="POST" action="{{ route('user.setting') }}"
+                        <form class="settings-form" method="POST" action="{{ route('user.settingUpdate') }}"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="profile-picture">

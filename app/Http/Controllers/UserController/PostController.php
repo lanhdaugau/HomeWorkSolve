@@ -39,7 +39,7 @@ class PostController extends Controller
 
             $name = 'ID-' . $post->id . '-' .  $image->getClientOriginalName();
             $newNameImage = $name . '.' . $extension;
-            $folderImage = 'uploads/post/';
+            $folderImage = 'storage/uploads/post/';
             if (ImagePost::create(
                 [
                     'idPost' => $post->id,
@@ -107,7 +107,7 @@ class PostController extends Controller
 
                 $name = 'ID-' . $post->id . '-' .  $image->getClientOriginalName();
                 $newNameImage = $name . '.' . $extension;
-                $folderImage = 'uploads/post/';
+                $folderImage = 'storage/uploads/post/';
                 if (ImagePost::create(
                     [
                         'idPost' => $post->id,
@@ -130,7 +130,7 @@ class PostController extends Controller
         $image = ImagePost::where('idPost', $id)->pluck('id');
         $image_path = ImagePost::where('idPost', $id)->pluck('path_image');
         foreach ($image_path as $item) {
-            unlink('uploads/post/' . $item);
+            unlink('storage/uploads/post/' . $item);
         }
         $comment = Comment::where('idPost', $id)->pluck('id');
 

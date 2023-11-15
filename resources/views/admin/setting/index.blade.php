@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Profile</h1>
+                        <h1>Trang cá nhân</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">User Profile</li>
+                            <li class="breadcrumb-item active">Thông tin admin</li>
                         </ol>
                     </div>
                 </div>
@@ -145,9 +145,7 @@
 @endsection
 @push('script')
 <script>
-    getFullAddress('address', '{{ $admin->address }}', {{ $admin->idWard }}, {{ $admin->idDistrict }},
-        {{ $admin->idCity }});
-    getAddress({{ $admin->idCity ?? -1 }}, {{ $admin->idDistrict ?? -1 }}, {{ $admin->idWard ?? -1 }});
+    getAddress({{ $user->idCity ?? -1 }}, {{ $user->idDistrict ?? -1 }}, {{ $user->idWard ?? -1 }});
 </script>
 @if (Session::has('message'))
 

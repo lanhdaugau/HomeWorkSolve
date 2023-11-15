@@ -25,7 +25,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = User::all();
+            $users = User::whereHas('infoLogin',function($query){
+                $query->where('role',1)->where('isActive',1);
+              })->get();
             return Datatables::of($users)
                 ->editColumn('role', function ($user) {
                     if ($user->infoLogin->role == 1) {

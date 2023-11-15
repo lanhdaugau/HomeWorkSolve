@@ -170,11 +170,24 @@
         .chat-message-content {
             margin-left: 130px;
         }
+        .chat-message-content p{
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid grey;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
 
         .chat-message-content-2 {
             margin-left: 50px;
         }
-
+        .chat-message-content-2 p{
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid grey;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
         .chat-time {
             float: right;
             font-size: 10px;
@@ -234,7 +247,6 @@
                                 </div>
                             </div>
                         </form>
-                        s
                     </div>
                 </div>
             </div>
@@ -270,10 +282,6 @@
                                     style="float: right;">
                                 <div class="chat-message-content clearfix" style="">
 
-
-
-
-                                    <h5 style="margin-left: 50px">Bạn</h5>
                                     <p>{{ $contact->content }}</p>
 
                                 </div> <!-- end chat-message-content -->
@@ -290,10 +298,6 @@
                                     width="32" height="32">
 
                                 <div class="chat-message-content-2 clearfix">
-
-
-
-                                    <h5>Admin</h5>
 
                                     <p>{{ $contact->content }}</p>
 

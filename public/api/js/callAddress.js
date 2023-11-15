@@ -12,7 +12,7 @@ $.ajaxSetup({
 });
 
 function getAddress(cityId = -1, districtId = -1, wardId = -1) {
-    fetch('https://provinces.open-api.vn/api/?depth=3')
+    fetch('https://provinces.open-api.vn/api/?depth=2')
         .then((response) => response.json())
         .then((data) => {
             var districts;

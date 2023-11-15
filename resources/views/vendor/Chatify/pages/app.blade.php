@@ -5,7 +5,7 @@
         {{-- Header and search bar --}}
         <div class="m-header">
             <nav>
-                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
+                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">TIN NHẮN</span> </a>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     <a href="#"><i class="fas fa-cog settings-btn"></i></a>
@@ -13,13 +13,13 @@
                 </nav>
             </nav>
             {{-- Search input --}}
-            <input type="text" class="messenger-search" placeholder="Search" />
+            <input type="text" class="messenger-search" placeholder="Tìm kiếm" />
             {{-- Tabs --}}
             <div class="messenger-listView-tabs">
                 <a href="#" @if($type == 'user') class="active-tab" @endif data-view="users">
-                    <span class="far fa-user"></span> People</a>
+                    <span class="far fa-user"></span> Nhắn tin</a>
                 <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
-                    <span class="fas fa-users"></span> Groups</a>
+                    <span class="fas fa-users"></span> Nhắn tin nhóm</a>
             </div>
         </div>
         {{-- tabs and lists --}}
@@ -30,7 +30,7 @@
 
                {{-- Favorites --}}
                <div class="favorites-section">
-                <p class="messenger-title">Favorites</p>
+                <p class="messenger-title">Yêu thích</p>
                 <div class="messenger-favorites app-scroll-thin"></div>
                </div>
 
@@ -53,9 +53,9 @@
              {{-- ---------------- [ Search Tab ] ---------------- --}}
            <div class="messenger-tab search-tab app-scroll" data-view="search">
                 {{-- items --}}
-                <p class="messenger-title">Search</p>
+                <p class="messenger-title">Tìm kiếm</p>
                 <div class="search-records">
-                    <p class="message-hint center-el"><span>Type to search..</span></p>
+                    <p class="message-hint center-el"><span>Nhập để tìm kiếm..</span></p>
                 </div>
              </div>
         </div>
@@ -83,14 +83,14 @@
         </div>
         {{-- Internet connection --}}
         <div class="internet-connection">
-            <span class="ic-connected">Connected</span>
-            <span class="ic-connecting">Connecting...</span>
-            <span class="ic-noInternet">No internet access</span>
+            <span class="ic-connected">Đã kết nói</span>
+            <span class="ic-connecting">Đang kết nối...</span>
+            <span class="ic-noInternet">Không có mạng</span>
         </div>
         {{-- Messaging area --}}
         <div class="m-body messages-container app-scroll">
             <div class="messages">
-                <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
+                <p class="message-hint center-el"><span>Vui lòng chọn đoạn chat để bắt đầu chat</span></p>
             </div>
             {{-- Typing indicator --}}
             <div class="typing-indicator">

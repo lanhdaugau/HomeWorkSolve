@@ -33,7 +33,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">User admin form</h3>
+                                <h3 class="card-title">Cập nhật user</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->

@@ -82,7 +82,7 @@
                             <a href="javascrip: void(0);">
                                 @foreach ($post->getImagePost as $item)
                                     <div class="card" data-radius="none"
-                                        style="background-image: url('{{ asset('uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}')">
+                                        style="background-image: url('{{ asset('storage/uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}')">
                                     </div>
                                 @endforeach
                             </a>

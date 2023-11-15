@@ -82,7 +82,7 @@
 
                                                             @foreach ($post->getImagePost as $item)
                                                                 <div class='img-div' id='img-div{{ $item->id }}'>
-                                                                    <img src='{{ asset('uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}'
+                                                                    <img src='{{ asset('storage/uploads/post/' . (empty($item->path_image) ? '' : $item->path_image)) }}'
                                                                         class='img-responsive image img-thumbnail'>
                                                                     <input type="checkbox" name="image[]"
                                                                         class="checkDelete" value="{{ $item->id }}"

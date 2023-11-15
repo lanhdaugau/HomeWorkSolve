@@ -83,7 +83,6 @@ Route::prefix('admin')->group(function () {
 
 
 //user
-// <<<<<<< HEAD
 Route::group(['controller' => InterFaceController::class], function () {
     Route::get('/',  'index')->name('user.index');
     Route::get('/search', 'search')->name('user.search');
@@ -99,7 +98,7 @@ Route::middleware('CheckUserLogin')->group(function () {
     Route::group(['controller' => UserController::class], function () {
         Route::get('/addPost', 'addPost')->name('post.addPost');
         Route::get('/setting',  'setting')->name('user.setting');
-        Route::post('/setting',  'update')->name('user.setting');
+        Route::post('/setting',  'update')->name('user.settingUpdate');
         Route::get('/profile',  'profile')->name('profile');
         Route::get('/checkRating', 'checkRating')->name('checkRating');
     });
