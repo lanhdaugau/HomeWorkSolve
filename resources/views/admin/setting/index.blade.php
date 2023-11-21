@@ -145,7 +145,8 @@
 @endsection
 @push('script')
 <script>
-    getAddress({{ $user->idCity ?? -1 }}, {{ $user->idDistrict ?? -1 }}, {{ $user->idWard ?? -1 }});
+    // getFullAddress('address', '{{ $admin->address }}', {{ $admin->idWard }}, {{ $admin->idDistrict }},{{ $admin->idCity }});
+    getAddress({{ $admin->idCity ?? -1 }}, {{ $admin->idDistrict ?? -1 }}, {{ $admin->idWard ?? -1 }});
 </script>
 @if (Session::has('message'))
 

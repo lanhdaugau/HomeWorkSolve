@@ -12,9 +12,11 @@ $.ajaxSetup({
 });
 
 function getAddress(cityId = -1, districtId = -1, wardId = -1) {
-    fetch('https://provinces.open-api.vn/api/?depth=2')
+    fetch('https://provinces.open-api.vn/api/depth==3')
         .then((response) => response.json())
         .then((data) => {
+            
+            
             var districts;
             data.map(value => {
                 $('#city').append(`<option ${ (value.code == cityId) ? 'selected' : '' } value="${value.code}">${value.name}</option>`);
