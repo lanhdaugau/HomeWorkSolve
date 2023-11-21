@@ -18,8 +18,8 @@ class InterFaceController extends Controller
     $search=$request->get('searchPost');
     
     $posts = Post::where('content','like', '%' . $search . '%')
-    ->where('caption','like', '%' . $search . '%')
-    ->orWhere('isActive',1)
+    ->orWhere('caption','like', '%' . $search . '%')
+    ->Where('isActive',1)
     ->orderBy('created_at','DESC')->paginate(3);
 
     return view('users.index',['posts' => $posts]);
